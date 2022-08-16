@@ -1,12 +1,12 @@
-import * as Phaser from 'phaser';
-import { TitleScene } from './scene/TitleScene';
-import './style.css';
+import * as Phaser from "phaser";
+import { TitleScene } from "./scene/TitleScene";
+import "./style.css";
 
 const config: Phaser.Types.Core.GameConfig = {
   type: Phaser.AUTO,
   width: 1280,
   height: 720,
-  parent: 'app',
+  parent: "app",
   pixelArt: false,
   scene: TitleScene,
   scale: {
@@ -15,4 +15,5 @@ const config: Phaser.Types.Core.GameConfig = {
   },
 };
 
+// eslint-disable-next-line
 new Phaser.Game(config);
