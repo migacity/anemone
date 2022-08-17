@@ -1,5 +1,6 @@
 export class InputManager extends Phaser.Scene {
   private keyEnter!: Phaser.Input.Keyboard.Key;
+  private currentScene: string = "loading";
 
   constructor() {
     super({
@@ -30,12 +31,38 @@ export class InputManager extends Phaser.Scene {
   }
 
   moveNextScene(): void {
-    if (this.scene.isVisible("title")) {
-      this.scene.start("ending");
-      this.scene.stop("title");
-    } else if (this.scene.isVisible("ending")) {
-      this.scene.start("title");
-      this.scene.stop("ending");
+    let next: string;
+    switch (this.currentScene) {
+      case "loading":
+        next = "title";
+        break;
+
+      case "title":
+        next = "save-data";
+        break;
+
+      case "save-data":
+        next = "main";
+        break;
+
+      case "main":
+        next = "ending";
+        break;
+
+      case "ending":
+        next = "credit";
+        break;
+
+      case "credit":
+        next = "title";
+        break;
+
+      default:
+        next = this.currentScene;
+        break;
     }
+    this.scene.start(next);
+    this.scene.stop(this.currentScene);
+    this.currentScene = next;
   }
 }
