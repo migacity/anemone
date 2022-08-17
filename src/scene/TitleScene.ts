@@ -1,13 +1,17 @@
+import titleImage from "../../assets/title.webp";
+
 export class TitleScene extends Phaser.Scene {
   constructor() {
     super("title");
   }
 
+  preload(): void {
+    this.load.image("titleImage", titleImage);
+  }
+
   create(): void {
     const { width, height } = this.game.canvas;
-    this.add
-      .text(width / 2, height / 2, "アネモネの見上げた空")
-      .setOrigin(0.5)
-      .setPadding(4);
+    this.add.image(width / 2, height / 2, "titleImage").setScale(2, 2);
+    this.scene.launch("inputManager");
   }
 }

@@ -1,5 +1,5 @@
 import * as Phaser from "phaser";
-import { TitleScene } from "./scene/TitleScene";
+import { Scenes } from "./scene";
 import "./style.css";
 
 const config: Phaser.Types.Core.GameConfig = {
@@ -8,7 +8,7 @@ const config: Phaser.Types.Core.GameConfig = {
   height: 720,
   parent: "app",
   pixelArt: false,
-  scene: TitleScene,
+  scene: Scenes,
   scale: {
     mode: Phaser.Scale.FIT,
     autoCenter: Phaser.Scale.CENTER_BOTH,
