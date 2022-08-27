@@ -8,31 +8,38 @@ export class MessageWindow extends Phaser.GameObjects.Container {
 
   constructor(public scene: Phaser.Scene) {
     super(scene, 0, 0);
-    const cx = 640;
-    const cy = 360;
-    const width = 1280 - 2 * 20;
-    const height = 720 - 2 * 20;
+    const { width, height } = scene.game.canvas;
+
+    // 4方向marginで指定するのが好きかなぁ。
+    const [marginLeft, marginTop, marginRight, marginBottom] = [
+      60, 480, 60, 40,
+    ];
+
+    const w = width - marginLeft - marginRight;
+    const h = height - marginTop - marginBottom;
+    const cx = marginLeft + w / 2;
+    const cy = marginTop + h / 2;
     this.box = new Phaser.GameObjects.Rectangle(
       this.scene,
       cx,
       cy,
-      width,
-      height,
+      w,
+      h,
       0x000000,
       0.75
     ).setStrokeStyle(1, 0xffffff);
     this.add(this.box);
 
     const dialogBoxTextStyle: Phaser.Types.GameObjects.Text.TextStyle = {
-      wordWrap: { width: width - 2 * 16, useAdvancedWrap: true },
+      wordWrap: { width: w - 2 * 16, useAdvancedWrap: true },
       padding: { top: 4 },
       fontSize: "24px",
     };
 
     this.text = new Phaser.GameObjects.Text(
       this.scene,
-      cx - width / 2 + 16,
-      cy - height / 2 + 16,
+      cx - w / 2 + 16,
+      cy - h / 2 + 16,
       "",
       dialogBoxTextStyle
     );
