@@ -49,7 +49,7 @@ export class MessageWindow extends Phaser.GameObjects.Container {
   setMessage(message: string): void {
     const dialog = message.split("");
     this.dialogSpeed = 2;
-    const _animateText = (): void => {
+    const animateText = (): void => {
       this.eventCounter++;
       this.text.setText(this.text.text + dialog[this.eventCounter - 1]);
       if (this.eventCounter === dialog.length) {
@@ -66,17 +66,25 @@ export class MessageWindow extends Phaser.GameObjects.Container {
 
     this.timerEvent = this.scene.time.addEvent({
       delay: 150 - this.dialogSpeed * 30,
-      callback: _animateText,
+      callback: animateText,
       callbackScope: this,
       loop: true,
     });
   }
 
+  // メモ。
+
+  // 状態管理をした方がいいかな？
+  // - 待機
+  // - 文字表示アニメーション中
+  // - 表示完了
+  // - クリック待ち
+
   waitInput(): void {
     this.dialogSpeed = 1;
     const markText = ".";
     this.markVisible = true;
-    const _animateText = (): void => {
+    const animateText = (): void => {
       const text = this.markVisible
         ? this.text.text + markText
         : this.text.text.slice(0, -1);
@@ -85,7 +93,7 @@ export class MessageWindow extends Phaser.GameObjects.Container {
     };
     this.timerEvent = this.scene.time.addEvent({
       delay: 500,
-      callback: _animateText,
+      callback: animateText,
       callbackScope: this,
       loop: true,
     });

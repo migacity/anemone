@@ -13,10 +13,18 @@ export class MainScene extends Phaser.Scene {
 
   create(): void {
     const { width, height } = this.game.canvas;
+
+    // 背景画像を表示する。
     this.add.image(width / 2, height / 2, "mainImage").setScale(2, 2);
-    this.scene.launch("inputManager");
+
+    // メッセージウィンドウを表示する。
     this.dialog = new MessageWindow(this);
     this.add.existing(this.dialog);
+
+    // inputManagerをアクティブ化する。
+    this.scene.launch("inputManager");
+
+    // これはcreateのなかで良いの？
     setTimeout(
       () =>
         this.dialog.setMessage(
