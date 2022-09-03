@@ -15,6 +15,9 @@ export class MessageWindow extends Phaser.GameObjects.Container {
       60, 480, 60, 40,
     ];
 
+    // paddingBottomは使うところが無い。
+    const [paddingLeft, paddingTop, paddingRight] = [40, 40, 40];
+
     const w = width - marginLeft - marginRight;
     const h = height - marginTop - marginBottom;
     const cx = marginLeft + w / 2;
@@ -31,15 +34,18 @@ export class MessageWindow extends Phaser.GameObjects.Container {
     this.add(this.box);
 
     const dialogBoxTextStyle: Phaser.Types.GameObjects.Text.TextStyle = {
-      wordWrap: { width: w - 2 * 16, useAdvancedWrap: true },
+      wordWrap: {
+        width: w - paddingLeft - paddingRight,
+        useAdvancedWrap: true,
+      },
       padding: { top: 4 },
       fontSize: "24px",
     };
 
     this.text = new Phaser.GameObjects.Text(
       this.scene,
-      cx - w / 2 + 16,
-      cy - h / 2 + 16,
+      cx - w / 2 + paddingLeft,
+      cy - h / 2 + paddingTop,
       "",
       dialogBoxTextStyle
     );
