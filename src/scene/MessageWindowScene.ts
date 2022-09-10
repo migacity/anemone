@@ -1,3 +1,22 @@
+const MessageWindowStates = {
+  'Standby': 'standby',
+  'Animating': 'animating',
+  'Pause': 'pause',
+} as const
+
+// - 待機
+// - 文字表示アニメーション中
+// - 表示完了
+// - クリック待ち
+type MessageWindowState = typeof MessageWindowStates[keyof typeof MessageWindowStates]
+
+const TransitionMessages = {
+  ToAnimating: 'toanimating',
+  ToPause: 'topause',
+} as const
+
+type TransitionMessage = typeof TransitionMessages[keyof typeof TransitionMessages]
+
 export class MessageWindow extends Phaser.GameObjects.Container {
   private readonly box: Phaser.GameObjects.Rectangle;
   private readonly text: Phaser.GameObjects.Text;
@@ -5,6 +24,7 @@ export class MessageWindow extends Phaser.GameObjects.Container {
   private timerEvent: Phaser.Time.TimerEvent | undefined = undefined;
   private dialogSpeed!: number;
   private markVisible!: boolean;
+  private classStatus: MessageWindowState;
 
   constructor(public scene: Phaser.Scene) {
     super(scene, 0, 0);
@@ -50,6 +70,27 @@ export class MessageWindow extends Phaser.GameObjects.Container {
       dialogBoxTextStyle
     );
     this.add(this.text);
+
+    this.classStatus = 'standby'
+  }
+
+  // 状態遷移する。
+  // シンプルにしたいのか複雑にしたいのか。
+  // updateが外から呼ばれる関数なのでー
+  // 
+  update(msg: TransitionMessage) {
+    switch (msg) {
+      case 'topause':
+        this.waitInput()
+        break;
+
+      case 'toanimating':
+        this.setMessage('')
+        break;
+    
+      default:
+        break;
+    }
   }
 
   setMessage(message: string): void {
