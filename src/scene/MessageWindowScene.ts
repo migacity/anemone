@@ -1,30 +1,32 @@
 const MessageWindowStates = {
-  'Standby': 'standby',
-  'Animating': 'animating',
-  'Pause': 'pause',
-} as const
+  Standby: "standby",
+  Animating: "animating",
+  Pause: "pause",
+} as const;
 
 // - 待機
 // - 文字表示アニメーション中
 // - 表示完了
 // - クリック待ち
-type MessageWindowState = typeof MessageWindowStates[keyof typeof MessageWindowStates]
+type MessageWindowState =
+  typeof MessageWindowStates[keyof typeof MessageWindowStates];
 
 const TransitionMessages = {
-  ToAnimating: 'toanimating',
-  ToPause: 'topause',
-} as const
+  ToAnimating: "toanimating",
+  ToPause: "topause",
+} as const;
 
-type TransitionMessage = typeof TransitionMessages[keyof typeof TransitionMessages]
+type TransitionMessage =
+  typeof TransitionMessages[keyof typeof TransitionMessages];
 
 export class MessageWindow extends Phaser.GameObjects.Container {
   private readonly box: Phaser.GameObjects.Rectangle;
   private readonly text: Phaser.GameObjects.Text;
   private eventCounter!: number;
   private timerEvent: Phaser.Time.TimerEvent | undefined = undefined;
-  private dialogSpeed!: number;
   private markVisible!: boolean;
   private classStatus: MessageWindowState;
+  private messageText: string;
 
   constructor(public scene: Phaser.Scene) {
     super(scene, 0, 0);
@@ -71,40 +73,42 @@ export class MessageWindow extends Phaser.GameObjects.Container {
     );
     this.add(this.text);
 
-    this.classStatus = 'standby'
+    this.messageText = "";
+    this.classStatus = "standby";
   }
 
   // 状態遷移する。
   // シンプルにしたいのか複雑にしたいのか。
   // updateが外から呼ばれる関数なのでー
-  // 
-  update(msg: TransitionMessage) {
+  //
+  update(msg: TransitionMessage): void {
     switch (msg) {
-      case 'topause':
-        this.waitInput()
+      case "topause":
+        this.waitInput();
         break;
 
-      case 'toanimating':
-        this.setMessage('')
+      case "toanimating":
+        this.setMessage("");
         break;
-    
+
       default:
         break;
     }
   }
 
   setMessage(message: string): void {
-    const dialog = message.split("");
-    this.dialogSpeed = 2;
     const animateText = (): void => {
       this.eventCounter++;
       this.text.setText(this.text.text + dialog[this.eventCounter - 1]);
       if (this.eventCounter === dialog.length) {
         if (this.timerEvent !== undefined) this.timerEvent.remove();
+        this.classStatus = 'pause'
         this.waitInput();
       }
     };
 
+    this.messageText = message;
+    const dialog = message.split("");
     this.eventCounter = 0;
     if (this.timerEvent !== undefined) this.timerEvent.remove();
 
@@ -112,32 +116,26 @@ export class MessageWindow extends Phaser.GameObjects.Container {
     this.text.setText(tmpText);
 
     this.timerEvent = this.scene.time.addEvent({
-      delay: 150 - this.dialogSpeed * 30,
+      delay: 90,
       callback: animateText,
       callbackScope: this,
       loop: true,
     });
   }
 
-  // メモ。
-
-  // 状態管理をした方がいいかな？
-  // - 待機
-  // - 文字表示アニメーション中
-  // - 表示完了
-  // - クリック待ち
+  // 違うんだよ。Classなんだから状態は自分で持ってるはずなんだよ。
 
   waitInput(): void {
-    this.dialogSpeed = 1;
-    const markText = ".";
-    this.markVisible = true;
     const animateText = (): void => {
-      const text = this.markVisible
-        ? this.text.text + markText
-        : this.text.text.slice(0, -1);
+      const text = this.messageText + (this.markVisible ? markText : "");
       this.text.setText(text);
       this.markVisible = !this.markVisible;
     };
+
+    const markText = ".";
+    this.markVisible = true;
+    if (this.timerEvent !== undefined) this.timerEvent.remove();
+
     this.timerEvent = this.scene.time.addEvent({
       delay: 500,
       callback: animateText,
