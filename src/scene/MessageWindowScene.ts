@@ -11,14 +11,6 @@ const MessageWindowStates = {
 type MessageWindowState =
   typeof MessageWindowStates[keyof typeof MessageWindowStates];
 
-const TransitionMessages = {
-  ToAnimating: "toanimating",
-  ToPause: "topause",
-} as const;
-
-type TransitionMessage =
-  typeof TransitionMessages[keyof typeof TransitionMessages];
-
 export class MessageWindow extends Phaser.GameObjects.Container {
   private readonly box: Phaser.GameObjects.Rectangle;
   private readonly text: Phaser.GameObjects.Text;
@@ -29,6 +21,7 @@ export class MessageWindow extends Phaser.GameObjects.Container {
   private messageText: string;
 
   constructor(public scene: Phaser.Scene) {
+    // コンストラクタが異様に長いのが気に食わない。
     super(scene, 0, 0);
     const { width, height } = scene.game.canvas;
 
@@ -77,26 +70,7 @@ export class MessageWindow extends Phaser.GameObjects.Container {
     this.classStatus = "standby";
   }
 
-  // 状態遷移する。
-  // シンプルにしたいのか複雑にしたいのか。
-  // updateが外から呼ばれる関数なのでー
-  //
-  update(msg: TransitionMessage): void {
-    switch (msg) {
-      case "topause":
-        this.waitInput();
-        break;
-
-      case "toanimating":
-        this.setMessage("");
-        break;
-
-      default:
-        break;
-    }
-  }
-
-  setMessage(message: string): void {
+  public setMessage(message: string): void {
     const animateText = (): void => {
       this.eventCounter++;
       this.text.setText(this.text.text + dialog[this.eventCounter - 1]);
@@ -114,6 +88,7 @@ export class MessageWindow extends Phaser.GameObjects.Container {
 
     const tmpText = "";
     this.text.setText(tmpText);
+    this.classStatus = 'animating'
 
     this.timerEvent = this.scene.time.addEvent({
       delay: 90,
@@ -123,9 +98,15 @@ export class MessageWindow extends Phaser.GameObjects.Container {
     });
   }
 
-  // 違うんだよ。Classなんだから状態は自分で持ってるはずなんだよ。
+  public clicked(): void {
+    if (this.classStatus !== 'animating') return
+    if (this.timerEvent !== undefined) this.timerEvent.remove();
+    this.classStatus = 'pause'
+    this.waitInput();
+  }
 
-  waitInput(): void {
+  // 違うんだよ。Classなんだから状態は自分で持ってるはずなんだよ。
+  public waitInput(): void {
     const animateText = (): void => {
       const text = this.messageText + (this.markVisible ? markText : "");
       this.text.setText(text);
