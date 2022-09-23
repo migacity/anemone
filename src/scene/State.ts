@@ -14,6 +14,7 @@ export class State extends Phaser.Scene {
   pointer(): number {
     return this.scenarioPointer
   }
+
   inc(): void {
     this.scenarioPointer++
   }
