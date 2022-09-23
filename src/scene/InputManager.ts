@@ -1,6 +1,9 @@
+import { State } from "./State";
+
 export class InputManager extends Phaser.Scene {
   private keyEnter!: Phaser.Input.Keyboard.Key;
   private currentScene: string = "loading";
+  private state!: State
 
   constructor() {
     super({
@@ -22,6 +25,7 @@ export class InputManager extends Phaser.Scene {
     zone.on("pointerdown", () => {
       this.moveNextScene();
     });
+    this.state = this.scene.get('state') as State
   }
 
   update(): void {
@@ -31,7 +35,7 @@ export class InputManager extends Phaser.Scene {
   }
 
   moveNextScene(): void {
-    let next: string;
+    let next: string = this.currentScene;
     switch (this.currentScene) {
       case "loading":
         next = "title";
@@ -46,7 +50,12 @@ export class InputManager extends Phaser.Scene {
         break;
 
       case "main":
-        next = "ending";
+        if (this.state.pointer() < 2) {
+          // stateの更新はObserverでお知らせしないとかなー。
+          this.state.inc()
+        } else {
+          next = "ending";
+        }
         break;
 
       case "ending":
@@ -61,6 +70,8 @@ export class InputManager extends Phaser.Scene {
         next = this.currentScene;
         break;
     }
+    // ここの対応がad-hocなのであとで修正してください。
+    if (next === this.currentScene) return;
     this.scene.start(next);
     this.scene.stop(this.currentScene);
     this.currentScene = next;
