@@ -5,6 +5,7 @@ import { MainScene } from "./MainScene";
 import { EndingScene } from "./EndingScene";
 import { CreditScene } from "./CreditScene";
 import { InputManager } from "./InputManager";
+import { State } from "./State";
 
 export const Scenes = [
   LoadingScene,
@@ -14,4 +15,5 @@ export const Scenes = [
   EndingScene,
   CreditScene,
   InputManager,
+  State,
 ];
