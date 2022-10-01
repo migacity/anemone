@@ -48,7 +48,7 @@ export class InputManager extends Phaser.Scene {
         break;
 
       case "main":
-        if (state.pointer() < 1) {
+        if (!state.endOfScenario) {
           // stateの更新はObserverでお知らせしないとかなー。
           state.inc()
         } else {

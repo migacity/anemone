@@ -17,19 +17,17 @@ class State {
     this.observers.forEach(o => o.paramsUpdate(this))
   }
 
-  preload(): void {
-  }
-
-  create(): void {
-  }
-
-  pointer(): number {
-    return this.scenarioPointer
+  public get endOfScenario(): boolean {
+    return !(this.scenarioPointer < this.scenario.length - 1)
   }
 
   inc(): void {
     this.scenarioPointer++
     this.notifyObservers()
+  }
+
+  public get currentScenario(): string {
+    return this.scenario[this.scenarioPointer]
   }
 }
 

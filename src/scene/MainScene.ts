@@ -12,8 +12,7 @@ export class MainScene extends Phaser.Scene implements IObserver {
   }
 
   paramsUpdate(): void {
-    // console.log('MainScene::paramsUpdate')
-    this.dialog.setMessage(state.scenario[state.pointer()])
+    this.dialog.setMessage(state.currentScenario)
   }
 
   preload(): void {
@@ -37,9 +36,6 @@ export class MainScene extends Phaser.Scene implements IObserver {
       "元朝より大晦日まで、御手に入れまする此の薬は、昔、ちんの国の唐人、外郎という人、わが朝へ来たり、帝へ参内の折りから、此の薬を深く籠め置き、用ゆる時は一粒ずつ、冠の隙間より取り出だす。",
     ]
 
-
-    this.dialog.setMessage(
-      state.scenario[state.pointer()]
-    )
+    this.dialog.setMessage(state.currentScenario)
   }
 }
