@@ -1,4 +1,5 @@
-import state from "./State";
+import { useGameState } from "./State";
+const { update, get } = useGameState();
 
 export class InputManager extends Phaser.Scene {
   private keyEnter!: Phaser.Input.Keyboard.Key;
@@ -48,9 +49,9 @@ export class InputManager extends Phaser.Scene {
         break;
 
       case "main":
-        if (!state.endOfScenario) {
+        if (!get.endOfScenario()) {
           // stateの更新はObserverでお知らせしないとかなー。
-          state.inc();
+          update("inc");
         } else {
           next = "ending";
         }
