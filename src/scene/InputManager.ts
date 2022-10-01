@@ -1,3 +1,5 @@
+import state from "./State";
+
 export class InputManager extends Phaser.Scene {
   private keyEnter!: Phaser.Input.Keyboard.Key;
   private currentScene: string = "loading";
@@ -31,7 +33,7 @@ export class InputManager extends Phaser.Scene {
   }
 
   moveNextScene(): void {
-    let next: string;
+    let next: string = this.currentScene;
     switch (this.currentScene) {
       case "loading":
         next = "title";
@@ -46,7 +48,12 @@ export class InputManager extends Phaser.Scene {
         break;
 
       case "main":
-        next = "ending";
+        if (!state.endOfScenario) {
+          // stateの更新はObserverでお知らせしないとかなー。
+          state.inc();
+        } else {
+          next = "ending";
+        }
         break;
 
       case "ending":
@@ -61,6 +68,8 @@ export class InputManager extends Phaser.Scene {
         next = this.currentScene;
         break;
     }
+    // ここの対応がad-hocなのであとで修正してください。
+    if (next === this.currentScene) return;
     this.scene.start(next);
     this.scene.stop(this.currentScene);
     this.currentScene = next;

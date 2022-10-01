@@ -1,12 +1,27 @@
+const MessageWindowStates = {
+  Standby: "standby",
+  Animating: "animating",
+  Pause: "pause",
+} as const;
+
+// - 待機
+// - 文字表示アニメーション中
+// - 表示完了
+// - クリック待ち
+type MessageWindowState =
+  typeof MessageWindowStates[keyof typeof MessageWindowStates];
+
 export class MessageWindow extends Phaser.GameObjects.Container {
   private readonly box: Phaser.GameObjects.Rectangle;
   private readonly text: Phaser.GameObjects.Text;
   private eventCounter!: number;
   private timerEvent: Phaser.Time.TimerEvent | undefined = undefined;
-  private dialogSpeed!: number;
   private markVisible!: boolean;
+  private classStatus: MessageWindowState;
+  private messageText: string;
 
   constructor(public scene: Phaser.Scene) {
+    // コンストラクタが異様に長いのが気に食わない。
     super(scene, 0, 0);
     const { width, height } = scene.game.canvas;
 
@@ -50,53 +65,58 @@ export class MessageWindow extends Phaser.GameObjects.Container {
       dialogBoxTextStyle
     );
     this.add(this.text);
+
+    this.messageText = "";
+    this.classStatus = "standby";
   }
 
-  setMessage(message: string): void {
-    const dialog = message.split("");
-    this.dialogSpeed = 2;
+  public setMessage(message: string): void {
     const animateText = (): void => {
       this.eventCounter++;
       this.text.setText(this.text.text + dialog[this.eventCounter - 1]);
       if (this.eventCounter === dialog.length) {
         if (this.timerEvent !== undefined) this.timerEvent.remove();
+        this.classStatus = "pause";
         this.waitInput();
       }
     };
 
+    this.messageText = message;
+    const dialog = message.split("");
     this.eventCounter = 0;
     if (this.timerEvent !== undefined) this.timerEvent.remove();
 
     const tmpText = "";
     this.text.setText(tmpText);
+    this.classStatus = "animating";
 
     this.timerEvent = this.scene.time.addEvent({
-      delay: 150 - this.dialogSpeed * 30,
+      delay: 90,
       callback: animateText,
       callbackScope: this,
       loop: true,
     });
   }
 
-  // メモ。
+  public clicked(): void {
+    if (this.classStatus !== "animating") return;
+    if (this.timerEvent !== undefined) this.timerEvent.remove();
+    this.classStatus = "pause";
+    this.waitInput();
+  }
 
-  // 状態管理をした方がいいかな？
-  // - 待機
-  // - 文字表示アニメーション中
-  // - 表示完了
-  // - クリック待ち
-
-  waitInput(): void {
-    this.dialogSpeed = 1;
-    const markText = ".";
-    this.markVisible = true;
+  // 違うんだよ。Classなんだから状態は自分で持ってるはずなんだよ。
+  public waitInput(): void {
     const animateText = (): void => {
-      const text = this.markVisible
-        ? this.text.text + markText
-        : this.text.text.slice(0, -1);
+      const text = this.messageText + (this.markVisible ? markText : "");
       this.text.setText(text);
       this.markVisible = !this.markVisible;
     };
+
+    const markText = ".";
+    this.markVisible = true;
+    if (this.timerEvent !== undefined) this.timerEvent.remove();
+
     this.timerEvent = this.scene.time.addEvent({
       delay: 500,
       callback: animateText,
