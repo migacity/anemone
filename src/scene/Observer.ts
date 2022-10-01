@@ -1,3 +1,5 @@
+import { GameState } from "./State";
+
 export interface IObserver {
-  paramsUpdate: () => void;
+  paramsUpdate: (stage: GameState) => void;
 }
