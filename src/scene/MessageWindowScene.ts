@@ -76,7 +76,7 @@ export class MessageWindow extends Phaser.GameObjects.Container {
       this.text.setText(this.text.text + dialog[this.eventCounter - 1]);
       if (this.eventCounter === dialog.length) {
         if (this.timerEvent !== undefined) this.timerEvent.remove();
-        this.classStatus = 'pause'
+        this.classStatus = "pause";
         this.waitInput();
       }
     };
@@ -88,7 +88,7 @@ export class MessageWindow extends Phaser.GameObjects.Container {
 
     const tmpText = "";
     this.text.setText(tmpText);
-    this.classStatus = 'animating'
+    this.classStatus = "animating";
 
     this.timerEvent = this.scene.time.addEvent({
       delay: 90,
@@ -99,9 +99,9 @@ export class MessageWindow extends Phaser.GameObjects.Container {
   }
 
   public clicked(): void {
-    if (this.classStatus !== 'animating') return
+    if (this.classStatus !== "animating") return;
     if (this.timerEvent !== undefined) this.timerEvent.remove();
-    this.classStatus = 'pause'
+    this.classStatus = "pause";
     this.waitInput();
   }
 

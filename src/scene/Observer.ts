@@ -1,3 +1,3 @@
-export interface IObserver{
-    paramsUpdate(): void 
+export interface IObserver {
+  paramsUpdate: () => void;
 }
