@@ -1,5 +1,5 @@
-import { GameState } from "./State";
+import { GameStore } from "./State";
 
 export interface IObserver {
-  paramsUpdate: (stage: GameState) => void;
+  paramsUpdate: (newStore: GameStore, prevStore: GameStore) => void;
 }

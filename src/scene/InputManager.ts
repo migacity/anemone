@@ -3,7 +3,7 @@ const { update, get } = useGameState();
 
 export class InputManager extends Phaser.Scene {
   private keyEnter!: Phaser.Input.Keyboard.Key;
-  private currentScene: string = "loading";
+  // private currentScene: string = "loading";
 
   constructor() {
     super({
@@ -34,45 +34,26 @@ export class InputManager extends Phaser.Scene {
   }
 
   moveNextScene(): void {
-    let next: string = this.currentScene;
-    switch (this.currentScene) {
-      case "loading":
-        next = "title";
+    switch (get.currentState().state) {
+      case "RAIA_LOGO":
+        update("moveToTitle")
         break;
 
-      case "title":
-        next = "save-data";
+      case "TITLE":
+        update("moveToMain")
         break;
 
-      case "save-data":
-        next = "main";
+      case "MAIN":
+        update("moveToEnding")
         break;
 
-      case "main":
-        if (!get.endOfScenario()) {
-          // stateの更新はObserverでお知らせしないとかなー。
-          update("inc");
-        } else {
-          next = "ending";
-        }
+      case "ENDING":
+        update("moveToCredit")
         break;
 
-      case "ending":
-        next = "credit";
-        break;
-
-      case "credit":
-        next = "title";
-        break;
-
-      default:
-        next = this.currentScene;
+      case "CREDIT":
+        update("moveToTitle")
         break;
     }
-    // ここの対応がad-hocなのであとで修正してください。
-    if (next === this.currentScene) return;
-    this.scene.start(next);
-    this.scene.stop(this.currentScene);
-    this.currentScene = next;
   }
 }

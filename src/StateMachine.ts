@@ -1,4 +1,4 @@
-type State =
+type GameState =
   | { state: "RAIA_LOGO" }
   | { state: "TITLE" }
   | { state: "MAIN" }
@@ -6,13 +6,12 @@ type State =
   | { state: "CREDIT" }
 
 type Action =
-  | { type: "MOVE_SCENE" }
   | { type: "TO_TITLE" }
   | { type: "TO_MAIN" }
   | { type: "TO_ENDING" }
   | { type: "TO_CREDIT" }
 
-const reducer = (state: State, action: Action): State => {
+const reducer = (state: GameState, action: Action): GameState => {
   switch (state.state) {
     case "RAIA_LOGO":
       switch (action.type) {
@@ -55,4 +54,7 @@ const reducer = (state: State, action: Action): State => {
 
 export {
   reducer,
+}
+export type {
+  GameState,
 }
