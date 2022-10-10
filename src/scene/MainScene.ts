@@ -1,19 +1,23 @@
 import mainImage from "../../assets/main.webp";
 import { MessageWindow } from "./MessageWindowScene";
 import { IObserver } from "../Observer";
-import { useGameState } from "../State";
+import { useGameState, GameStore } from "../State";
 const { resisterObserver, update, get } = useGameState();
 
 export class MainScene extends Phaser.Scene implements IObserver {
-  private dialog!: MessageWindow;
+  // 出来ればundefinedは無い方がいい。
+  private dialog: MessageWindow | undefined;
 
   constructor() {
     super("main");
     resisterObserver(this);
+    this.dialog = undefined
   }
 
-  paramsUpdate(): void {
-    this.dialog.setMessage(get.currentScenario());
+  paramsUpdate(newStore: Readonly<GameStore>, prevStore: GameStore): void {
+    if (((newStore.scenario !== prevStore.scenario) || (newStore.scenarioPointer !== prevStore.scenarioPointer)) && (this.dialog !== undefined)) {
+      this.dialog.setMessage(get.currentScenario());
+    }
   }
 
   preload(): void {

@@ -3,7 +3,6 @@ const { update, get } = useGameState();
 
 export class InputManager extends Phaser.Scene {
   private keyEnter!: Phaser.Input.Keyboard.Key;
-  // private currentScene: string = "loading";
 
   constructor() {
     super({
