@@ -1,4 +1,4 @@
-import { useGameState } from "./State";
+import { useGameState } from "../State";
 const { update, get } = useGameState();
 
 export class InputManager extends Phaser.Scene {

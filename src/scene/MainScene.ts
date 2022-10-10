@@ -1,7 +1,7 @@
 import mainImage from "../../assets/main.webp";
 import { MessageWindow } from "./MessageWindowScene";
-import { IObserver } from "./Observer";
-import { useGameState } from "./State";
+import { IObserver } from "../Observer";
+import { useGameState } from "../State";
 const { resisterObserver, update, get } = useGameState();
 
 export class MainScene extends Phaser.Scene implements IObserver {
