@@ -35,23 +35,23 @@ export class InputManager extends Phaser.Scene {
   moveNextScene(): void {
     switch (get.currentState().state) {
       case "RAIA_LOGO":
-        update("moveToTitle")
+        update("moveToTitle");
         break;
 
       case "TITLE":
-        update("moveToMain")
+        update("moveToMain");
         break;
 
       case "MAIN":
-        update("moveToEnding")
+        update("moveToEnding");
         break;
 
       case "ENDING":
-        update("moveToCredit")
+        update("moveToCredit");
         break;
 
       case "CREDIT":
-        update("moveToTitle")
+        update("moveToTitle");
         break;
     }
   }

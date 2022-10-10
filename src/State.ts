@@ -4,7 +4,7 @@ import { reducer, GameState } from "./StateMachine";
 interface GameStore {
   scenarioPointer: number;
   scenario: string[];
-  gameState: GameState
+  gameState: GameState;
 }
 
 interface StateGetter {
@@ -48,7 +48,7 @@ const useGameState = (): {
     message: UpdateMessage,
     paylode?: Partial<GameStore>
   ): void => {
-    const prevStore = JSON.parse(JSON.stringify(store))
+    const prevStore = JSON.parse(JSON.stringify(store));
 
     switch (message) {
       case "inc":
@@ -68,21 +68,21 @@ const useGameState = (): {
         break;
 
       case "moveToTitle":
-        store.gameState = reducer(store.gameState, { type: "TO_TITLE" })
+        store.gameState = reducer(store.gameState, { type: "TO_TITLE" });
         break;
-      
+
       case "moveToMain":
-        store.gameState = reducer(store.gameState, { type: "TO_MAIN" })
+        store.gameState = reducer(store.gameState, { type: "TO_MAIN" });
         break;
-      
+
       case "moveToEnding":
-        store.gameState = reducer(store.gameState, { type: "TO_ENDING" })
+        store.gameState = reducer(store.gameState, { type: "TO_ENDING" });
         break;
-      
+
       case "moveToCredit":
-        store.gameState = reducer(store.gameState, { type: "TO_CREDIT" })
+        store.gameState = reducer(store.gameState, { type: "TO_CREDIT" });
         break;
-      
+
       default:
         // 何にも更新が無いときはnotifyObserver叩かないで抜けるといいよ。
         return;
@@ -91,7 +91,7 @@ const useGameState = (): {
   };
 
   const notifyObservers = (prevStore: GameStore): void => {
-    const newStore: Readonly<GameStore> = store
+    const newStore: Readonly<GameStore> = store;
     observers.forEach((o) => o.paramsUpdate(newStore, prevStore));
   };
 
@@ -103,7 +103,7 @@ const useGameState = (): {
       return store.scenario[store.scenarioPointer];
     },
     currentState() {
-      return store.gameState
+      return store.gameState;
     },
   };
 

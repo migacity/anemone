@@ -15,5 +15,5 @@ export const Scenes = [
   EndingScene,
   CreditScene,
   InputManager,
-  SceneManager
+  SceneManager,
 ];

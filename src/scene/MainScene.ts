@@ -11,11 +11,15 @@ export class MainScene extends Phaser.Scene implements IObserver {
   constructor() {
     super("main");
     resisterObserver(this);
-    this.dialog = undefined
+    this.dialog = undefined;
   }
 
   paramsUpdate(newStore: Readonly<GameStore>, prevStore: GameStore): void {
-    if (((newStore.scenario !== prevStore.scenario) || (newStore.scenarioPointer !== prevStore.scenarioPointer)) && (this.dialog !== undefined)) {
+    if (
+      (newStore.scenario !== prevStore.scenario ||
+        newStore.scenarioPointer !== prevStore.scenarioPointer) &&
+      this.dialog !== undefined
+    ) {
       this.dialog.setMessage(get.currentScenario());
     }
   }
