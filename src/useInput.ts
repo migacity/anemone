@@ -5,13 +5,16 @@ export const useInput = (scene: Phaser.Scene) => {
     zone.setInteractive({
         useHandCursor: true,
     })
+    const space = scene.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.SPACE)
 
     const setEventHandler = (handler: Function) => {
         zone.on('pointerdown', handler, self)
+        space.on('down', handler, self)
     }
 
     const removeEventHandler = (handler: Function) => {
-        zone.on('pointerdown', handler, self)
+        zone.off('pointerdown', handler, self)
+        space.off('down', handler, self)
     }
 
     return {
