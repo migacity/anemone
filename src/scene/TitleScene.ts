@@ -20,7 +20,6 @@ export class TitleScene extends Phaser.Scene {
   }
   
   onClick(): void {
-    this.scene.launch('loading')
-    this.scene.stop('title')
+    this.scene.start('loading')
   }
 }

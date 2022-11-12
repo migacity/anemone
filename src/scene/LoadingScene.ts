@@ -19,7 +19,6 @@ export class LoadingScene extends Phaser.Scene {
   }
 
   onClick(): void {
-    this.scene.launch('title')
-    this.scene.stop('loading')
+    this.scene.start('title')
   }
 }
