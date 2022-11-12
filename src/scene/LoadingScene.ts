@@ -1,4 +1,5 @@
 import logoImage from "../../assets/raiacity-logo.webp";
+import { useInput } from "../useInput";
 
 export class LoadingScene extends Phaser.Scene {
   constructor() {
@@ -12,6 +13,13 @@ export class LoadingScene extends Phaser.Scene {
   create(): void {
     const { width, height } = this.game.canvas;
     this.add.image(width / 2, height / 2, "logoImage").setScale(2, 2);
-    this.scene.launch("inputManager");
+
+    const { setEventHandler } = useInput(this)
+    setEventHandler(this.onClick)
+  }
+
+  onClick(): void {
+    this.scene.launch('title')
+    this.scene.stop('loading')
   }
 }
