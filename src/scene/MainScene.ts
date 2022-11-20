@@ -2,6 +2,7 @@ import mainImage from "../../assets/main.webp";
 import { MessageWindow } from "./MessageWindowScene";
 import { IObserver } from "../Observer";
 import { useGameState, GameStore } from "../State";
+import { useInput } from "../useInput";
 const { resisterObserver, update, get } = useGameState();
 
 export class MainScene extends Phaser.Scene implements IObserver {
@@ -38,8 +39,6 @@ export class MainScene extends Phaser.Scene implements IObserver {
     this.dialog = new MessageWindow(this);
     this.add.existing(this.dialog);
 
-    // inputManagerをアクティブ化する。
-    this.scene.launch("inputManager");
     update("setScenario", {
       scenario: [
         "拙者親方と申すは、立会の内に御存知の御方も御座りましょうが、御江戸を発って二十里上方、相州小田原一色町を御過ぎなされて、青物町を上りへ御出でなさるれば、欄干橋虎屋藤右衛門、只今では剃髪致して圓斎と名乗りまする。",
@@ -48,5 +47,12 @@ export class MainScene extends Phaser.Scene implements IObserver {
     });
 
     this.dialog.setMessage(get.currentScenario());
+
+    const { setEventHandler } = useInput(this)
+    setEventHandler(this.moveNext)
+  }
+
+  moveNext(): void {
+    this.scene.start('ending')
   }
 }

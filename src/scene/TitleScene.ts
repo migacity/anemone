@@ -1,4 +1,5 @@
 import titleImage from "../../assets/title.webp";
+import { useInput } from "../useInput";
 
 export class TitleScene extends Phaser.Scene {
   constructor() {
@@ -12,11 +13,12 @@ export class TitleScene extends Phaser.Scene {
   create(): void {
     const { width, height } = this.game.canvas;
     this.add.image(width / 2, height / 2, "titleImage").setScale(2, 2);
-    this.scene.launch("inputManager");
-    this.events.on('click', this.moveNext, this)
+
+    const { setEventHandler } = useInput(this)
+    setEventHandler(this.moveNext)
   }
 
   moveNext(): void {
-
+    this.scene.start('main')
   }
 }
