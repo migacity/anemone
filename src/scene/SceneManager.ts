@@ -1,6 +1,6 @@
-import { IObserver } from "../Observer";
-import { GameStore, useGameState } from "../State";
-const { resisterObserver } = useGameState();
+// import { IObserver } from "../Observer";
+import { GameStore } from "../State";
+// const { resisterObserver } = useGameState();
 
 const SceneName = {
   RAIA_LOGO: "loading",
@@ -10,10 +10,10 @@ const SceneName = {
   CREDIT: "credit",
 } as const;
 
-export class SceneManager extends Phaser.Scene implements IObserver {
+export class SceneManager extends Phaser.Scene {
   constructor() {
     super("sceneManager");
-    resisterObserver(this);
+    // resisterObserver(this);
   }
 
   paramsUpdate(newStore: GameStore, prevStore: GameStore): void {
