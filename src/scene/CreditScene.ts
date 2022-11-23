@@ -1,4 +1,5 @@
 import creditImage from "../../assets/credit.webp";
+import { useInput } from "../useInput";
 
 export class CreditScene extends Phaser.Scene {
   constructor() {
@@ -12,6 +13,12 @@ export class CreditScene extends Phaser.Scene {
   create(): void {
     const { width, height } = this.game.canvas;
     this.add.image(width / 2, height / 2, "creditImage").setScale(2, 2);
-    this.scene.launch("inputManager");
+
+    const { setEventHandler } = useInput(this)
+    setEventHandler(this.moveNext)
+  }
+
+  moveNext(): void {
+    this.scene.start('title')
   }
 }

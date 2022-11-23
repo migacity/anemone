@@ -1,5 +1,5 @@
 import { describe, expect, it } from "vitest";
-import { useGameState } from "../scene/State";
+import { useGameState } from "../State";
 
 describe("useGameState", () => {
   it("複数回呼び出しても同じ状態が返る", () => {
