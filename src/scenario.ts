@@ -2,12 +2,12 @@ interface ScenarioText {
   type: "text";
   text: string;
   continue: boolean;
-};
+}
 
 interface MoveNext {
   type: "moveNext";
   continue: boolean;
-};
+}
 
 type Scenario = ScenarioText | MoveNext;
 
