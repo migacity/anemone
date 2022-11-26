@@ -121,6 +121,8 @@ export class MessageWindow extends Phaser.GameObjects.Container {
     this.markVisible = true;
     if (this.timerEvent !== undefined) this.timerEvent.remove();
 
+    animateText();
+
     this.timerEvent = this.scene.time.addEvent({
       delay: 500,
       callback: animateText,

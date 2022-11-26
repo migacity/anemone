@@ -58,7 +58,6 @@ export class MainScene extends Phaser.Scene {
   }
 
   onClick(): void {
-    // console.log(this.dialog?.status)
     if (this.dialog?.status === "animating") {
       this.dialog.clicked();
     } else {
