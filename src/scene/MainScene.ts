@@ -4,15 +4,18 @@ import { MessageWindow } from "./MessageWindowScene";
 // import { useGameState, GameStore } from "../State";
 import { useInput } from "../useInput";
 // const { resisterObserver, update, get } = useGameState();
+import { scenario } from "../scenario";
 
 export class MainScene extends Phaser.Scene {
   // 出来ればundefinedは無い方がいい。
   private dialog: MessageWindow | undefined;
+  private scenarioIndex: number;
 
   constructor() {
     super("main");
     // resisterObserver(this);
     this.dialog = undefined;
+    this.scenarioIndex = -1;
   }
 
   // paramsUpdate(newStore: Readonly<GameStore>, prevStore: GameStore): void {
@@ -30,6 +33,7 @@ export class MainScene extends Phaser.Scene {
   }
 
   create(): void {
+    this.scenarioIndex = -1;
     const { width, height } = this.game.canvas;
 
     // 背景画像を表示する。
@@ -48,11 +52,27 @@ export class MainScene extends Phaser.Scene {
 
     // this.dialog.setMessage(get.currentScenario());
 
-    const { setEventHandler } = useInput(this)
-    setEventHandler(this.moveNext)
+    const { setEventHandler } = useInput(this);
+    // setEventHandler(this.moveNext)
+    setEventHandler(this.interpretation);
   }
 
   moveNext(): void {
-    this.scene.start('ending')
+    this.scene.start("ending");
+  }
+
+  interpretation(): void {
+    do {
+      this.scenarioIndex += 1;
+      const code = scenario[this.scenarioIndex];
+      switch (code.type) {
+        case "text":
+          this.dialog?.setMessage(code.text);
+          break;
+        case "moveNext":
+          this.moveNext();
+          break;
+      }
+    } while (this.scenarioIndex < 0 || scenario[this.scenarioIndex].continue);
   }
 }
