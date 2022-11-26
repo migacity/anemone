@@ -70,6 +70,10 @@ export class MessageWindow extends Phaser.GameObjects.Container {
     this.classStatus = "standby";
   }
 
+  public get status(): MessageWindowState {
+    return this.classStatus;
+  }
+
   public setMessage(message: string): void {
     const animateText = (): void => {
       this.eventCounter++;

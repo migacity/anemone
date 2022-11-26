@@ -54,7 +54,16 @@ export class MainScene extends Phaser.Scene {
 
     const { setEventHandler } = useInput(this);
     // setEventHandler(this.moveNext)
-    setEventHandler(this.interpretation);
+    setEventHandler(this.onClick);
+  }
+
+  onClick(): void {
+    // console.log(this.dialog?.status)
+    if (this.dialog?.status === "animating") {
+      this.dialog.clicked();
+    } else {
+      this.interpretation();
+    }
   }
 
   moveNext(): void {
