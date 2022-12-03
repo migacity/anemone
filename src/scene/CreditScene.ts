@@ -14,11 +14,11 @@ export class CreditScene extends Phaser.Scene {
     const { width, height } = this.game.canvas;
     this.add.image(width / 2, height / 2, "creditImage").setScale(2, 2);
 
-    const { setEventHandler } = useInput(this)
-    setEventHandler(this.moveNext)
+    const { setEventHandler } = useInput(this);
+    setEventHandler(this.moveNext);
   }
 
   moveNext(): void {
-    this.scene.start('title')
+    this.scene.start("title");
   }
 }
