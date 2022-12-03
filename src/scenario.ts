@@ -1,6 +1,13 @@
+import bench from "../assets/bench.webp";
 interface ScenarioText {
   type: "text";
   text: string;
+  continue: boolean;
+}
+
+interface BackgroundImage {
+  type: "background";
+  name: string;
   continue: boolean;
 }
 
@@ -9,10 +16,23 @@ interface MoveNext {
   continue: boolean;
 }
 
-type Scenario = ScenarioText | MoveNext;
+interface ImagePreload {
+  type: "imagePreload";
+  name: string;
+  path: string;
+}
+
+type Preload = ImagePreload;
+
+type Scenario = ScenarioText | BackgroundImage | MoveNext;
+
+export const preload: Preload[] = [
+  { type: "imagePreload", name: "bench", path: bench },
+];
 
 export const scenario: Scenario[] = [
   // 背景 白い部屋
+  { type: "background", name: "bench", continue: true },
   { type: "text", text: "「・・・・」", continue: false },
   { type: "text", text: "「ぉーい」", continue: false },
   { type: "text", text: "「もしもーし…」", continue: false },

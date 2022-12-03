@@ -4,12 +4,13 @@ import { MessageWindow } from "./MessageWindowScene";
 // import { useGameState, GameStore } from "../State";
 import { useInput } from "../useInput";
 // const { resisterObserver, update, get } = useGameState();
-import { scenario } from "../scenario";
+import { scenario, preload } from "../scenario";
 
 export class MainScene extends Phaser.Scene {
   // 出来ればundefinedは無い方がいい。
   private dialog: MessageWindow | undefined;
   private scenarioIndex: number;
+  private bg!: Phaser.GameObjects.Image;
 
   constructor() {
     super("main");
@@ -30,6 +31,13 @@ export class MainScene extends Phaser.Scene {
 
   preload(): void {
     this.load.image("mainImage", mainImage);
+    preload.forEach((v) => {
+      switch (v.type) {
+        case "imagePreload":
+          this.load.image(v.name, v.path);
+          break;
+      }
+    });
   }
 
   create(): void {
@@ -37,7 +45,7 @@ export class MainScene extends Phaser.Scene {
     const { width, height } = this.game.canvas;
 
     // 背景画像を表示する。
-    this.add.image(width / 2, height / 2, "mainImage").setScale(2, 2);
+    this.bg = this.add.image(width / 2, height / 2, "mainImage");
 
     // メッセージウィンドウを表示する。
     this.dialog = new MessageWindow(this);
@@ -76,6 +84,9 @@ export class MainScene extends Phaser.Scene {
       switch (code.type) {
         case "text":
           this.dialog?.setMessage(code.text);
+          break;
+        case "background":
+          this.bg.setTexture(code.name);
           break;
         case "moveNext":
           this.moveNext();
