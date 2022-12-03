@@ -4,15 +4,19 @@ import { MessageWindow } from "./MessageWindowScene";
 // import { useGameState, GameStore } from "../State";
 import { useInput } from "../useInput";
 // const { resisterObserver, update, get } = useGameState();
+import { scenario, preload } from "../scenario";
 
 export class MainScene extends Phaser.Scene {
   // 出来ればundefinedは無い方がいい。
   private dialog: MessageWindow | undefined;
+  private scenarioIndex: number;
+  private bg!: Phaser.GameObjects.Image;
 
   constructor() {
     super("main");
     // resisterObserver(this);
     this.dialog = undefined;
+    this.scenarioIndex = -1;
   }
 
   // paramsUpdate(newStore: Readonly<GameStore>, prevStore: GameStore): void {
@@ -27,13 +31,21 @@ export class MainScene extends Phaser.Scene {
 
   preload(): void {
     this.load.image("mainImage", mainImage);
+    preload.forEach((v) => {
+      switch (v.type) {
+        case "imagePreload":
+          this.load.image(v.name, v.path);
+          break;
+      }
+    });
   }
 
   create(): void {
+    this.scenarioIndex = -1;
     const { width, height } = this.game.canvas;
 
     // 背景画像を表示する。
-    this.add.image(width / 2, height / 2, "mainImage").setScale(2, 2);
+    this.bg = this.add.image(width / 2, height / 2, "mainImage");
 
     // メッセージウィンドウを表示する。
     this.dialog = new MessageWindow(this);
@@ -48,11 +60,38 @@ export class MainScene extends Phaser.Scene {
 
     // this.dialog.setMessage(get.currentScenario());
 
-    const { setEventHandler } = useInput(this)
-    setEventHandler(this.moveNext)
+    const { setEventHandler } = useInput(this);
+    // setEventHandler(this.moveNext)
+    setEventHandler(this.onClick);
+  }
+
+  onClick(): void {
+    if (this.dialog?.status === "animating") {
+      this.dialog.clicked();
+    } else {
+      this.interpretation();
+    }
   }
 
   moveNext(): void {
-    this.scene.start('ending')
+    this.scene.start("ending");
+  }
+
+  interpretation(): void {
+    do {
+      this.scenarioIndex += 1;
+      const code = scenario[this.scenarioIndex];
+      switch (code.type) {
+        case "text":
+          this.dialog?.setMessage(code.text);
+          break;
+        case "background":
+          this.bg.setTexture(code.name);
+          break;
+        case "moveNext":
+          this.moveNext();
+          break;
+      }
+    } while (this.scenarioIndex < 0 || scenario[this.scenarioIndex].continue);
   }
 }
