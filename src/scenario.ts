@@ -1,4 +1,4 @@
-import bench from "../assets/bench.webp";
+import bench from "../assets/bg-bench.webp";
 interface ScenarioText {
   type: "text";
   text: string;
