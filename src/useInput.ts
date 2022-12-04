@@ -12,7 +12,7 @@ export const useInput = (scene: Phaser.Scene): UseInput => {
     useHandCursor: true,
   });
   const space = scene.input.keyboard.addKey(
-    Phaser.Input.Keyboard.KeyCodes.SPACE
+    Phaser.Input.Keyboard.KeyCodes.ENTER
   );
 
   const setEventHandler = (handler: Function): void => {
