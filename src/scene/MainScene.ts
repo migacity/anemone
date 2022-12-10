@@ -11,6 +11,7 @@ export class MainScene extends Phaser.Scene {
   private dialog: MessageWindow | undefined;
   private scenarioIndex: number;
   private bg!: Phaser.GameObjects.Image;
+  private character!: Phaser.GameObjects.Container;
 
   constructor() {
     super("main");
@@ -46,6 +47,9 @@ export class MainScene extends Phaser.Scene {
 
     // 背景画像を表示する。
     this.bg = this.add.image(width / 2, height / 2, "mainImage");
+
+    // 立ち絵用のコンテナを用意する。
+    this.character = this.add.container(width / 2, height / 2);
 
     // メッセージウィンドウを表示する。
     this.dialog = new MessageWindow(this);
@@ -88,6 +92,19 @@ export class MainScene extends Phaser.Scene {
         case "background":
           this.bg.setTexture(code.name);
           break;
+        case "showCharacter": {
+          const char = this.character.getByName(code.name);
+          if (!(char instanceof Phaser.GameObjects.Image) && !(char === null))
+            break;
+          if (char === null) {
+            const image = this.add.image(0, 0, code.face);
+            image.setName(code.name);
+            this.character.add(image);
+          } else {
+            char.setTexture(code.face);
+          }
+          break;
+        }
         case "moveNext":
           this.moveNext();
           break;

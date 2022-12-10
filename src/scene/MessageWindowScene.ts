@@ -27,11 +27,11 @@ export class MessageWindow extends Phaser.GameObjects.Container {
 
     // 4方向marginで指定するのが好きかなぁ。
     const [marginLeft, marginTop, marginRight, marginBottom] = [
-      60, 480, 60, 40,
+      60, 520, 60, 40,
     ];
 
     // paddingBottomは使うところが無い。
-    const [paddingLeft, paddingTop, paddingRight] = [40, 40, 40];
+    const [paddingLeft, paddingTop, paddingRight] = [28, 28, 28];
 
     const w = width - marginLeft - marginRight;
     const h = height - marginTop - marginBottom;
