@@ -35,7 +35,6 @@ export class MainScene extends Phaser.Scene {
     preload.forEach((v) => {
       switch (v.type) {
         case "imagePreload":
-          console.log([v.name, v.path])
           this.load.image(v.name, v.path);
           break;
       }
@@ -93,17 +92,19 @@ export class MainScene extends Phaser.Scene {
         case "background":
           this.bg.setTexture(code.name);
           break;
-        case "showCharacter":
+        case "showCharacter": {
           const char = this.character.getByName(code.name);
-          if (!(char instanceof Phaser.GameObjects.Image) && !(char === null)) break;
+          if (!(char instanceof Phaser.GameObjects.Image) && !(char === null))
+            break;
           if (char === null) {
-            const image = this.add.image(0, 0, code.face)
-            image.setName(code.name)
-            this.character.add(image)
+            const image = this.add.image(0, 0, code.face);
+            image.setName(code.name);
+            this.character.add(image);
           } else {
-            char.setTexture(code.face)
+            char.setTexture(code.face);
           }
           break;
+        }
         case "moveNext":
           this.moveNext();
           break;
