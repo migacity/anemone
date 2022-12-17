@@ -125,7 +125,7 @@ export const scenario: Scenario[] = [
     continue: false,
   },
   // 交流パート
-  // 背景　白い部屋
+  // 背景 白い部屋
   { type: "text", text: "「そうですね…貴方は死ぬことをどう考えていますか？」" },
   { type: "text", text: "「人はいつか死を迎える」" },
   {
@@ -173,7 +173,7 @@ export const scenario: Scenario[] = [
   { type: "text", text: "「あくまで私の感想ですが」" },
   { type: "text", text: "「なんて言ってみたりしました」" },
   // ～占星術って知っていますか？～
-  // 背景　白い部屋
+  // 背景 白い部屋
   {
     type: "text",
     text: "「星占いのことですが生年月日と生まれた時間を当てはめることで個人の性格や気質もわかってしまうんです。」",
@@ -188,7 +188,7 @@ export const scenario: Scenario[] = [
     text: "「それくらい昔の方は占星術を信じ、今でも信じられているみたいですね」",
   },
   // ～ライフナンバーって～
-  // 背景　白い部屋
+  // 背景 白い部屋
   { type: "text", text: "「ライフナンバーってご存知ですか？」" },
   { type: "text", text: "「自分の生年月日を足すと現れる数字」" },
   {
@@ -214,14 +214,14 @@ export const scenario: Scenario[] = [
     text: "「ご自身でも調べて当てはめてみると面白いかもしれないですよ？」",
   },
   // ～友達～
-  // 背景　白い部屋
+  // 背景 白い部屋
   { type: "text", text: "「とっても可愛らしい花譜ちゃん」" },
   { type: "text", text: "「スポーツも得意で英語も堪能な理芽ちゃん」" },
   { type: "text", text: "「ラップもうまくて頼りになる春ちゃん」" },
   { type: "text", text: "「ドラムが得意でロックな幸祜ちゃん」" },
   { type: "text", text: "「いつかあなたに紹介できたらいいなぁ」" },
   // ～気づいてしまったね～
-  // 背景　白い部屋
+  // 背景 白い部屋
   { type: "text", text: "「いつも同じ話をしているような気がする…？」" },
   { type: "text", text: "「…」" },
   { type: "text", text: "「気づいてしまったね…」" },
@@ -239,12 +239,12 @@ export const scenario: Scenario[] = [
     text: "「そう考えると刺激がなければ人間もロボットも機能的にはあまり変わらないのかもしれないですね」",
   },
   // ～鼻歌～
-  // 背景　白い部屋
+  // 背景 白い部屋
   { type: "text", text: "「～～～～～♪」" },
   { type: "text", text: "「……」" },
   { type: "text", text: "「い、いつからここに？」" },
   // ～好きなもの１～
-  // 背景　白い部屋
+  // 背景 白い部屋
   {
     type: "text",
     text: "「マナフィ…あの御飯を食べるときに口をもこもこした感じが」",
@@ -252,7 +252,7 @@ export const scenario: Scenario[] = [
   { type: "text", text: "「とても可愛らしいと思いませんか？」" },
   { type: "text", text: "「でへへ…」" },
   // ～好きなもの２～
-  // 背景　白い部屋
+  // 背景 白い部屋
   { type: "text", text: "「好きなものですか？」" },
   { type: "text", text: "「そうですね…やはりパスタでしょうか」" },
   { type: "text", text: "「どれくらい好きかというと…」" },
@@ -263,7 +263,7 @@ export const scenario: Scenario[] = [
     text: "「これは好きというカテゴリーから外すべきかもしれませんね」",
   },
   // ～願い事～
-  // 背景　白い部屋
+  // 背景 白い部屋
   { type: "text", text: "「願い事ですか…」" },
   { type: "text", text: "「小さい頃はキリンになりたかったんです」" },
   {
@@ -272,7 +272,7 @@ export const scenario: Scenario[] = [
   },
   { type: "text", text: "「実は今でもちょっぴりそう思っています」" },
   // ～季節について～
-  // 背景　白い部屋
+  // 背景 白い部屋
   { type: "text", text: "「貴方の好きな季節はいつですか？」" },
   {
     type: "text",
@@ -285,23 +285,23 @@ export const scenario: Scenario[] = [
   },
   { type: "text", text: "「まあ私が好きなのは春なんですけど」" },
   // ～眠い～
-  // 背景　白い部屋
+  // 背景 白い部屋
   { type: "text", text: "「…」" },
   { type: "text", text: "「…」" },
   { type: "text", text: "「…」" },
   { type: "text", text: "「はっ！」" },
   { type: "text", text: "「うとうとしていました」" },
   // 挨拶
-  // 背景　白い部屋
+  // 背景 白い部屋
   { type: "text", text: "「おはようございます！」" },
   { type: "text", text: "「今日も頑張りましょうね」" },
   // 挨拶2
-  // 背景　白い部屋
+  // 背景 白い部屋
   { type: "text", text: "「こんにちわ」" },
   { type: "text", text: "「今日のお昼は何にしましょうか？」" },
   { type: "text", text: "「お外でお弁当？それともランチにします？」" },
   // 挨拶3
-  // 背景　病室　夕方
+  // 背景 病室 夕方
   { type: "text", text: "「こんばんわ」" },
   { type: "text", text: "「もう夕暮れですね…」" },
   { type: "text", text: "「この日が沈む時間…寂しいけどちょっと好きなんです」" },
@@ -310,7 +310,7 @@ export const scenario: Scenario[] = [
     text: "「切なくもありますけどこの一日の中でもほんの一瞬しかないこの時間」",
   },
   { type: "text", text: "「儚くてとても綺麗だと思いませんか？」" },
-  // 背景　白い部屋
+  // 背景 白い部屋
   { type: "text", text: "「貴方は今日はどんな一日でしたか？」" },
   {
     type: "text",
@@ -351,7 +351,7 @@ export const scenario: Scenario[] = [
   { type: "text", text: "「良かったら試してみませんか？」" },
   // ～ここから別画面、各ストーリー選択画面へ～
   // CASE１ 祭り
-  // 背景　公園
+  // 背景 公園
   { type: "text", text: "「どうしたんだ世界…こんなところで」" },
   {
     type: "text",
@@ -400,8 +400,8 @@ export const scenario: Scenario[] = [
     text: "「一番印象に残ったのがマナフィだったのでそこは妥協していただけると」",
   },
   { type: "text", text: "「マナフィに負けたのか俺は…」" },
-  // CASE２　日常
-  // 背景　ベンチ
+  // CASE２ 日常
+  // 背景 ベンチ
   { type: "text", text: "「世界はパスタでできている」" },
   { type: "text", text: "「いやいや！できてないから！スケールでかすぎる！」" },
   { type: "text", text: "「月曜日はカルボナーラ」" },
@@ -479,8 +479,8 @@ export const scenario: Scenario[] = [
     text: "「それを言うなら爪を隠すだし、世界の言い方だと奇人行為で思いっきり隠れてるからね！」",
   },
   { type: "text", text: "「何もかも間違ってるから！」" },
-  // CASE３　アネモネ
-  // 背景　花壇
+  // CASE３ アネモネ
+  // 背景 花壇
   { type: "text", text: "「何してるんだ？」" },
   { type: "text", text: "「植えてます」" },
   { type: "text", text: "「それは見たらわかるけど」" },
@@ -504,7 +504,7 @@ export const scenario: Scenario[] = [
   { type: "text", text: "「って何！なんでぶつの！」" },
   { type: "text", text: "「知りません！」" },
   // CASE４
-  // 背景　公園
+  // 背景 公園
   { type: "text", text: "「くらげ～」" },
   { type: "text", text: "「…何やってんだ？」" },
   { type: "text", text: "「見てわからないですか？」" },
@@ -546,8 +546,8 @@ export const scenario: Scenario[] = [
   { type: "text", text: "「まじかよ…俺あの警察官さんに恋しちゃってたのか…」" },
   { type: "text", text: "「ってなるわけあるかーい！」" },
   { type: "text", text: "「くすくす」" },
-  // CASE５　歯医者
-  // 背景　花畑
+  // CASE５ 歯医者
+  // 背景 花畑
   { type: "text", text: "「私…頑張りましたよね？」" },
   { type: "text", text: "「世界…そんなこと言うな」" },
   { type: "text", text: "「まだ始まったばかりじゃないか」" },
@@ -597,7 +597,7 @@ export const scenario: Scenario[] = [
   },
   { type: "text", text: "「なんて失礼なこと言うんだ！」" },
   { type: "text", text: "「謝るんだ！全国の歯科医の先生に謝るんだ！」" },
-  // 背景　レストラン
+  // 背景 レストラン
   { type: "text", text: "「美味しい～！」" },
   { type: "text", text: "「や…やっと終わった」" },
   { type: "text", text: "「苦労した後のパスタは最高ですね」" },
@@ -607,13 +607,13 @@ export const scenario: Scenario[] = [
   { type: "text", text: "「後定期的に歯医者には行くからな！」" },
   { type: "text", text: "「っ！」" },
   { type: "text", text: "「そんな顔してもだめだから！」" },
-  // CASE６　妹
-  // 背景　自室
+  // CASE６ 妹
+  // 背景 自室
   { type: "text", text: "ｐｐｐｐｐｐｐｐｐ" },
-  // 背景　リビング
+  // 背景 リビング
   { type: "text", text: "「世界～！お兄ちゃん起こしてきてー」" },
   { type: "text", text: "「…ん…わかった」" },
-  // 背景　自室
+  // 背景 自室
   { type: "text", text: "「おはよう兄さん」" },
   { type: "text", text: "「寝てる」" },
   { type: "text", text: "「朝ですよ～朝ごはんですよ」" },
@@ -638,7 +638,7 @@ export const scenario: Scenario[] = [
   { type: "text", text: "「気のせいです」" },
   { type: "text", text: "「早く起きないと兄さんの分も食べちゃいますからね」" },
   { type: "text", text: "「ういーす」" },
-  // CASE７　幼馴染　恋人　結婚
+  // CASE７ 幼馴染 恋人 結婚
   // 背景リビング
   { type: "text", text: "「おかえりさない兄さん」" },
   { type: "text", text: "「御飯にする？食事にする？それともパスタ？」" },
