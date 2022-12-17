@@ -14,25 +14,25 @@ import chara_B6 from "../assets/chara-B6.webp";
 interface ScenarioText {
   type: "text";
   text: string;
-  continue: boolean;
+  continue?: boolean;
 }
 
 interface BackgroundImage {
   type: "background";
   name: string;
-  continue: boolean;
+  continue?: boolean;
 }
 
 interface ShowCharacter {
   type: "showCharacter";
   name: string;
   face: string;
-  continue: boolean;
+  continue?: boolean;
 }
 
 interface MoveNext {
   type: "moveNext";
-  continue: boolean;
+  continue?: false;
 }
 
 interface ImagePreload {
