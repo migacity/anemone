@@ -109,6 +109,9 @@ export class MainScene extends Phaser.Scene {
           this.moveNext();
           break;
       }
-    } while (this.scenarioIndex < 0 || scenario[this.scenarioIndex].continue);
+    } while (
+      this.scenarioIndex < 0 ||
+      (scenario[this.scenarioIndex].continue ?? false)
+    );
   }
 }
