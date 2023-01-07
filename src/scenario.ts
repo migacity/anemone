@@ -105,7 +105,6 @@ export const preload: Preload[] = [
 ];
 
 export const scenario: Scenario[] = [
-  { type: "fadeOut", continue: true },
   // 背景 白い部屋
   { type: "background", name: "whiteroom", continue: true },
   { type: "showCharacter", name: "sekai", face: "chara_A1", continue: true },

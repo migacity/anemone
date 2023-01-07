@@ -41,9 +41,13 @@ export class MainScene extends Phaser.Scene {
     });
   }
 
-  create(): void {
+  async create(): Promise<void> {
     this.scenarioIndex = -1;
     const { width, height } = this.game.canvas;
+
+    // 真っ黒な画面から始める。
+    this.cameras.main.fadeOut(20);
+    await new Promise((resolve) => setTimeout(resolve, 20));
 
     // 背景画像を表示する。
     this.bg = this.add.image(width / 2, height / 2, "mainImage");
@@ -67,6 +71,9 @@ export class MainScene extends Phaser.Scene {
     const { setEventHandler } = useInput(this);
     // setEventHandler(this.moveNext)
     setEventHandler(this.onClick);
+
+    // シナリオが自動的に始まるように。
+    this.onClick();
   }
 
   async onClick(): Promise<void> {
