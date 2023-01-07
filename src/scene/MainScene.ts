@@ -69,11 +69,11 @@ export class MainScene extends Phaser.Scene {
     setEventHandler(this.onClick);
   }
 
-  onClick(): void {
+  async onClick(): Promise<void> {
     if (this.dialog?.status === "animating") {
       this.dialog.clicked();
     } else {
-      this.interpretation();
+      await this.interpretation();
     }
   }
 
@@ -81,7 +81,7 @@ export class MainScene extends Phaser.Scene {
     this.scene.start("ending");
   }
 
-  interpretation(): void {
+  async interpretation(): Promise<void> {
     do {
       this.scenarioIndex += 1;
       const code = scenario[this.scenarioIndex];
@@ -105,6 +105,16 @@ export class MainScene extends Phaser.Scene {
           }
           break;
         }
+        case "fadeOut":
+          await new Promise((resolve) =>
+            this.cameras.main.fadeOut(500, 0, 0, 0, resolve)
+          );
+          break;
+        case "fadeIn":
+          await new Promise((resolve) =>
+            this.cameras.main.fadeIn(500, 0, 0, 0, resolve)
+          );
+          break;
         case "moveNext":
           this.moveNext();
           break;

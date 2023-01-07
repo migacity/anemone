@@ -51,9 +51,25 @@ interface ImagePreload {
   path: string;
 }
 
+interface FadeOut {
+  type: "fadeOut";
+  continue?: boolean;
+}
+
+interface FadeIn {
+  type: "fadeIn";
+  continue?: boolean;
+}
+
 type Preload = ImagePreload;
 
-type Scenario = ScenarioText | BackgroundImage | ShowCharacter | MoveNext;
+type Scenario =
+  | ScenarioText
+  | BackgroundImage
+  | ShowCharacter
+  | MoveNext
+  | FadeOut
+  | FadeIn;
 
 export const preload: Preload[] = [
   { type: "imagePreload", name: "bench", path: bench },
@@ -82,9 +98,11 @@ export const preload: Preload[] = [
 ];
 
 export const scenario: Scenario[] = [
+  { type: "fadeOut", continue: true },
   // 背景 白い部屋
   { type: "background", name: "whiteroom", continue: true },
   { type: "showCharacter", name: "sekai", face: "chara_A1", continue: false },
+  { type: "fadeIn", continue: false },
   { type: "text", text: "「・・・・」", continue: false },
   { type: "text", text: "「ぉーい」", continue: false },
   { type: "text", text: "「もしもーし…」", continue: false },
