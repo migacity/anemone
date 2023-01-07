@@ -73,7 +73,7 @@ export class MainScene extends Phaser.Scene {
     setEventHandler(this.onClick);
 
     // シナリオが自動的に始まるように。
-    this.onClick();
+    await this.onClick();
   }
 
   async onClick(): Promise<void> {
