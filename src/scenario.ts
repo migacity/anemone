@@ -53,11 +53,13 @@ interface ImagePreload {
 
 interface FadeOut {
   type: "fadeOut";
+  time?: number;
   continue?: boolean;
 }
 
 interface FadeIn {
   type: "fadeIn";
+  time?: number;
   continue?: boolean;
 }
 
@@ -189,7 +191,7 @@ export const scenario: Scenario[] = [
   },
   // 演出 ここで一度ブラックアウト
   { type: "fadeOut", continue: true },
-  { type: "wait", time: 1000, continue: true },
+  { type: "wait", time: 1500, continue: true },
   { type: "fadeIn", continue: false },
   // 交流パート ランダムで会話が選ばれる
   // 背景 白い部屋
@@ -796,7 +798,7 @@ export const scenario: Scenario[] = [
   { type: "text", text: "よかったよ！」" },
   // 演出 暗転
   { type: "fadeOut", continue: true },
-  { type: "wait", time: 1000, continue: true },
+  { type: "wait", time: 1500, continue: true },
   { type: "fadeIn", continue: false },
   { type: "text", text: "「つ・・疲れた」" },
   // 立ち絵 B4
