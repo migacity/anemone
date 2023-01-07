@@ -86,9 +86,17 @@ export class MessageWindow extends Phaser.GameObjects.Container {
     };
 
     this.messageText = message;
+    if (this.timerEvent !== undefined) this.timerEvent.remove();
+
+    // メッセージの長さが0だったらアニメーションしないで抜ける。
+    if (message.length === 0) {
+      this.classStatus = "pause";
+      this.waitInput();
+      return;
+    }
+
     const dialog = message.split("");
     this.eventCounter = 0;
-    if (this.timerEvent !== undefined) this.timerEvent.remove();
 
     const tmpText = "";
     this.text.setText(tmpText);

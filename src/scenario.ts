@@ -110,6 +110,7 @@ export const scenario: Scenario[] = [
   // 背景 白い部屋
   { type: "background", name: "whiteroom", continue: true },
   { type: "showCharacter", name: "sekai", face: "chara_A1", continue: true },
+  { type: "text", text: "", continue: true },
   { type: "fadeIn", continue: false },
   { type: "text", text: "「・・・・」", continue: false },
   { type: "text", text: "「ぉーい」", continue: false },
@@ -192,6 +193,7 @@ export const scenario: Scenario[] = [
   // 演出 ここで一度ブラックアウト
   { type: "fadeOut", continue: true },
   { type: "wait", time: 1500, continue: true },
+  { type: "text", text: "", continue: true },
   { type: "fadeIn", continue: false },
   // 交流パート ランダムで会話が選ばれる
   // 背景 白い部屋
@@ -799,6 +801,7 @@ export const scenario: Scenario[] = [
   // 演出 暗転
   { type: "fadeOut", continue: true },
   { type: "wait", time: 1500, continue: true },
+  { type: "text", text: "", continue: true },
   { type: "fadeIn", continue: false },
   { type: "text", text: "「つ・・疲れた」" },
   // 立ち絵 B4
