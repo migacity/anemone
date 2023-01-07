@@ -106,14 +106,13 @@ export class MainScene extends Phaser.Scene {
           break;
         }
         case "fadeOut":
-          await new Promise((resolve) =>
-            this.cameras.main.fadeOut(500, 0, 0, 0, resolve)
-          );
+          this.cameras.main.fadeOut(500);
           break;
         case "fadeIn":
-          await new Promise((resolve) =>
-            this.cameras.main.fadeIn(500, 0, 0, 0, resolve)
-          );
+          this.cameras.main.fadeIn(500);
+          break;
+        case "wait":
+          await new Promise((resolve) => setTimeout(resolve, code.time));
           break;
         case "moveNext":
           this.moveNext();
