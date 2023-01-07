@@ -51,9 +51,34 @@ interface ImagePreload {
   path: string;
 }
 
+interface FadeOut {
+  type: "fadeOut";
+  time?: number;
+  continue?: boolean;
+}
+
+interface FadeIn {
+  type: "fadeIn";
+  time?: number;
+  continue?: boolean;
+}
+
+interface Wait {
+  type: "wait";
+  time: number;
+  continue?: boolean;
+}
+
 type Preload = ImagePreload;
 
-type Scenario = ScenarioText | BackgroundImage | ShowCharacter | MoveNext;
+type Scenario =
+  | ScenarioText
+  | BackgroundImage
+  | ShowCharacter
+  | MoveNext
+  | FadeOut
+  | FadeIn
+  | Wait;
 
 export const preload: Preload[] = [
   { type: "imagePreload", name: "bench", path: bench },
@@ -84,7 +109,8 @@ export const preload: Preload[] = [
 export const scenario: Scenario[] = [
   // 背景 白い部屋
   { type: "background", name: "whiteroom", continue: true },
-  { type: "showCharacter", name: "sekai", face: "chara_A1", continue: false },
+  { type: "showCharacter", name: "sekai", face: "chara_A1", continue: true },
+  { type: "fadeIn", continue: false },
   { type: "text", text: "「・・・・」", continue: false },
   { type: "text", text: "「ぉーい」", continue: false },
   { type: "text", text: "「もしもーし…」", continue: false },
@@ -164,6 +190,9 @@ export const scenario: Scenario[] = [
     continue: false,
   },
   // 演出 ここで一度ブラックアウト
+  { type: "fadeOut", continue: true },
+  { type: "wait", time: 1500, continue: true },
+  { type: "fadeIn", continue: false },
   // 交流パート ランダムで会話が選ばれる
   // 背景 白い部屋
   { type: "background", name: "whiteroom", continue: true },
@@ -768,6 +797,9 @@ export const scenario: Scenario[] = [
   },
   { type: "text", text: "よかったよ！」" },
   // 演出 暗転
+  { type: "fadeOut", continue: true },
+  { type: "wait", time: 1500, continue: true },
+  { type: "fadeIn", continue: false },
   { type: "text", text: "「つ・・疲れた」" },
   // 立ち絵 B4
   { type: "showCharacter", name: "sekai", face: "chara_B4", continue: true },

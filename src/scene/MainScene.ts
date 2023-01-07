@@ -41,9 +41,13 @@ export class MainScene extends Phaser.Scene {
     });
   }
 
-  create(): void {
+  async create(): Promise<void> {
     this.scenarioIndex = -1;
     const { width, height } = this.game.canvas;
+
+    // 真っ黒な画面から始める。
+    this.cameras.main.fadeOut(20);
+    await new Promise((resolve) => setTimeout(resolve, 20));
 
     // 背景画像を表示する。
     this.bg = this.add.image(width / 2, height / 2, "mainImage");
@@ -67,13 +71,16 @@ export class MainScene extends Phaser.Scene {
     const { setEventHandler } = useInput(this);
     // setEventHandler(this.moveNext)
     setEventHandler(this.onClick);
+
+    // シナリオが自動的に始まるように。
+    await this.onClick();
   }
 
-  onClick(): void {
+  async onClick(): Promise<void> {
     if (this.dialog?.status === "animating") {
       this.dialog.clicked();
     } else {
-      this.interpretation();
+      await this.interpretation();
     }
   }
 
@@ -81,7 +88,7 @@ export class MainScene extends Phaser.Scene {
     this.scene.start("ending");
   }
 
-  interpretation(): void {
+  async interpretation(): Promise<void> {
     do {
       this.scenarioIndex += 1;
       const code = scenario[this.scenarioIndex];
@@ -105,6 +112,17 @@ export class MainScene extends Phaser.Scene {
           }
           break;
         }
+        case "fadeOut":
+          if (code.time === undefined) code.time = 1000;
+          this.cameras.main.fadeOut(code.time);
+          break;
+        case "fadeIn":
+          if (code.time === undefined) code.time = 1000;
+          this.cameras.main.fadeIn(code.time);
+          break;
+        case "wait":
+          await new Promise((resolve) => setTimeout(resolve, code.time));
+          break;
         case "moveNext":
           this.moveNext();
           break;
