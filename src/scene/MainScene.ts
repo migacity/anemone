@@ -5,6 +5,7 @@ import { MessageWindow } from "./MessageWindowScene";
 import { useInput } from "../useInput";
 // const { resisterObserver, update, get } = useGameState();
 import { scenario, preload } from "../scenario";
+import { GameObjects } from "phaser";
 
 export class MainScene extends Phaser.Scene {
   // 出来ればundefinedは無い方がいい。
@@ -88,6 +89,20 @@ export class MainScene extends Phaser.Scene {
     this.scene.start("ending");
   }
 
+  /** 表示しているシナリオの状態をconsoleに吐く。 */
+  private printParams(): void {
+    const params = {
+      scenarioIndex: this.scenarioIndex,
+      bg: this.bg.texture.key,
+      character: this.character.list.map((v: GameObjects.GameObject) => {
+        if (!(v instanceof GameObjects.Image)) return undefined;
+        return { name: v.name, key: v.texture.key };
+      }),
+      code: scenario[this.scenarioIndex],
+    };
+    console.log(params);
+  }
+
   async interpretation(): Promise<void> {
     do {
       this.scenarioIndex += 1;
@@ -127,6 +142,7 @@ export class MainScene extends Phaser.Scene {
           this.moveNext();
           break;
       }
+      this.printParams();
     } while (
       this.scenarioIndex < 0 ||
       (scenario[this.scenarioIndex].continue ?? false)
