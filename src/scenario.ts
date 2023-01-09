@@ -71,7 +71,7 @@ interface Wait {
 
 type Preload = ImagePreload;
 
-type Scenario =
+export type Scenario =
   | ScenarioText
   | BackgroundImage
   | ShowCharacter
