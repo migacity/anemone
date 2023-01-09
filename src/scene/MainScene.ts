@@ -1,9 +1,6 @@
 import mainImage from "../../assets/main.webp";
 import { MessageWindow } from "./MessageWindowScene";
-// import { IObserver } from "../Observer";
-// import { useGameState, GameStore } from "../State";
 import { useInput } from "../useInput";
-// const { resisterObserver, update, get } = useGameState();
 import { scenario, preload } from "../scenario";
 import { GameObjects } from "phaser";
 import { load, save, SaveData } from "../dataSaver";
@@ -22,20 +19,9 @@ export class MainScene extends Phaser.Scene {
 
   constructor() {
     super("main");
-    // resisterObserver(this);
     this.dialog = undefined;
     this.scenarioIndex = -1;
   }
-
-  // paramsUpdate(newStore: Readonly<GameStore>, prevStore: GameStore): void {
-  //   if (
-  //     (newStore.scenario !== prevStore.scenario ||
-  //       newStore.scenarioPointer !== prevStore.scenarioPointer) &&
-  //     this.dialog !== undefined
-  //   ) {
-  //     this.dialog.setMessage(get.currentScenario());
-  //   }
-  // }
 
   preload(): void {
     this.load.image("mainImage", mainImage);
@@ -85,17 +71,7 @@ export class MainScene extends Phaser.Scene {
     this.dialog = new MessageWindow(this);
     this.add.existing(this.dialog);
 
-    // update("setScenario", {
-    //   scenario: [
-    //     "拙者親方と申すは、立会の内に御存知の御方も御座りましょうが、御江戸を発って二十里上方、相州小田原一色町を御過ぎなされて、青物町を上りへ御出でなさるれば、欄干橋虎屋藤右衛門、只今では剃髪致して圓斎と名乗りまする。",
-    //     "元朝より大晦日まで、御手に入れまする此の薬は、昔、ちんの国の唐人、外郎という人、わが朝へ来たり、帝へ参内の折りから、此の薬を深く籠め置き、用ゆる時は一粒ずつ、冠の隙間より取り出だす。",
-    //   ],
-    // });
-
-    // this.dialog.setMessage(get.currentScenario());
-
     const { setEventHandler } = useInput(this);
-    // setEventHandler(this.moveNext)
     setEventHandler(this.onClick);
 
     // シナリオが自動的に始まるように。
