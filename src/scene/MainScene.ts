@@ -4,6 +4,7 @@ import { useInput } from "../useInput";
 import { scenario, preload } from "../scenario";
 import { GameObjects } from "phaser";
 import { load, save, SaveData } from "../dataSaver";
+import { ButtonOption, useUi } from "../uiManager";
 
 interface CharData {
   name: string;
@@ -16,6 +17,11 @@ export class MainScene extends Phaser.Scene {
   private scenarioIndex: number;
   private bg!: Phaser.GameObjects.Image;
   private character!: Phaser.GameObjects.Container;
+  private ui!: Phaser.GameObjects.Container;
+  private uiManager!: {
+    addButton: (options: ButtonOption[]) => void;
+    removeButton: () => void;
+  };
 
   constructor() {
     super("main");
@@ -73,6 +79,15 @@ export class MainScene extends Phaser.Scene {
 
     const { setEventHandler } = useInput(this);
     setEventHandler(this.onClick);
+
+    // ボタンを作るユーティリティを初期化する。
+    this.ui = this.add.container(width / 2, height / 2);
+    this.uiManager = useUi(this.ui);
+
+    // メニューボタンを生成する。
+    this.uiManager.addButton([
+      { top: 10, left: 10, width: 200, height: 80, caption: "foobar" },
+    ]);
 
     // シナリオが自動的に始まるように。
     this.scenarioIndex = gameData?.datas[0].scenarioIndex ?? -1;
