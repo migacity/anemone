@@ -14,7 +14,6 @@ const useUi = (
   removeButton: () => void;
 } => {
   const addButton = (options: ButtonOption[]): void => {
-    console.log(container);
     options.forEach((option) => {
       // ここのボタン用のcontainerを作り、eventに反応するようにする。
       const buttonContainer = container.scene.add.container(
@@ -27,8 +26,8 @@ const useUi = (
 
       // ボタンの見た目を作る。
       const box = container.scene.add.rectangle(
-        option.left,
-        option.top,
+        0,
+        0,
         option.width,
         option.height,
         0x000000,
@@ -37,11 +36,11 @@ const useUi = (
       buttonContainer.add(box);
 
       const buttonTextStyle: Phaser.Types.GameObjects.Text.TextStyle = {
-        fontSize: "24px",
+        fontSize: "18px",
       };
       const text = container.scene.add.text(
-        option.left,
-        option.top,
+        0,
+        0,
         option.caption,
         buttonTextStyle
       );
