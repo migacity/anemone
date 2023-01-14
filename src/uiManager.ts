@@ -4,6 +4,8 @@ interface ButtonOption {
   width: number;
   height: number;
   caption: string;
+  onClick: Function;
+  param?: any;
 }
 const useUi = (
   container: Phaser.GameObjects.Container
@@ -47,14 +49,9 @@ const useUi = (
       buttonContainer.add(text);
 
       // クリック時の動作を登録したい。
-      container.on("pointerdown", () => {
-        console.log("buttondown");
-      });
-
       buttonContainer.on("pointerup", () => {
-        console.log("buttonup");
+        option.onClick(option.param);
       });
-      console.log(option.caption);
     });
   };
 

@@ -86,7 +86,15 @@ export class MainScene extends Phaser.Scene {
 
     // メニューボタンを生成する。
     this.uiManager.addButton([
-      { top: 10, left: 10, width: 200, height: 80, caption: "foobar" },
+      {
+        top: 10,
+        left: 10,
+        width: 200,
+        height: 80,
+        caption: "foobar",
+        onClick: (v: any) => console.log(v),
+        param: "hoge",
+      },
     ]);
 
     // シナリオが自動的に始まるように。
