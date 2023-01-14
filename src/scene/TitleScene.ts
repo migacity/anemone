@@ -1,6 +1,8 @@
 import titleImage from "../../assets/title.webp";
 import { useInput } from "../useInput";
 
+// BGM: アルカディア
+
 export class TitleScene extends Phaser.Scene {
   constructor() {
     super("title");
