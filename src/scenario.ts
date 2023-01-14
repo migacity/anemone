@@ -109,6 +109,7 @@ export const preload: Preload[] = [
 export const scenario: Scenario[] = [
   // 背景 白い部屋
   { type: "background", name: "whiteroom", continue: true },
+  // BGM なし
   { type: "showCharacter", name: "sekai", face: "chara_A1", continue: true },
   { type: "text", text: "", continue: true },
   { type: "fadeIn", continue: false },
@@ -124,6 +125,7 @@ export const scenario: Scenario[] = [
   // 立ち絵 A５
   { type: "showCharacter", name: "sekai", face: "chara_A5", continue: true },
   { type: "text", text: "「あ…つながった」", continue: false },
+  // BGM ほうせきたん
   // 立ち絵 A3
   { type: "showCharacter", name: "sekai", face: "chara_A3", continue: true },
   { type: "text", text: "「こんにちわ」", continue: false },
@@ -194,10 +196,14 @@ export const scenario: Scenario[] = [
   { type: "fadeOut", continue: true },
   { type: "wait", time: 1500, continue: true },
   { type: "text", text: "", continue: true },
+  // ～ここまでモノローグ～
+
+  // ～ここから会話パート～
   { type: "fadeIn", continue: false },
   // 交流パート ランダムで会話が選ばれる
   // 背景 白い部屋
   { type: "background", name: "whiteroom", continue: true },
+  // ＢＧＭ かすみがついてくる
   // 立ち絵 A1
   { type: "showCharacter", name: "sekai", face: "chara_A1", continue: true },
   { type: "text", text: "「そうですね…貴方は死ぬことをどう考えていますか？」" },
@@ -235,11 +241,17 @@ export const scenario: Scenario[] = [
   },
   { type: "text", text: "「そんな人たちの人生の背景を想像しちゃったり」" },
   { type: "text", text: "「そんな時間が好きなんです」" },
+  // :演出 ここで一度ブラックアウト
+  { type: "fadeOut", continue: true },
+  { type: "wait", time: 1500, continue: true },
+  { type: "text", text: "", continue: true },
+
   // ～占星術って知っていますか？～
   // 背景 白い部屋
   { type: "background", name: "whiteroom", continue: true },
   // 立ち絵 B４
   { type: "showCharacter", name: "sekai", face: "chara_B4", continue: true },
+  { type: "fadeIn", continue: false },
   { type: "text", text: "「占星術って知っていますか？」" },
   {
     type: "text",
@@ -258,11 +270,17 @@ export const scenario: Scenario[] = [
     type: "text",
     text: "「それくらい昔の方は占星術を信じ、今でも信じられているみたいですね」",
   },
+  // :演出 ここで一度ブラックアウト
+  { type: "fadeOut", continue: true },
+  { type: "wait", time: 1500, continue: true },
+  { type: "text", text: "", continue: true },
+
   // ～ライフナンバーって～
   // 背景 白い部屋
   { type: "background", name: "whiteroom", continue: true },
   // 立ち絵 A１
   { type: "showCharacter", name: "sekai", face: "chara_A1", continue: true },
+  { type: "fadeIn", continue: false },
   { type: "text", text: "「ライフナンバーってご存知ですか？」" },
   { type: "text", text: "「自分の生年月日を足すと現れる数字」" },
   {
@@ -291,11 +309,17 @@ export const scenario: Scenario[] = [
     type: "text",
     text: "「ご自身でも調べて当てはめてみると面白いかもしれないですよ？」",
   },
+  // :演出 ここで一度ブラックアウト
+  { type: "fadeOut", continue: true },
+  { type: "wait", time: 1500, continue: true },
+  { type: "text", text: "", continue: true },
+
   // ～友達～
   // 背景 白い部屋
   { type: "background", name: "whiteroom", continue: true },
   // 立ち絵 A３
   { type: "showCharacter", name: "sekai", face: "chara_A3", continue: true },
+  { type: "fadeIn", continue: false },
   { type: "text", text: "「とっても可愛らしい花譜ちゃん」" },
   { type: "text", text: "「スポーツも得意で英語も堪能な理芽ちゃん」" },
   { type: "text", text: "「ラップもうまくて頼りになる春ちゃん」" },
@@ -303,11 +327,17 @@ export const scenario: Scenario[] = [
   // 立ち絵 B4
   { type: "showCharacter", name: "sekai", face: "chara_B4", continue: true },
   { type: "text", text: "「いつかあなたに紹介できたらいいなぁ」" },
+  // 	:演出 ここで一度ブラックアウト
+  { type: "fadeOut", continue: true },
+  { type: "wait", time: 1500, continue: true },
+  { type: "text", text: "", continue: true },
+
   // ～気づいてしまったね～
   // 背景 白い部屋
   { type: "background", name: "whiteroom", continue: true },
   // 立ち絵 B1
   { type: "showCharacter", name: "sekai", face: "chara_B1", continue: true },
+  { type: "fadeIn", continue: false },
   { type: "text", text: "「いつも同じ話をしているような気がする…？」" },
   // 立ち絵 A４
   { type: "showCharacter", name: "sekai", face: "chara_A4", continue: true },
@@ -334,21 +364,33 @@ export const scenario: Scenario[] = [
     type: "text",
     text: "「そう考えると刺激がなければ人間もロボットも機能的にはあまり変わらないのかもしれないですね」",
   },
+  // ：演出 ブラックアウト
+  { type: "fadeOut", continue: true },
+  { type: "wait", time: 1500, continue: true },
+  { type: "text", text: "", continue: true },
+
   // ～鼻歌～
   // 背景 白い部屋
   { type: "background", name: "whiteroom", continue: true },
   // 立ち絵 A２
   { type: "showCharacter", name: "sekai", face: "chara_A2", continue: true },
+  { type: "fadeIn", continue: false },
   { type: "text", text: "「～～～～～♪」" },
   { type: "text", text: "「……」" },
   // 立ち絵 A6
   { type: "showCharacter", name: "sekai", face: "chara_A6", continue: true },
   { type: "text", text: "「い、いつからここに？」" },
+  // ：演出 ブラックアウト
+  { type: "fadeOut", continue: true },
+  { type: "wait", time: 1500, continue: true },
+  { type: "text", text: "", continue: true },
+
   // ～好きなもの１～
   // 背景 白い部屋
   { type: "background", name: "whiteroom", continue: true },
   // 立ち絵 B１
   { type: "showCharacter", name: "sekai", face: "chara_B1", continue: true },
+  { type: "fadeIn", continue: false },
   { type: "text", text: "「好きなもの…？」" },
   // 立ち絵 B４
   { type: "showCharacter", name: "sekai", face: "chara_B4", continue: true },
@@ -363,11 +405,17 @@ export const scenario: Scenario[] = [
   // 立ち絵 B４
   { type: "showCharacter", name: "sekai", face: "chara_B4", continue: true },
   { type: "text", text: "「でへへ…」" },
+  // ：演出 ブラックアウト
+  { type: "fadeOut", continue: true },
+  { type: "wait", time: 1500, continue: true },
+  { type: "text", text: "", continue: true },
+
   // ～好きなもの２～
-  // 背景 白い部屋
-  { type: "background", name: "whiteroom", continue: true },
+  // 背景 病室 昼間
+  { type: "background", name: "hospitalDaytime", continue: true },
   // 立ち絵 B１
   { type: "showCharacter", name: "sekai", face: "chara_B1", continue: true },
+  { type: "fadeIn", continue: false },
   { type: "text", text: "「好きなもの食べ物ですか？」" },
   // 立ち絵 A１
   { type: "showCharacter", name: "sekai", face: "chara_A1", continue: true },
@@ -386,11 +434,17 @@ export const scenario: Scenario[] = [
     type: "text",
     text: "「これは好きというカテゴリーから外すべきかもしれませんね」",
   },
+  // ：演出 ブラックアウト
+  { type: "fadeOut", continue: true },
+  { type: "wait", time: 1500, continue: true },
+  { type: "text", text: "", continue: true },
+
   // ～願い事～
-  // 背景 白い部屋
-  { type: "background", name: "whiteroom", continue: true },
+  // 背景 病室 昼間
+  { type: "background", name: "hospitalDaytime", continue: true },
   // 立ち絵 B1
   { type: "showCharacter", name: "sekai", face: "chara_B1", continue: true },
+  { type: "fadeIn", continue: false },
   { type: "text", text: "「願い事ですか…」" },
   { type: "text", text: "「小さい頃はキリンになりたかったんです」" },
   {
@@ -400,11 +454,16 @@ export const scenario: Scenario[] = [
   // 立ち絵 B４
   { type: "showCharacter", name: "sekai", face: "chara_B4", continue: true },
   { type: "text", text: "「実は今でもちょっぴりそう思っています」" },
+  { type: "fadeOut", continue: true },
+  { type: "wait", time: 1500, continue: true },
+  { type: "text", text: "", continue: true },
+
   // ～季節について～
   // 背景 白い部屋
   { type: "background", name: "whiteroom", continue: true },
   // 立ち絵 A３
   { type: "showCharacter", name: "sekai", face: "chara_A3", continue: true },
+  { type: "fadeIn", continue: false },
   { type: "text", text: "「貴方の好きな季節はいつですか？」" },
   // 立ち絵 A５
   { type: "showCharacter", name: "sekai", face: "chara_A5", continue: true },
@@ -422,11 +481,17 @@ export const scenario: Scenario[] = [
   // 立ち絵 B1
   { type: "showCharacter", name: "sekai", face: "chara_B1", continue: true },
   { type: "text", text: "「まあ私が好きなのは春なんですけど」" },
+  // ：演出 ブラックアウト
+  { type: "fadeOut", continue: true },
+  { type: "wait", time: 1500, continue: true },
+  { type: "text", text: "", continue: true },
+
   // ～眠い～
-  // 背景 白い部屋
-  { type: "background", name: "whiteroom", continue: true },
+  // 背景 病室 昼間
+  { type: "background", name: "hospitalDaytime", continue: true },
   // 立ち絵 B4
   { type: "showCharacter", name: "sekai", face: "chara_B4", continue: true },
+  { type: "fadeIn", continue: false },
   { type: "text", text: "「…」" },
   { type: "text", text: "「…」" },
   { type: "text", text: "「…」" },
@@ -434,30 +499,45 @@ export const scenario: Scenario[] = [
   { type: "showCharacter", name: "sekai", face: "chara_A2", continue: true },
   { type: "text", text: "「はっ！」" },
   { type: "text", text: "「うとうとしていました」" },
+  { type: "fadeOut", continue: true },
+  { type: "wait", time: 1500, continue: true },
+  { type: "text", text: "", continue: true },
+
   // 挨拶
   // 背景 白い部屋
   { type: "background", name: "whiteroom", continue: true },
   // 立ち絵 A1
   { type: "showCharacter", name: "sekai", face: "chara_A1", continue: true },
+  { type: "fadeIn", continue: false },
   { type: "text", text: "「おはようございます…」" },
   // 立ち絵 A２
   { type: "showCharacter", name: "sekai", face: "chara_A2", continue: true },
   { type: "text", text: "「今日も頑張りましょうね」" },
+  { type: "fadeOut", continue: true },
+  { type: "wait", time: 1500, continue: true },
+  { type: "text", text: "", continue: true },
+
   // 挨拶2
   // 背景 白い部屋
   { type: "background", name: "whiteroom", continue: true },
   // 立ち絵 B４
   { type: "showCharacter", name: "sekai", face: "chara_B4", continue: true },
+  { type: "fadeIn", continue: false },
   { type: "text", text: "「こんにちわ」" },
   { type: "text", text: "「今日のお昼は何にしましょうか？」" },
   // 立ち絵 A５
   { type: "showCharacter", name: "sekai", face: "chara_A5", continue: true },
   { type: "text", text: "「お外でお弁当？それともランチでしょうか？」" },
+  { type: "fadeOut", continue: true },
+  { type: "wait", time: 1500, continue: true },
+  { type: "text", text: "", continue: true },
+
   // 挨拶3
   // 背景 病室 夕方
   { type: "background", name: "hospitalEvening", continue: true },
   // 立ち絵 A4
   { type: "showCharacter", name: "sekai", face: "chara_A4", continue: true },
+  { type: "fadeIn", continue: false },
   { type: "text", text: "「こんばんわ」" },
   { type: "text", text: "「もう夕暮れですね…」" },
   { type: "text", text: "「この日が沈む時間…寂しいけどちょっと好きなんです」" },
@@ -468,8 +548,8 @@ export const scenario: Scenario[] = [
     text: "「切なくもありますけどこの一日の中でもほんの一瞬しかないこの時間」",
   },
   { type: "text", text: "「儚くてとても綺麗だと思いませんか？」" },
-  // 背景 白い部屋
-  { type: "background", name: "whiteroom", continue: true },
+  // 背景 病室 夕方
+  { type: "background", name: "hospitalEvening", continue: true },
   // 立ち絵 B４
   { type: "showCharacter", name: "sekai", face: "chara_B4", continue: true },
   { type: "text", text: "「貴方は今日はどんな一日でしたか？」" },
@@ -490,17 +570,38 @@ export const scenario: Scenario[] = [
   // 立ち絵 A５
   { type: "showCharacter", name: "sekai", face: "chara_A5", continue: true },
   { type: "text", text: "「それだけで私は嬉しく思います」" },
+  // ：演出 ブラックアウト
+  { type: "fadeOut", continue: true },
+  { type: "wait", time: 1500, continue: true },
+  { type: "text", text: "", continue: true },
+  // ：～ここまで会話パート～
+
   // ゲーム終了時
+  // 背景 白い部屋
+  { type: "background", name: "whiteroom", continue: true },
   // 立ち絵 A１
   { type: "showCharacter", name: "sekai", face: "chara_A1", continue: true },
+  { type: "fadeIn", continue: false },
   { type: "text", text: "「今日はもう寝ますか？」" },
   { type: "text", text: "「おやすみなさい…」" },
   // 立ち絵 A３
   { type: "showCharacter", name: "sekai", face: "chara_A3", continue: true },
   { type: "text", text: "「良い夢を」" },
+  // :演出 ここで一度ブラックアウト
+  { type: "fadeOut", continue: true },
+  { type: "wait", time: 1500, continue: true },
+  { type: "text", text: "", continue: true },
+
   // ～短編ストーリー～
+  // ストーリー選択画面を押すとここへ
+  // ストーリー選択画面選択初回時のみ
+  // モノローグ
+  // BGM なし
+  // ：演出 ブラックアウト
+  { type: "background", name: "whiteroom", continue: true },
   // 立ち絵 A1
   { type: "showCharacter", name: "sekai", face: "chara_A1", continue: true },
+  { type: "fadeIn", continue: false },
   {
     type: "text",
     text: "「ここでは端末を使ってあなたと私でシュミレーションができるみたいです」",
@@ -541,12 +642,20 @@ export const scenario: Scenario[] = [
   // 立ち絵 B４
   { type: "showCharacter", name: "sekai", face: "chara_B4", continue: true },
   { type: "text", text: "「それでは始めましょう」" },
+  // ：演出 ブラックアウト
+  { type: "fadeOut", continue: true },
+  { type: "wait", time: 1500, continue: true },
+  { type: "text", text: "", continue: true },
+
   // ～ここから別画面、各ストーリー選択画面へ～
   // CASE１ 祭り
+  // ：演出 ブラックアウト
   // 背景 公園
   { type: "background", name: "park", continue: true },
+  // BGM ほうせきたん
   // 立ち絵 B1
   { type: "showCharacter", name: "sekai", face: "chara_B1", continue: true },
+  { type: "fadeIn", continue: false },
   { type: "text", text: "「どうしたんだ世界…こんなところで」" },
   { type: "text", text: "「兄さんこそどうし……」" },
   // 立ち絵 A2
@@ -615,11 +724,19 @@ export const scenario: Scenario[] = [
     text: "「一番印象に残ったのがマナフィだったのでそこは妥協していただけると」",
   },
   { type: "text", text: "「マナフィに負けたのか俺は…」" },
+  // ：演出 ブラックアウト
+  { type: "fadeOut", continue: true },
+  { type: "wait", time: 1500, continue: true },
+  { type: "text", text: "", continue: true },
+  // ：ストーリー選択へ戻る
+
   // CASE２ 日常
   // 背景 ベンチ
   { type: "background", name: "bench", continue: true },
+  // ＢＧＭ
   // 立ち絵 A5
   { type: "showCharacter", name: "sekai", face: "chara_A5", continue: true },
+  { type: "fadeIn", continue: false },
   { type: "text", text: "「世界はパスタでできている」" },
   { type: "text", text: "「いやいや！できてないから！スケールでかすぎる！」" },
   { type: "text", text: "「月曜日はカルボナーラ」" },
@@ -722,9 +839,16 @@ export const scenario: Scenario[] = [
     text: "「それを言うなら爪を隠すだし、世界の言い方だと奇人行為で思いっきり隠れてるからね！」",
   },
   { type: "text", text: "「何もかも間違ってるから！」" },
+  // ：演出 ブラックアウト
+  { type: "fadeOut", continue: true },
+  { type: "wait", time: 1500, continue: true },
+  { type: "text", text: "", continue: true },
+  // ：ストーリー選択へ戻る
+
   // CASE３ アネモネ
   // 背景 花壇
   { type: "background", name: "garden", continue: true },
+  { type: "fadeIn", continue: false },
   { type: "text", text: "「何してるんだ？」" },
   // 立ち絵 B1
   { type: "showCharacter", name: "sekai", face: "chara_B1", continue: true },
@@ -759,11 +883,18 @@ export const scenario: Scenario[] = [
   // 立ち絵 A２
   { type: "showCharacter", name: "sekai", face: "chara_A2", continue: true },
   { type: "text", text: "「知りません！」" },
+  // ：演出 ブラックアウト
+  { type: "fadeOut", continue: true },
+  { type: "wait", time: 1500, continue: true },
+  { type: "text", text: "", continue: true },
+  // ：ストーリー選択へ戻る
+
   // CASE４
   // 背景 公園
   { type: "background", name: "park", continue: true },
   // 立ち絵 A5
   { type: "showCharacter", name: "sekai", face: "chara_A5", continue: true },
+  { type: "fadeIn", continue: false },
   { type: "text", text: "「くらげ～」" },
   { type: "text", text: "「…何やってんだ？」" },
   // 立ち絵 B１
@@ -823,11 +954,19 @@ export const scenario: Scenario[] = [
   { type: "text", text: "「ずばり…恋！？」" },
   { type: "text", text: "「まじかよ…俺あの警察官さんに恋しちゃってたのか…」" },
   { type: "text", text: "「ってなるわけあるかい！」" },
+  // ：演出 ブラックアウト
+  { type: "fadeOut", continue: true },
+  { type: "wait", time: 1500, continue: true },
+  { type: "text", text: "", continue: true },
+  // ：ストーリー選択へ戻る
+
   // CASE５ 歯医者
   // 背景 花畑
   { type: "background", name: "fieldOfFlowers", continue: true },
+  // ＢＧＭ アルカディア
   // 立ち絵 B６
   { type: "showCharacter", name: "sekai", face: "chara_B6", continue: true },
+  { type: "fadeIn", continue: false },
   { type: "text", text: "「私…頑張りましたよね？」" },
   { type: "text", text: "「世界…そんなこと言うな」" },
   { type: "text", text: "「まだ始まったばかりじゃないか」" },
@@ -870,6 +1009,7 @@ export const scenario: Scenario[] = [
   { type: "text", text: "「新しい曲も作ってさ！」" },
   { type: "text", text: "「だから…」" },
   { type: "text", text: "「いい加減歯医者にいこうよ！」" },
+  // ＢＧＭ：ほうせきたん
   // 立ち絵 A2
   { type: "showCharacter", name: "sekai", face: "chara_A2", continue: true },
   { type: "text", text: "「いーやーだー！」" },
@@ -887,8 +1027,14 @@ export const scenario: Scenario[] = [
   },
   { type: "text", text: "「なんて失礼なこと言うんだ！」" },
   { type: "text", text: "「謝るんだ！全国の歯科医の先生に謝るんだ！」" },
+  // ：演出 ブラックアウト
+  { type: "fadeOut", continue: true },
+  { type: "wait", time: 1500, continue: true },
+  { type: "text", text: "", continue: true },
+
   // 背景 レストラン
   { type: "background", name: "restaurant", continue: true },
+  { type: "fadeIn", continue: false },
   // 立ち絵 A３
   { type: "showCharacter", name: "sekai", face: "chara_A3", continue: true },
   { type: "text", text: "「美味しい～！」" },
@@ -904,9 +1050,16 @@ export const scenario: Scenario[] = [
   { type: "showCharacter", name: "sekai", face: "chara_A4", continue: true },
   { type: "text", text: "「っ！」" },
   { type: "text", text: "「そんな顔してもだめだから！」" },
+  // ：演出 ブラックアウト
+  { type: "fadeOut", continue: true },
+  { type: "wait", time: 1500, continue: true },
+  { type: "text", text: "", continue: true },
+  // ：ストーリー選択へ戻る
+
   // CASE６ 妹
   // 背景 自室
   { type: "background", name: "room", continue: true },
+  { type: "fadeIn", continue: false },
   { type: "text", text: "ｐｐｐｐｐｐｐｐｐ" },
   // 背景 リビング
   { type: "background", name: "livingRoom", continue: true },
@@ -956,11 +1109,18 @@ export const scenario: Scenario[] = [
   { type: "text", text: "「気のせいです」" },
   { type: "text", text: "「早く起きないと兄さんの分も食べちゃいますからね」" },
   { type: "text", text: "「ういーす」" },
+  // ：演出 ブラックアウト
+  { type: "fadeOut", continue: true },
+  { type: "wait", time: 1500, continue: true },
+  { type: "text", text: "", continue: true },
+  // ：ストーリー選択へ戻る
+
   // CASE７ 幼馴染 恋人 結婚
   // 背景リビング
   { type: "background", name: "livingRoom", continue: true },
   // 立ち絵 A1
   { type: "showCharacter", name: "sekai", face: "chara_A1", continue: true },
+  { type: "fadeIn", continue: false },
   { type: "text", text: "「おかえりさない兄さん」" },
   { type: "text", text: "「御飯にする？食事にする？それともパスタ？」" },
   {
@@ -992,5 +1152,10 @@ export const scenario: Scenario[] = [
   { type: "showCharacter", name: "sekai", face: "chara_B3", continue: true },
   { type: "text", text: "「…」" },
   { type: "text", text: "「なんて顔するの！怖いわ！」" },
+  // ：演出 ブラックアウト
+  { type: "fadeOut", continue: true },
+  { type: "wait", time: 1500, continue: true },
+  { type: "text", text: "", continue: true },
+  // ：ストーリー選択へ戻る
   { type: "moveNext", continue: false },
 ];
