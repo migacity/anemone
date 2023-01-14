@@ -29,14 +29,21 @@ const useUi = (
         option.top,
         option.width,
         option.height,
-        0xc0c0c0
+        0x000000,
+        0.75
       );
       buttonContainer.add(box);
+
+      const buttonTextStyle: Phaser.Types.GameObjects.Text.TextStyle = {
+        fontSize: "24px",
+      };
       const text = container.scene.add.text(
         option.left,
         option.top,
-        option.caption
+        option.caption,
+        buttonTextStyle
       );
+      text.setOrigin(0.5, 0.5);
       buttonContainer.add(text);
 
       // クリック時の動作を登録したい。
