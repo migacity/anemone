@@ -1,12 +1,10 @@
 import mainImage from "../../assets/main.webp";
 import { MessageWindow } from "./MessageWindowScene";
-// import { IObserver } from "../Observer";
-// import { useGameState, GameStore } from "../State";
 import { useInput } from "../useInput";
-// const { resisterObserver, update, get } = useGameState();
 import { scenario, preload } from "../scenario";
 import { GameObjects } from "phaser";
 import { load, save, SaveData } from "../dataSaver";
+import { ButtonOption, useUi } from "../uiManager";
 
 interface CharData {
   name: string;
@@ -19,23 +17,17 @@ export class MainScene extends Phaser.Scene {
   private scenarioIndex: number;
   private bg!: Phaser.GameObjects.Image;
   private character!: Phaser.GameObjects.Container;
+  private ui!: Phaser.GameObjects.Container;
+  private uiManager!: {
+    addButton: (options: ButtonOption[]) => void;
+    removeButton: () => void;
+  };
 
   constructor() {
     super("main");
-    // resisterObserver(this);
     this.dialog = undefined;
     this.scenarioIndex = -1;
   }
-
-  // paramsUpdate(newStore: Readonly<GameStore>, prevStore: GameStore): void {
-  //   if (
-  //     (newStore.scenario !== prevStore.scenario ||
-  //       newStore.scenarioPointer !== prevStore.scenarioPointer) &&
-  //     this.dialog !== undefined
-  //   ) {
-  //     this.dialog.setMessage(get.currentScenario());
-  //   }
-  // }
 
   preload(): void {
     this.load.image("mainImage", mainImage);
@@ -85,18 +77,61 @@ export class MainScene extends Phaser.Scene {
     this.dialog = new MessageWindow(this);
     this.add.existing(this.dialog);
 
-    // update("setScenario", {
-    //   scenario: [
-    //     "拙者親方と申すは、立会の内に御存知の御方も御座りましょうが、御江戸を発って二十里上方、相州小田原一色町を御過ぎなされて、青物町を上りへ御出でなさるれば、欄干橋虎屋藤右衛門、只今では剃髪致して圓斎と名乗りまする。",
-    //     "元朝より大晦日まで、御手に入れまする此の薬は、昔、ちんの国の唐人、外郎という人、わが朝へ来たり、帝へ参内の折りから、此の薬を深く籠め置き、用ゆる時は一粒ずつ、冠の隙間より取り出だす。",
-    //   ],
-    // });
-
-    // this.dialog.setMessage(get.currentScenario());
-
     const { setEventHandler } = useInput(this);
-    // setEventHandler(this.moveNext)
     setEventHandler(this.onClick);
+
+    // ボタンを作るユーティリティを初期化する。
+    this.ui = this.add.container(width / 2, height / 2);
+    this.uiManager = useUi(this.ui);
+
+    // メニューボタンを生成する。
+    this.uiManager.addButton([
+      {
+        top: 130,
+        left: -140,
+        width: 160,
+        height: 40,
+        caption: "セーブ",
+        onClick: (v: any) => console.log(v),
+        param: "セーブ",
+      },
+      {
+        top: 130,
+        left: 32,
+        width: 160,
+        height: 40,
+        caption: "ロード",
+        onClick: (v: any) => console.log(v),
+        param: "ロード",
+      },
+      {
+        top: 130,
+        left: 204,
+        width: 160,
+        height: 40,
+        caption: "Skip",
+        onClick: (v: any) => console.log(v),
+        param: "Skip",
+      },
+      {
+        top: 130,
+        left: 376,
+        width: 160,
+        height: 40,
+        caption: "ストーリー選択",
+        onClick: (v: any) => console.log(v),
+        param: "ストーリー選択",
+      },
+      {
+        top: 130,
+        left: 548,
+        width: 160,
+        height: 40,
+        caption: "ゲーム終了",
+        onClick: (v: any) => console.log(v),
+        param: "ゲーム終了",
+      },
+    ]);
 
     // シナリオが自動的に始まるように。
     this.scenarioIndex = gameData?.datas[0].scenarioIndex ?? -1;
