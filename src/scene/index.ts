@@ -4,7 +4,6 @@ import { SaveDataScene } from "./SaveDataScene";
 import { MainScene } from "./MainScene";
 import { EndingScene } from "./EndingScene";
 import { CreditScene } from "./CreditScene";
-import { InputManager } from "./InputManager";
 
 export const Scenes = [
   LoadingScene,
@@ -13,5 +12,4 @@ export const Scenes = [
   MainScene,
   EndingScene,
   CreditScene,
-  InputManager,
 ];
