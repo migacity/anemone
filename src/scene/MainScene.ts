@@ -148,7 +148,7 @@ export class MainScene extends Phaser.Scene {
   }
 
   moveNext(): void {
-    this.scene.start("ending");
+    this.scene.start("main");
   }
 
   /** 表示しているシナリオの状態をconsoleに吐く。 */
@@ -215,7 +215,7 @@ export class MainScene extends Phaser.Scene {
           this.moveNext();
           break;
       }
-      this.printParams();
+      // this.printParams();
     } while (
       this.scenarioIndex < 0 ||
       (scenario["monologue1"][0][this.scenarioIndex].continue ?? false)

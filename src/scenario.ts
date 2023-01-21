@@ -258,6 +258,7 @@ export const scenario: { [key: string]: Scenario[][] } = {
       { type: "fadeOut", continue: true },
       { type: "wait", time: 1500, continue: true },
       { type: "text", text: "", continue: true },
+      { type: "moveNext", continue: false },
       // ～ここまでモノローグ～
     ],
   ],
