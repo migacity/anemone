@@ -164,7 +164,7 @@ export class MainScene extends Phaser.Scene {
       scenarioIndex: this.scenarioIndex - 1,
       bg: this.bg.texture.key,
       character,
-      code: scenario[this.scenarioIndex],
+      code: scenario["monologue1"][0][this.scenarioIndex],
       camera: this.cameras.main.fadeEffect.direction,
     };
 
@@ -179,7 +179,7 @@ export class MainScene extends Phaser.Scene {
   async interpretation(): Promise<void> {
     do {
       this.scenarioIndex += 1;
-      const code = scenario[this.scenarioIndex];
+      const code = scenario["monologue1"][0][this.scenarioIndex];
       switch (code.type) {
         case "text":
           this.dialog?.setMessage(code.text);
@@ -218,7 +218,7 @@ export class MainScene extends Phaser.Scene {
       this.printParams();
     } while (
       this.scenarioIndex < 0 ||
-      (scenario[this.scenarioIndex].continue ?? false)
+      (scenario["monologue1"][0][this.scenarioIndex].continue ?? false)
     );
   }
 }
