@@ -42,6 +42,8 @@ interface ShowCharacter {
 
 interface MoveNext {
   type: "moveNext";
+  part?: string;
+  chapter?: number[];
   continue?: false;
 }
 
@@ -258,7 +260,7 @@ export const scenario: { [key: string]: Scenario[][] } = {
       { type: "fadeOut", continue: true },
       { type: "wait", time: 1500, continue: true },
       { type: "text", text: "", continue: true },
-      { type: "moveNext", continue: false },
+      { type: "moveNext", part: "conversation", chapter: [0], continue: false },
       // ～ここまでモノローグ～
     ],
   ],
@@ -329,6 +331,12 @@ export const scenario: { [key: string]: Scenario[][] } = {
       { type: "fadeOut", continue: true },
       { type: "wait", time: 1500, continue: true },
       { type: "text", text: "", continue: true },
+      {
+        type: "moveNext",
+        part: "conversation",
+        chapter: [0, 1],
+        continue: false,
+      },
     ],
     [
       // ～占星術って知っていますか？～
@@ -374,6 +382,12 @@ export const scenario: { [key: string]: Scenario[][] } = {
       { type: "fadeOut", continue: true },
       { type: "wait", time: 1500, continue: true },
       { type: "text", text: "", continue: true },
+      {
+        type: "moveNext",
+        part: "conversation",
+        chapter: [0, 1],
+        continue: false,
+      },
     ],
     [
       // ～ライフナンバーって～
