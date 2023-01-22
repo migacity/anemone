@@ -5,6 +5,7 @@ import { scenario, preload } from "../scenario";
 import { GameObjects } from "phaser";
 import { load, save, SaveData } from "../dataSaver";
 import { ButtonOption, useUi } from "../uiManager";
+import { useState } from "../useState";
 
 interface CharData {
   name: string;
@@ -17,6 +18,7 @@ export class MainScene extends Phaser.Scene {
   private scenarioIndex: number;
   private bg!: Phaser.GameObjects.Image;
   private character!: Phaser.GameObjects.Container;
+  private store;
   private ui!: Phaser.GameObjects.Container;
   private uiManager!: {
     addButton: (options: ButtonOption[]) => void;
@@ -27,6 +29,8 @@ export class MainScene extends Phaser.Scene {
     super("main");
     this.dialog = undefined;
     this.scenarioIndex = -1;
+    this.store = useState().store;
+    this.store = { part: "monologue1", chapter: 0 };
   }
 
   preload(): void {
@@ -41,6 +45,8 @@ export class MainScene extends Phaser.Scene {
   }
 
   async create(): Promise<void> {
+    console.log(this.store);
+    console.log(scenario[this.store.part][this.store.chapter]);
     this.scenarioIndex = -1;
     const { width, height } = this.game.canvas;
     const gameData = load();
@@ -147,8 +153,13 @@ export class MainScene extends Phaser.Scene {
     }
   }
 
-  moveNext(): void {
-    this.scene.start("ending");
+  moveNext(to: Function): void {
+    this.store = {
+      ...this.store,
+      ...to(),
+    };
+    this.scenarioIndex = -1;
+    this.scene.start("main");
   }
 
   /** 表示しているシナリオの状態をconsoleに吐く。 */
@@ -164,7 +175,7 @@ export class MainScene extends Phaser.Scene {
       scenarioIndex: this.scenarioIndex - 1,
       bg: this.bg.texture.key,
       character,
-      code: scenario[this.scenarioIndex],
+      code: scenario[this.store.part][this.store.chapter][this.scenarioIndex],
       camera: this.cameras.main.fadeEffect.direction,
     };
 
@@ -179,7 +190,8 @@ export class MainScene extends Phaser.Scene {
   async interpretation(): Promise<void> {
     do {
       this.scenarioIndex += 1;
-      const code = scenario[this.scenarioIndex];
+      const code =
+        scenario[this.store.part][this.store.chapter][this.scenarioIndex];
       switch (code.type) {
         case "text":
           this.dialog?.setMessage(code.text);
@@ -212,13 +224,15 @@ export class MainScene extends Phaser.Scene {
           await new Promise((resolve) => setTimeout(resolve, code.time));
           break;
         case "moveNext":
-          this.moveNext();
+          this.moveNext(code.to);
           break;
       }
-      this.printParams();
+      // this.printParams();
     } while (
       this.scenarioIndex < 0 ||
-      (scenario[this.scenarioIndex].continue ?? false)
+      (scenario[this.store.part][this.store.chapter][this.scenarioIndex]
+        .continue ??
+        false)
     );
   }
 }
