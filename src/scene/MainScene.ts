@@ -18,12 +18,12 @@ export class MainScene extends Phaser.Scene {
   private scenarioIndex: number;
   private bg!: Phaser.GameObjects.Image;
   private character!: Phaser.GameObjects.Container;
+  private store;
   private ui!: Phaser.GameObjects.Container;
   private uiManager!: {
     addButton: (options: ButtonOption[]) => void;
     removeButton: () => void;
   };
-  private store: { part: string; chapter: number };
 
   constructor() {
     super("main");
@@ -153,14 +153,12 @@ export class MainScene extends Phaser.Scene {
     }
   }
 
-  moveNext(part?: string, chapter?: number[]): void {
-    if (part !== undefined && chapter !== undefined) {
-      this.store = {
-        part,
-        chapter: chapter[Math.floor(Math.random() * chapter?.length)],
-      };
-      this.scenarioIndex = 0;
-    }
+  moveNext(to: Function): void {
+    this.store = {
+      ...this.store,
+      ...to(),
+    };
+    this.scenarioIndex = -1;
     this.scene.start("main");
   }
 
@@ -226,7 +224,7 @@ export class MainScene extends Phaser.Scene {
           await new Promise((resolve) => setTimeout(resolve, code.time));
           break;
         case "moveNext":
-          this.moveNext(code.part, code.chapter);
+          this.moveNext(code.to);
           break;
       }
       // this.printParams();

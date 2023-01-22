@@ -42,8 +42,7 @@ interface ShowCharacter {
 
 interface MoveNext {
   type: "moveNext";
-  part?: string;
-  chapter?: number[];
+  to: Function;
   continue?: false;
 }
 
@@ -260,14 +259,21 @@ export const scenario: { [key: string]: Scenario[][] } = {
       { type: "fadeOut", continue: true },
       { type: "wait", time: 1500, continue: true },
       { type: "text", text: "", continue: true },
-      { type: "moveNext", part: "conversation", chapter: [0], continue: false },
+      {
+        type: "moveNext",
+        to: () => {
+          const part = "conversation";
+          const chapter = Math.floor(Math.random() * 14);
+          return { part, chapter };
+        },
+        continue: false,
+      },
       // ～ここまでモノローグ～
     ],
   ],
   conversation: [
     [
       // ～ここから会話パート～
-      { type: "fadeIn", continue: false },
       // 交流パート ランダムで会話が選ばれる
       // 背景 白い部屋
       { type: "background", name: "whiteroom", continue: true },
@@ -279,6 +285,7 @@ export const scenario: { [key: string]: Scenario[][] } = {
         face: "chara_A1",
         continue: true,
       },
+      { type: "fadeIn", continue: false },
       {
         type: "text",
         text: "「そうですね…貴方は死ぬことをどう考えていますか？」",
@@ -333,8 +340,11 @@ export const scenario: { [key: string]: Scenario[][] } = {
       { type: "text", text: "", continue: true },
       {
         type: "moveNext",
-        part: "conversation",
-        chapter: [0, 1],
+        to: () => {
+          const part = "conversation";
+          const chapter = Math.floor(Math.random() * 14);
+          return { part, chapter };
+        },
         continue: false,
       },
     ],
@@ -384,8 +394,11 @@ export const scenario: { [key: string]: Scenario[][] } = {
       { type: "text", text: "", continue: true },
       {
         type: "moveNext",
-        part: "conversation",
-        chapter: [0, 1],
+        to: () => {
+          const part = "conversation";
+          const chapter = Math.floor(Math.random() * 14);
+          return { part, chapter };
+        },
         continue: false,
       },
     ],
@@ -446,6 +459,15 @@ export const scenario: { [key: string]: Scenario[][] } = {
       { type: "fadeOut", continue: true },
       { type: "wait", time: 1500, continue: true },
       { type: "text", text: "", continue: true },
+      {
+        type: "moveNext",
+        to: () => {
+          const part = "conversation";
+          const chapter = Math.floor(Math.random() * 14);
+          return { part, chapter };
+        },
+        continue: false,
+      },
     ],
     [
       // ～友達～
@@ -475,6 +497,15 @@ export const scenario: { [key: string]: Scenario[][] } = {
       { type: "fadeOut", continue: true },
       { type: "wait", time: 1500, continue: true },
       { type: "text", text: "", continue: true },
+      {
+        type: "moveNext",
+        to: () => {
+          const part = "conversation";
+          const chapter = Math.floor(Math.random() * 14);
+          return { part, chapter };
+        },
+        continue: false,
+      },
     ],
     [
       // ～気づいてしまったね～
@@ -543,6 +574,15 @@ export const scenario: { [key: string]: Scenario[][] } = {
       { type: "fadeOut", continue: true },
       { type: "wait", time: 1500, continue: true },
       { type: "text", text: "", continue: true },
+      {
+        type: "moveNext",
+        to: () => {
+          const part = "conversation";
+          const chapter = Math.floor(Math.random() * 14);
+          return { part, chapter };
+        },
+        continue: false,
+      },
     ],
     [
       // ～鼻歌～
@@ -570,6 +610,15 @@ export const scenario: { [key: string]: Scenario[][] } = {
       { type: "fadeOut", continue: true },
       { type: "wait", time: 1500, continue: true },
       { type: "text", text: "", continue: true },
+      {
+        type: "moveNext",
+        to: () => {
+          const part = "conversation";
+          const chapter = Math.floor(Math.random() * 14);
+          return { part, chapter };
+        },
+        continue: false,
+      },
     ],
     [
       // ～好きなもの１～
@@ -616,6 +665,15 @@ export const scenario: { [key: string]: Scenario[][] } = {
       { type: "fadeOut", continue: true },
       { type: "wait", time: 1500, continue: true },
       { type: "text", text: "", continue: true },
+      {
+        type: "moveNext",
+        to: () => {
+          const part = "conversation";
+          const chapter = Math.floor(Math.random() * 14);
+          return { part, chapter };
+        },
+        continue: false,
+      },
     ],
     [
       // ～好きなもの２～
@@ -671,6 +729,15 @@ export const scenario: { [key: string]: Scenario[][] } = {
       { type: "fadeOut", continue: true },
       { type: "wait", time: 1500, continue: true },
       { type: "text", text: "", continue: true },
+      {
+        type: "moveNext",
+        to: () => {
+          const part = "conversation";
+          const chapter = Math.floor(Math.random() * 14);
+          return { part, chapter };
+        },
+        continue: false,
+      },
     ],
     [
       // ～願い事～
@@ -701,6 +768,15 @@ export const scenario: { [key: string]: Scenario[][] } = {
       { type: "fadeOut", continue: true },
       { type: "wait", time: 1500, continue: true },
       { type: "text", text: "", continue: true },
+      {
+        type: "moveNext",
+        to: () => {
+          const part = "conversation";
+          const chapter = Math.floor(Math.random() * 14);
+          return { part, chapter };
+        },
+        continue: false,
+      },
     ],
     [
       // ～季節について～
@@ -750,6 +826,15 @@ export const scenario: { [key: string]: Scenario[][] } = {
       { type: "fadeOut", continue: true },
       { type: "wait", time: 1500, continue: true },
       { type: "text", text: "", continue: true },
+      {
+        type: "moveNext",
+        to: () => {
+          const part = "conversation";
+          const chapter = Math.floor(Math.random() * 14);
+          return { part, chapter };
+        },
+        continue: false,
+      },
     ],
     [
       // ～眠い～
@@ -778,6 +863,15 @@ export const scenario: { [key: string]: Scenario[][] } = {
       { type: "fadeOut", continue: true },
       { type: "wait", time: 1500, continue: true },
       { type: "text", text: "", continue: true },
+      {
+        type: "moveNext",
+        to: () => {
+          const part = "conversation";
+          const chapter = Math.floor(Math.random() * 14);
+          return { part, chapter };
+        },
+        continue: false,
+      },
     ],
     [
       // 挨拶
@@ -803,6 +897,15 @@ export const scenario: { [key: string]: Scenario[][] } = {
       { type: "fadeOut", continue: true },
       { type: "wait", time: 1500, continue: true },
       { type: "text", text: "", continue: true },
+      {
+        type: "moveNext",
+        to: () => {
+          const part = "conversation";
+          const chapter = Math.floor(Math.random() * 14);
+          return { part, chapter };
+        },
+        continue: false,
+      },
     ],
     [
       // 挨拶2
@@ -829,6 +932,15 @@ export const scenario: { [key: string]: Scenario[][] } = {
       { type: "fadeOut", continue: true },
       { type: "wait", time: 1500, continue: true },
       { type: "text", text: "", continue: true },
+      {
+        type: "moveNext",
+        to: () => {
+          const part = "conversation";
+          const chapter = Math.floor(Math.random() * 14);
+          return { part, chapter };
+        },
+        continue: false,
+      },
     ],
     [
       // 挨拶3
@@ -901,6 +1013,15 @@ export const scenario: { [key: string]: Scenario[][] } = {
       { type: "fadeOut", continue: true },
       { type: "wait", time: 1500, continue: true },
       { type: "text", text: "", continue: true },
+      {
+        type: "moveNext",
+        to: () => {
+          const part = "conversation";
+          const chapter = Math.floor(Math.random() * 14);
+          return { part, chapter };
+        },
+        continue: false,
+      },
       // ：～ここまで会話パート～
     ],
   ],
@@ -1874,7 +1995,7 @@ export const scenario: { [key: string]: Scenario[][] } = {
       { type: "wait", time: 1500, continue: true },
       { type: "text", text: "", continue: true },
       // ：ストーリー選択へ戻る
-      { type: "moveNext", continue: false },
+      { type: "moveNext", to: () => ({}), continue: false },
     ],
   ],
 };
