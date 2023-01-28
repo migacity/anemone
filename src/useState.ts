@@ -1,15 +1,11 @@
+import { map } from "nanostores";
+
 export interface GameStore {
   part: string;
   chapter: number;
 }
 
-const store: GameStore = {
-  part: "",
+export const store = map<GameStore>({
+  part: "monologue1",
   chapter: 0,
-};
-
-export const useState = (): { store: GameStore } => {
-  return {
-    store,
-  };
-};
+});
