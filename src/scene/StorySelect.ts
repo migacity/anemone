@@ -48,9 +48,4 @@ export class StorySelect extends Phaser.Scene {
     });
     this.uiManager.addButton(buttons);
   }
-
-  onClick(): void {
-    store.set({ part: "stories", chapter: 0 });
-    this.scene.start("main");
-  }
 }

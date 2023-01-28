@@ -150,13 +150,13 @@ export class MainScene extends Phaser.Scene {
     }
   }
 
-  moveNext(to: Function): void {
+  moveNext(to: Function, sceneName = "main"): void {
     store.set({
       ...store.get(),
       ...to(),
     });
     this.scenarioIndex = -1;
-    this.scene.start("main");
+    this.scene.start(sceneName);
   }
 
   /** 表示しているシナリオの状態をconsoleに吐く。 */
@@ -221,7 +221,7 @@ export class MainScene extends Phaser.Scene {
           await new Promise((resolve) => setTimeout(resolve, code.time));
           break;
         case "moveNext":
-          this.moveNext(code.to);
+          this.moveNext(code.to, code.sceneName);
           break;
       }
       // this.printParams();
