@@ -43,6 +43,7 @@ interface ShowCharacter {
 interface MoveNext {
   type: "moveNext";
   to: Function;
+  sceneName?: string;
   continue?: false;
 }
 
@@ -1286,6 +1287,16 @@ export const scenario: { [key: string]: Scenario[][] } = {
       { type: "wait", time: 1500, continue: true },
       { type: "text", text: "", continue: true },
       // ：ストーリー選択へ戻る
+      {
+        type: "moveNext",
+        to: () => {
+          const part = "conversation";
+          const chapter = Math.floor(Math.random() * 14);
+          return { part, chapter };
+        },
+        sceneName: "storySelect",
+        continue: false,
+      },
     ],
     [
       // CASE２ 日常
@@ -1480,6 +1491,16 @@ export const scenario: { [key: string]: Scenario[][] } = {
       { type: "wait", time: 1500, continue: true },
       { type: "text", text: "", continue: true },
       // ：ストーリー選択へ戻る
+      {
+        type: "moveNext",
+        to: () => {
+          const part = "conversation";
+          const chapter = Math.floor(Math.random() * 14);
+          return { part, chapter };
+        },
+        sceneName: "storySelect",
+        continue: false,
+      },
     ],
     [
       // CASE３ アネモネ
@@ -1555,6 +1576,16 @@ export const scenario: { [key: string]: Scenario[][] } = {
       { type: "wait", time: 1500, continue: true },
       { type: "text", text: "", continue: true },
       // ：ストーリー選択へ戻る
+      {
+        type: "moveNext",
+        to: () => {
+          const part = "conversation";
+          const chapter = Math.floor(Math.random() * 14);
+          return { part, chapter };
+        },
+        sceneName: "storySelect",
+        continue: false,
+      },
     ],
     [
       // CASE４
@@ -1673,6 +1704,16 @@ export const scenario: { [key: string]: Scenario[][] } = {
       { type: "wait", time: 1500, continue: true },
       { type: "text", text: "", continue: true },
       // ：ストーリー選択へ戻る
+      {
+        type: "moveNext",
+        to: () => {
+          const part = "conversation";
+          const chapter = Math.floor(Math.random() * 14);
+          return { part, chapter };
+        },
+        sceneName: "storySelect",
+        continue: false,
+      },
     ],
     [
       // CASE５ 歯医者
@@ -1818,6 +1859,16 @@ export const scenario: { [key: string]: Scenario[][] } = {
       { type: "wait", time: 1500, continue: true },
       { type: "text", text: "", continue: true },
       // ：ストーリー選択へ戻る
+      {
+        type: "moveNext",
+        to: () => {
+          const part = "conversation";
+          const chapter = Math.floor(Math.random() * 14);
+          return { part, chapter };
+        },
+        sceneName: "storySelect",
+        continue: false,
+      },
     ],
     [
       // CASE６ 妹
@@ -1931,6 +1982,16 @@ export const scenario: { [key: string]: Scenario[][] } = {
       { type: "wait", time: 1500, continue: true },
       { type: "text", text: "", continue: true },
       // ：ストーリー選択へ戻る
+      {
+        type: "moveNext",
+        to: () => {
+          const part = "conversation";
+          const chapter = Math.floor(Math.random() * 14);
+          return { part, chapter };
+        },
+        sceneName: "storySelect",
+        continue: false,
+      },
     ],
     [
       // CASE７ 幼馴染 恋人 結婚
@@ -1995,7 +2056,16 @@ export const scenario: { [key: string]: Scenario[][] } = {
       { type: "wait", time: 1500, continue: true },
       { type: "text", text: "", continue: true },
       // ：ストーリー選択へ戻る
-      { type: "moveNext", to: () => ({}), continue: false },
+      {
+        type: "moveNext",
+        to: () => {
+          const part = "conversation";
+          const chapter = Math.floor(Math.random() * 14);
+          return { part, chapter };
+        },
+        sceneName: "storySelect",
+        continue: false,
+      },
     ],
   ],
 };
