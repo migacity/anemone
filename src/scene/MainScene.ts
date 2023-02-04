@@ -2,15 +2,15 @@ import mainImage from "../../assets/main.webp";
 import { MessageWindow } from "./MessageWindowScene";
 import { useInput } from "../useInput";
 import { scenario, preload } from "../scenario";
-import { GameObjects } from "phaser";
-import { load, save, SaveData } from "../dataSaver";
+// import { GameObjects } from "phaser";
+import { load } from "../dataSaver";
 import { ButtonOption, useUi } from "../uiManager";
 import { store } from "../useState";
 
-interface CharData {
-  name: string;
-  key: string;
-}
+// interface CharData {
+//   name: string;
+//   key: string;
+// }
 
 export class MainScene extends Phaser.Scene {
   // 出来ればundefinedは無い方がいい。
@@ -159,30 +159,30 @@ export class MainScene extends Phaser.Scene {
     this.scene.start(sceneName);
   }
 
-  /** 表示しているシナリオの状態をconsoleに吐く。 */
-  private printParams(): void {
-    const character = this.character.list
-      .map((v: GameObjects.GameObject): CharData | undefined => {
-        if (!(v instanceof GameObjects.Image)) return undefined;
-        return { name: v.name, key: v.texture.key };
-      })
-      .filter((item): item is NonNullable<typeof item> => item !== undefined);
+  // /** 表示しているシナリオの状態をconsoleに吐く。 */
+  // private printParams(): void {
+  //   const character = this.character.list
+  //     .map((v: GameObjects.GameObject): CharData | undefined => {
+  //       if (!(v instanceof GameObjects.Image)) return undefined;
+  //       return { name: v.name, key: v.texture.key };
+  //     })
+  //     .filter((item): item is NonNullable<typeof item> => item !== undefined);
 
-    const params: SaveData = {
-      scenarioIndex: this.scenarioIndex - 1,
-      bg: this.bg.texture.key,
-      character,
-      code: scenario[store.get().part][store.get().chapter][this.scenarioIndex],
-      camera: this.cameras.main.fadeEffect.direction,
-    };
+  //   const params: SaveData = {
+  //     scenarioIndex: this.scenarioIndex - 1,
+  //     bg: this.bg.texture.key,
+  //     character,
+  //     code: scenario[store.get().part][store.get().chapter][this.scenarioIndex],
+  //     camera: this.cameras.main.fadeEffect.direction,
+  //   };
 
-    if (import.meta.env.MODE === "development") console.log(params);
-    save({
-      monologue1Viewed: false,
-      monologue2Viewed: false,
-      datas: [params],
-    });
-  }
+  //   if (import.meta.env.MODE === "development") console.log(params);
+  //   save({
+  //     monologue1Viewed: false,
+  //     monologue2Viewed: false,
+  //     datas: [params],
+  //   });
+  // }
 
   async interpretation(): Promise<void> {
     do {
