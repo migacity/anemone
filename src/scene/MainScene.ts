@@ -3,12 +3,11 @@ import { MessageWindow } from "./MessageWindowScene";
 import { useInput } from "../useInput";
 import { scenario, preload } from "../scenario";
 import { ButtonOption, useUi } from "../uiManager";
-import { store } from "../useState";
+import { increment, store } from "../useState";
 
 export class MainScene extends Phaser.Scene {
   // 出来ればundefinedは無い方がいい。
   private dialog: MessageWindow | undefined;
-  private scenarioIndex: number;
   private bg!: Phaser.GameObjects.Image;
   private character!: Phaser.GameObjects.Container;
   private ui!: Phaser.GameObjects.Container;
@@ -20,7 +19,6 @@ export class MainScene extends Phaser.Scene {
   constructor() {
     super("main");
     this.dialog = undefined;
-    this.scenarioIndex = -1;
   }
 
   preload(): void {
@@ -35,7 +33,6 @@ export class MainScene extends Phaser.Scene {
   }
 
   async create(): Promise<void> {
-    this.scenarioIndex = -1;
     const { width, height } = this.game.canvas;
 
     // 真っ黒な画面から始める。
@@ -43,11 +40,7 @@ export class MainScene extends Phaser.Scene {
     await new Promise((resolve) => setTimeout(resolve, 20));
 
     // 背景画像を表示する。
-    this.bg = this.add.image(
-      width / 2,
-      height / 2,
-      "mainImage"
-    );
+    this.bg = this.add.image(width / 2, height / 2, "mainImage");
 
     // 立ち絵用のコンテナを用意する。
     this.character = this.add.container(width / 2, height / 2);
@@ -113,7 +106,6 @@ export class MainScene extends Phaser.Scene {
     ]);
 
     // シナリオが自動的に始まるように。
-    this.scenarioIndex = -1;
     this.cameras.main.fadeIn(1000);
     await this.onClick();
   }
@@ -130,16 +122,18 @@ export class MainScene extends Phaser.Scene {
     store.set({
       ...store.get(),
       ...to(),
+      scenarioIndex: -1,
     });
-    this.scenarioIndex = -1;
     this.scene.start(sceneName);
   }
 
   async interpretation(): Promise<void> {
     do {
-      this.scenarioIndex += 1;
+      increment();
       const code =
-        scenario[store.get().part][store.get().chapter][this.scenarioIndex];
+        scenario[store.get().part][store.get().chapter][
+          store.get().scenarioIndex
+        ];
       switch (code.type) {
         case "text":
           this.dialog?.setMessage(code.text);
@@ -176,10 +170,9 @@ export class MainScene extends Phaser.Scene {
           break;
       }
     } while (
-      this.scenarioIndex < 0 ||
-      (scenario[store.get().part][store.get().chapter][this.scenarioIndex]
-        .continue ??
-        false)
+      scenario[store.get().part][store.get().chapter][store.get().scenarioIndex]
+        ?.continue ??
+      false
     );
   }
 }
