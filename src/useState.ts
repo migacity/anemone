@@ -1,35 +1,36 @@
-import { map, action } from "nanostores";
+import { persistentAtom } from "@nanostores/persistent"
 
-export interface GameStore {
+export type GameStore = {
   part: string;
   chapter: number;
   scenarioIndex: number;
   monologue1AlreadyRead: boolean;
 }
 
-export const store = map<GameStore>({
+export const store = persistentAtom<GameStore>("game", {
   part: "monologue1",
   chapter: 0,
   scenarioIndex: -1,
   monologue1AlreadyRead: false,
-});
+},
+  {
+    encode: JSON.stringify,
+    decode: JSON.parse,
+  });
 
-export const update = action(
-  store,
-  "update",
-  (store, payload: Partial<GameStore>) => {
+export const update =
+  (payload: Partial<GameStore>) => {
     const t = store.get();
     store.set({
       ...t,
       ...payload,
     });
   }
-);
 
-export const increment = action(store, "increment", (store) => {
+export const increment = () => {
   const t = store.get();
   store.set({
     ...t,
     scenarioIndex: t.scenarioIndex + 1,
   });
-});
+};

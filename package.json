@@ -25,6 +25,7 @@
     "vitest": "^0.23.4"
   },
   "dependencies": {
+    "@nanostores/persistent": "^0.7.0",
     "nanostores": "^0.7.1",
     "phaser": "^3.55.2"
   }
