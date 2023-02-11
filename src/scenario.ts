@@ -1,3 +1,4 @@
+import { store, update } from "./useState";
 import bench from "../assets/bg-bench.webp";
 import fieldOfFlowers from "../assets/bg-field-of-flowers.webp";
 import garden from "../assets/bg-garden.webp";
@@ -111,6 +112,18 @@ export const preload: Preload[] = [
 export const scenario: { [key: string]: Scenario[][] } = {
   monologue1: [
     [
+      {
+        type: "moveNext",
+        to: () => {
+          if (!store.get().monologue1AlreadyRead) {
+            throw new Error();
+          }
+          update({ monologue1AlreadyRead: true });
+          const part = "conversation";
+          const chapter = Math.floor(Math.random() * 14);
+          return { part, chapter };
+        },
+      },
       // 背景 白い部屋
       { type: "background", name: "whiteroom", continue: true },
       // BGM なし

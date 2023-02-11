@@ -118,13 +118,17 @@ export class MainScene extends Phaser.Scene {
     }
   }
 
-  moveNext(to: Function, sceneName = "main"): void {
-    store.set({
-      ...store.get(),
-      ...to(),
-      scenarioIndex: -1,
-    });
-    this.scene.start(sceneName);
+  async moveNext(to: Function, sceneName = "main"): Promise<void> {
+    try {
+      store.set({
+        ...store.get(),
+        ...to(),
+        scenarioIndex: -1,
+      });
+      this.scene.start(sceneName);
+    } catch (e) {
+      await this.onClick();
+    }
   }
 
   async interpretation(): Promise<void> {
@@ -166,7 +170,7 @@ export class MainScene extends Phaser.Scene {
           await new Promise((resolve) => setTimeout(resolve, code.time));
           break;
         case "moveNext":
-          this.moveNext(code.to, code.sceneName);
+          await this.moveNext(code.to, code.sceneName);
           break;
       }
     } while (
