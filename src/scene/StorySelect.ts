@@ -1,6 +1,6 @@
 import whiteroom from "../../assets/bg-whiteroom.webp";
 import { ButtonOption, useUi } from "../uiManager";
-import { store } from "../useState";
+import { update, resetCounter } from "../useState";
 
 export class StorySelect extends Phaser.Scene {
   private ui!: Phaser.GameObjects.Container;
@@ -37,11 +37,11 @@ export class StorySelect extends Phaser.Scene {
         height: h,
         caption: `story ${i + 1}`,
         onClick: () => {
-          store.set({
+          update({
             part: "stories",
             chapter: i,
-            scenarioIndex: -1,
           });
+          resetCounter();
           this.scene.start("main");
         },
         param: undefined,

@@ -13,6 +13,7 @@ export interface PersistentGameStore {
   part: string;
   chapter: number;
   monologue1AlreadyRead: boolean;
+  monologue2AlreadyRead: boolean;
 }
 
 export const persistentStore = persistentAtom<PersistentGameStore>(
@@ -21,6 +22,7 @@ export const persistentStore = persistentAtom<PersistentGameStore>(
     part: "monologue1",
     chapter: 0,
     monologue1AlreadyRead: false,
+    monologue2AlreadyRead: false,
   },
   {
     encode: JSON.stringify,
