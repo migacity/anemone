@@ -1075,6 +1075,17 @@ export const scenario: { [key: string]: Scenario[][] } = {
       // ストーリー選択画面選択初回時のみ
       // モノローグ
       // BGM なし
+      {
+        type: "moveNext",
+        to: () => {
+          if (!persistentStore.get().monologue2AlreadyRead) {
+            update({ monologue2AlreadyRead: true });
+            throw new Error();
+          }
+          return {};
+        },
+        sceneName: "storySelect",
+      },
       // ：演出 ブラックアウト
       { type: "background", name: "whiteroom", continue: true },
       // 立ち絵 A1
@@ -1164,6 +1175,12 @@ export const scenario: { [key: string]: Scenario[][] } = {
       { type: "fadeOut", continue: true },
       { type: "wait", time: 1500, continue: true },
       { type: "text", text: "", continue: true },
+      {
+        type: "moveNext",
+        to: () => ({}),
+        sceneName: "storySelect",
+        continue: false,
+      },
     ],
   ],
   stories: [

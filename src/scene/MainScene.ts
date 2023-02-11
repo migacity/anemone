@@ -97,7 +97,14 @@ export class MainScene extends Phaser.Scene {
         width: 160,
         height: 40,
         caption: "ストーリー選択",
-        onClick: () => this.scene.start("storySelect"),
+        onClick: () => {
+          update({
+            part: "monologue2",
+            chapter: 0,
+          });
+          resetCounter();
+          this.scene.start("main");
+        },
         param: "ストーリー選択",
       },
       {
