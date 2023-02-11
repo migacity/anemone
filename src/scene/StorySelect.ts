@@ -40,6 +40,7 @@ export class StorySelect extends Phaser.Scene {
           store.set({
             part: "stories",
             chapter: i,
+            scenarioIndex: -1,
           });
           this.scene.start("main");
         },
