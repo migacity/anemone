@@ -1,4 +1,4 @@
-import { persistentStore, update } from "./usePersistentState";
+import { persistentStore, updateAndSave } from "./usePersistentState";
 import bench from "../assets/bg-bench.webp";
 import fieldOfFlowers from "../assets/bg-field-of-flowers.webp";
 import garden from "../assets/bg-garden.webp";
@@ -116,7 +116,7 @@ export const scenario: { [key: string]: Scenario[][] } = {
         type: "moveNext",
         to: () => {
           if (!persistentStore.get().monologue1AlreadyRead) {
-            update({ monologue1AlreadyRead: true });
+            updateAndSave({ monologue1AlreadyRead: true });
             throw new Error();
           }
           const part = "conversation";
@@ -1079,7 +1079,7 @@ export const scenario: { [key: string]: Scenario[][] } = {
         type: "moveNext",
         to: () => {
           if (!persistentStore.get().monologue2AlreadyRead) {
-            update({ monologue2AlreadyRead: true });
+            updateAndSave({ monologue2AlreadyRead: true });
             throw new Error();
           }
           return {};
