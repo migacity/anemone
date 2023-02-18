@@ -72,6 +72,8 @@ interface Wait {
   continue?: boolean;
 }
 
+// TODO: コントロールメニューを表示する命令を追加する。
+
 type Preload = ImagePreload;
 
 export type Scenario =
