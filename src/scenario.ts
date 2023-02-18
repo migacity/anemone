@@ -1319,11 +1319,7 @@ export const scenario: { [key: string]: Scenario[][] } = {
       // ：ストーリー選択へ戻る
       {
         type: "moveNext",
-        to: () => {
-          const part = "conversation";
-          const chapter = Math.floor(Math.random() * 14);
-          return { part, chapter };
-        },
+        to: () => ({}),
         sceneName: "storySelect",
         continue: false,
       },
@@ -1523,11 +1519,7 @@ export const scenario: { [key: string]: Scenario[][] } = {
       // ：ストーリー選択へ戻る
       {
         type: "moveNext",
-        to: () => {
-          const part = "conversation";
-          const chapter = Math.floor(Math.random() * 14);
-          return { part, chapter };
-        },
+        to: () => ({}),
         sceneName: "storySelect",
         continue: false,
       },
@@ -1608,11 +1600,7 @@ export const scenario: { [key: string]: Scenario[][] } = {
       // ：ストーリー選択へ戻る
       {
         type: "moveNext",
-        to: () => {
-          const part = "conversation";
-          const chapter = Math.floor(Math.random() * 14);
-          return { part, chapter };
-        },
+        to: () => ({}),
         sceneName: "storySelect",
         continue: false,
       },
@@ -1736,11 +1724,7 @@ export const scenario: { [key: string]: Scenario[][] } = {
       // ：ストーリー選択へ戻る
       {
         type: "moveNext",
-        to: () => {
-          const part = "conversation";
-          const chapter = Math.floor(Math.random() * 14);
-          return { part, chapter };
-        },
+        to: () => ({}),
         sceneName: "storySelect",
         continue: false,
       },
@@ -1891,11 +1875,7 @@ export const scenario: { [key: string]: Scenario[][] } = {
       // ：ストーリー選択へ戻る
       {
         type: "moveNext",
-        to: () => {
-          const part = "conversation";
-          const chapter = Math.floor(Math.random() * 14);
-          return { part, chapter };
-        },
+        to: () => ({}),
         sceneName: "storySelect",
         continue: false,
       },
@@ -2014,11 +1994,7 @@ export const scenario: { [key: string]: Scenario[][] } = {
       // ：ストーリー選択へ戻る
       {
         type: "moveNext",
-        to: () => {
-          const part = "conversation";
-          const chapter = Math.floor(Math.random() * 14);
-          return { part, chapter };
-        },
+        to: () => ({}),
         sceneName: "storySelect",
         continue: false,
       },
@@ -2088,11 +2064,7 @@ export const scenario: { [key: string]: Scenario[][] } = {
       // ：ストーリー選択へ戻る
       {
         type: "moveNext",
-        to: () => {
-          const part = "conversation";
-          const chapter = Math.floor(Math.random() * 14);
-          return { part, chapter };
-        },
+        to: () => ({}),
         sceneName: "storySelect",
         continue: false,
       },
