@@ -73,6 +73,7 @@ interface Wait {
 }
 
 // TODO: コントロールメニューを表示する命令を追加する。
+// TODO: BGMを再生する命令を追加する。
 
 type Preload = ImagePreload;
 
