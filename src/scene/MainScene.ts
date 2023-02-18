@@ -3,13 +3,7 @@ import { MessageWindow } from "./MessageWindowScene";
 import { useInput } from "../useInput";
 import { scenario, preload } from "../scenario";
 import { ButtonOption, useUi } from "../uiManager";
-import {
-  increment,
-  persistentStore,
-  resetCounter,
-  store,
-  update,
-} from "../useState";
+import { update, increment, resetCounter, store } from "../useState";
 
 export class MainScene extends Phaser.Scene {
   // 出来ればundefinedは無い方がいい。
@@ -148,7 +142,7 @@ export class MainScene extends Phaser.Scene {
     do {
       increment();
       const code =
-        scenario[persistentStore.get().part][persistentStore.get().chapter][
+        scenario[store.get().part][store.get().chapter][
           store.get().scenarioIndex
         ];
       switch (code.type) {
@@ -187,9 +181,8 @@ export class MainScene extends Phaser.Scene {
           break;
       }
     } while (
-      scenario[persistentStore.get().part][persistentStore.get().chapter][
-        store.get().scenarioIndex
-      ]?.continue ??
+      scenario[store.get().part][store.get().chapter][store.get().scenarioIndex]
+        ?.continue ??
       false
     );
   }

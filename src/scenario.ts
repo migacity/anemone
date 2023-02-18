@@ -1,4 +1,4 @@
-import { persistentStore, update } from "./useState";
+import { persistentStore, updateAndSave } from "./usePersistentState";
 import bench from "../assets/bg-bench.webp";
 import fieldOfFlowers from "../assets/bg-field-of-flowers.webp";
 import garden from "../assets/bg-garden.webp";
@@ -72,6 +72,9 @@ interface Wait {
   continue?: boolean;
 }
 
+// TODO: コントロールメニューを表示する命令を追加する。
+// TODO: BGMを再生する命令を追加する。
+
 type Preload = ImagePreload;
 
 export type Scenario =
@@ -116,7 +119,7 @@ export const scenario: { [key: string]: Scenario[][] } = {
         type: "moveNext",
         to: () => {
           if (!persistentStore.get().monologue1AlreadyRead) {
-            update({ monologue1AlreadyRead: true });
+            updateAndSave({ monologue1AlreadyRead: true });
             throw new Error();
           }
           const part = "conversation";
@@ -1079,7 +1082,7 @@ export const scenario: { [key: string]: Scenario[][] } = {
         type: "moveNext",
         to: () => {
           if (!persistentStore.get().monologue2AlreadyRead) {
-            update({ monologue2AlreadyRead: true });
+            updateAndSave({ monologue2AlreadyRead: true });
             throw new Error();
           }
           return {};
@@ -1319,11 +1322,7 @@ export const scenario: { [key: string]: Scenario[][] } = {
       // ：ストーリー選択へ戻る
       {
         type: "moveNext",
-        to: () => {
-          const part = "conversation";
-          const chapter = Math.floor(Math.random() * 14);
-          return { part, chapter };
-        },
+        to: () => ({}),
         sceneName: "storySelect",
         continue: false,
       },
@@ -1523,11 +1522,7 @@ export const scenario: { [key: string]: Scenario[][] } = {
       // ：ストーリー選択へ戻る
       {
         type: "moveNext",
-        to: () => {
-          const part = "conversation";
-          const chapter = Math.floor(Math.random() * 14);
-          return { part, chapter };
-        },
+        to: () => ({}),
         sceneName: "storySelect",
         continue: false,
       },
@@ -1608,11 +1603,7 @@ export const scenario: { [key: string]: Scenario[][] } = {
       // ：ストーリー選択へ戻る
       {
         type: "moveNext",
-        to: () => {
-          const part = "conversation";
-          const chapter = Math.floor(Math.random() * 14);
-          return { part, chapter };
-        },
+        to: () => ({}),
         sceneName: "storySelect",
         continue: false,
       },
@@ -1736,11 +1727,7 @@ export const scenario: { [key: string]: Scenario[][] } = {
       // ：ストーリー選択へ戻る
       {
         type: "moveNext",
-        to: () => {
-          const part = "conversation";
-          const chapter = Math.floor(Math.random() * 14);
-          return { part, chapter };
-        },
+        to: () => ({}),
         sceneName: "storySelect",
         continue: false,
       },
@@ -1891,11 +1878,7 @@ export const scenario: { [key: string]: Scenario[][] } = {
       // ：ストーリー選択へ戻る
       {
         type: "moveNext",
-        to: () => {
-          const part = "conversation";
-          const chapter = Math.floor(Math.random() * 14);
-          return { part, chapter };
-        },
+        to: () => ({}),
         sceneName: "storySelect",
         continue: false,
       },
@@ -2014,11 +1997,7 @@ export const scenario: { [key: string]: Scenario[][] } = {
       // ：ストーリー選択へ戻る
       {
         type: "moveNext",
-        to: () => {
-          const part = "conversation";
-          const chapter = Math.floor(Math.random() * 14);
-          return { part, chapter };
-        },
+        to: () => ({}),
         sceneName: "storySelect",
         continue: false,
       },
@@ -2088,11 +2067,7 @@ export const scenario: { [key: string]: Scenario[][] } = {
       // ：ストーリー選択へ戻る
       {
         type: "moveNext",
-        to: () => {
-          const part = "conversation";
-          const chapter = Math.floor(Math.random() * 14);
-          return { part, chapter };
-        },
+        to: () => ({}),
         sceneName: "storySelect",
         continue: false,
       },
