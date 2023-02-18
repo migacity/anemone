@@ -1,4 +1,4 @@
-import { persistentStore, update } from "./useState";
+import { persistentStore, update } from "./usePersistentState";
 import bench from "../assets/bg-bench.webp";
 import fieldOfFlowers from "../assets/bg-field-of-flowers.webp";
 import garden from "../assets/bg-garden.webp";
