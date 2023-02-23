@@ -10,6 +10,8 @@ export class MainScene extends Phaser.Scene {
   private dialog: MessageWindow | undefined;
   private bg!: Phaser.GameObjects.Image;
   private character!: Phaser.GameObjects.Container;
+  private bgm!: Phaser.Sound.BaseSound;
+  private readonly bgmConfig: Phaser.Types.Sound.SoundConfig;
   private ui!: Phaser.GameObjects.Container;
   private uiManager!: {
     addButton: (options: ButtonOption[]) => void;
@@ -19,6 +21,13 @@ export class MainScene extends Phaser.Scene {
   constructor() {
     super("main");
     this.dialog = undefined;
+
+    // BGMの設定をする。
+    this.bgmConfig = {
+      mute: false,
+      volume: 0.2,
+      loop: true,
+    };
   }
 
   preload(): void {
@@ -27,6 +36,9 @@ export class MainScene extends Phaser.Scene {
       switch (v.type) {
         case "imagePreload":
           this.load.image(v.name, v.path);
+          break;
+        case "soundPreload":
+          this.load.audio(v.name, v.path);
           break;
       }
     });
@@ -178,6 +190,10 @@ export class MainScene extends Phaser.Scene {
           break;
         case "moveNext":
           await this.moveNext(code.to, code.sceneName);
+          break;
+        case "playBgm":
+          this.bgm = this.game.sound.add(code.name, this.bgmConfig);
+          this.bgm.play();
           break;
       }
     } while (

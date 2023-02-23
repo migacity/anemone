@@ -22,6 +22,7 @@ import chara_B3 from "../assets/chara-B3.webp";
 import chara_B4 from "../assets/chara-B4.webp";
 import chara_B5 from "../assets/chara-B5.webp";
 import chara_B6 from "../assets/chara-B6.webp";
+import arcadia_ogg from "../assets/arcadia.ogg";
 interface ScenarioText {
   type: "text";
   text: string;
@@ -54,6 +55,12 @@ interface ImagePreload {
   path: string;
 }
 
+interface SoundPreload {
+  type: "soundPreload";
+  name: string;
+  path: string;
+}
+
 interface FadeOut {
   type: "fadeOut";
   time?: number;
@@ -72,10 +79,16 @@ interface Wait {
   continue?: boolean;
 }
 
+interface PlayBgm {
+  type: "playBgm";
+  name: string;
+  continue?: boolean;
+}
+
 // TODO: コントロールメニューを表示する命令を追加する。
 // TODO: BGMを再生する命令を追加する。
 
-type Preload = ImagePreload;
+type Preload = ImagePreload | SoundPreload;
 
 export type Scenario =
   | ScenarioText
@@ -84,7 +97,8 @@ export type Scenario =
   | MoveNext
   | FadeOut
   | FadeIn
-  | Wait;
+  | Wait
+  | PlayBgm;
 
 export const preload: Preload[] = [
   { type: "imagePreload", name: "bench", path: bench },
@@ -110,6 +124,7 @@ export const preload: Preload[] = [
   { type: "imagePreload", name: "chara_B4", path: chara_B4 },
   { type: "imagePreload", name: "chara_B5", path: chara_B5 },
   { type: "imagePreload", name: "chara_B6", path: chara_B6 },
+  { type: "soundPreload", name: "arcadia_ogg", path: arcadia_ogg },
 ];
 
 export const scenario: { [key: string]: Scenario[][] } = {
@@ -295,6 +310,7 @@ export const scenario: { [key: string]: Scenario[][] } = {
       // 背景 白い部屋
       { type: "background", name: "whiteroom", continue: true },
       // ＢＧＭ かすみがついてくる
+      { type: "playBgm", name: "arcadia_ogg", continue: true },
       // 立ち絵 A1
       {
         type: "showCharacter",
