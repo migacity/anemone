@@ -12,6 +12,8 @@
     "preview": "vite preview"
   },
   "devDependencies": {
+    "@ffmpeg/core": "^0.11.0",
+    "@ffmpeg/ffmpeg": "^0.11.6",
     "@typescript-eslint/eslint-plugin": "^5.33.1",
     "eslint": "^8.22.0",
     "eslint-config-prettier": "^8.5.0",
