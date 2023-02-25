@@ -144,6 +144,7 @@ export class MainScene extends Phaser.Scene {
         ...to(),
       });
       resetCounter();
+      this.bgm?.stop();
       this.scene.start(sceneName);
     } catch (e) {
       await this.onClick();
