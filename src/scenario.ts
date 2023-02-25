@@ -81,7 +81,7 @@ interface Wait {
 
 interface PlayBgm {
   type: "playBgm";
-  name: string;
+  name?: string;
   continue?: boolean;
 }
 
