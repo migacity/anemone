@@ -193,7 +193,7 @@ export class MainScene extends Phaser.Scene {
           break;
         case "playBgm":
           if (code.name === undefined) {
-            this.bgm.stop();
+            this.bgm?.stop();
             break;
           }
           this.bgm = this.game.sound.add(code.name, this.bgmConfig);
