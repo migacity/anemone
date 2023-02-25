@@ -22,6 +22,14 @@ import chara_B3 from "../assets/chara-B3.webp";
 import chara_B4 from "../assets/chara-B4.webp";
 import chara_B5 from "../assets/chara-B5.webp";
 import chara_B6 from "../assets/chara-B6.webp";
+import arcadia_ogg from "../assets/arcadia.ogg";
+import housekitan_1_ogg from "../assets/housekitan_1.ogg";
+import kasumi_1_ogg from "../assets/kasumi_1.ogg";
+import sirius1_1_ogg from "../assets/sirius1_1.ogg";
+import sirius2_1_ogg from "../assets/sirius2_1.ogg";
+import tomedonaki1_1_ogg from "../assets/tomedonaki1_1.ogg";
+import tomedonaki2_2_ogg from "../assets/tomedonaki2_2.ogg";
+
 interface ScenarioText {
   type: "text";
   text: string;
@@ -54,6 +62,12 @@ interface ImagePreload {
   path: string;
 }
 
+interface SoundPreload {
+  type: "soundPreload";
+  name: string;
+  path: string;
+}
+
 interface FadeOut {
   type: "fadeOut";
   time?: number;
@@ -72,10 +86,15 @@ interface Wait {
   continue?: boolean;
 }
 
-// TODO: コントロールメニューを表示する命令を追加する。
-// TODO: BGMを再生する命令を追加する。
+interface PlayBgm {
+  type: "playBgm";
+  name?: string;
+  continue?: boolean;
+}
 
-type Preload = ImagePreload;
+// TODO: コントロールメニューを表示する命令を追加する。
+
+type Preload = ImagePreload | SoundPreload;
 
 export type Scenario =
   | ScenarioText
@@ -84,7 +103,8 @@ export type Scenario =
   | MoveNext
   | FadeOut
   | FadeIn
-  | Wait;
+  | Wait
+  | PlayBgm;
 
 export const preload: Preload[] = [
   { type: "imagePreload", name: "bench", path: bench },
@@ -110,6 +130,13 @@ export const preload: Preload[] = [
   { type: "imagePreload", name: "chara_B4", path: chara_B4 },
   { type: "imagePreload", name: "chara_B5", path: chara_B5 },
   { type: "imagePreload", name: "chara_B6", path: chara_B6 },
+  { type: "soundPreload", name: "arcadia_ogg", path: arcadia_ogg },
+  { type: "soundPreload", name: "housekitan_1_ogg", path: housekitan_1_ogg },
+  { type: "soundPreload", name: "kasumi_1_ogg", path: kasumi_1_ogg },
+  { type: "soundPreload", name: "sirius1_1_ogg", path: sirius1_1_ogg },
+  { type: "soundPreload", name: "sirius2_1_ogg", path: sirius2_1_ogg },
+  { type: "soundPreload", name: "tomedonaki1_1_ogg", path: tomedonaki1_1_ogg },
+  { type: "soundPreload", name: "tomedonaki2_2_ogg", path: tomedonaki2_2_ogg },
 ];
 
 export const scenario: { [key: string]: Scenario[][] } = {
@@ -130,6 +157,7 @@ export const scenario: { [key: string]: Scenario[][] } = {
       // 背景 白い部屋
       { type: "background", name: "whiteroom", continue: true },
       // BGM なし
+      { type: "playBgm", continue: true },
       {
         type: "showCharacter",
         name: "sekai",
@@ -166,6 +194,7 @@ export const scenario: { [key: string]: Scenario[][] } = {
       },
       { type: "text", text: "「あ…つながった」", continue: false },
       // BGM ほうせきたん
+      { type: "playBgm", name: "housekitan_1_ogg", continue: true },
       // 立ち絵 A3
       {
         type: "showCharacter",
@@ -295,6 +324,7 @@ export const scenario: { [key: string]: Scenario[][] } = {
       // 背景 白い部屋
       { type: "background", name: "whiteroom", continue: true },
       // ＢＧＭ かすみがついてくる
+      { type: "playBgm", name: "kasumi_1_ogg", continue: true },
       // 立ち絵 A1
       {
         type: "showCharacter",
@@ -369,6 +399,7 @@ export const scenario: { [key: string]: Scenario[][] } = {
       // ～占星術って知っていますか？～
       // 背景 白い部屋
       { type: "background", name: "whiteroom", continue: true },
+      { type: "playBgm", continue: true },
       // 立ち絵 B４
       {
         type: "showCharacter",
@@ -423,6 +454,7 @@ export const scenario: { [key: string]: Scenario[][] } = {
       // ～ライフナンバーって～
       // 背景 白い部屋
       { type: "background", name: "whiteroom", continue: true },
+      { type: "playBgm", continue: true },
       // 立ち絵 A１
       {
         type: "showCharacter",
@@ -490,6 +522,7 @@ export const scenario: { [key: string]: Scenario[][] } = {
       // ～友達～
       // 背景 白い部屋
       { type: "background", name: "whiteroom", continue: true },
+      { type: "playBgm", continue: true },
       // 立ち絵 A３
       {
         type: "showCharacter",
@@ -528,6 +561,7 @@ export const scenario: { [key: string]: Scenario[][] } = {
       // ～気づいてしまったね～
       // 背景 白い部屋
       { type: "background", name: "whiteroom", continue: true },
+      { type: "playBgm", continue: true },
       // 立ち絵 B1
       {
         type: "showCharacter",
@@ -605,6 +639,7 @@ export const scenario: { [key: string]: Scenario[][] } = {
       // ～鼻歌～
       // 背景 白い部屋
       { type: "background", name: "whiteroom", continue: true },
+      { type: "playBgm", continue: true },
       // 立ち絵 A２
       {
         type: "showCharacter",
@@ -641,6 +676,7 @@ export const scenario: { [key: string]: Scenario[][] } = {
       // ～好きなもの１～
       // 背景 白い部屋
       { type: "background", name: "whiteroom", continue: true },
+      { type: "playBgm", continue: true },
       // 立ち絵 B１
       {
         type: "showCharacter",
@@ -696,6 +732,7 @@ export const scenario: { [key: string]: Scenario[][] } = {
       // ～好きなもの２～
       // 背景 病室 昼間
       { type: "background", name: "hospitalDaytime", continue: true },
+      { type: "playBgm", continue: true },
       // 立ち絵 B１
       {
         type: "showCharacter",
@@ -760,6 +797,7 @@ export const scenario: { [key: string]: Scenario[][] } = {
       // ～願い事～
       // 背景 病室 昼間
       { type: "background", name: "hospitalDaytime", continue: true },
+      { type: "playBgm", continue: true },
       // 立ち絵 B1
       {
         type: "showCharacter",
@@ -799,6 +837,7 @@ export const scenario: { [key: string]: Scenario[][] } = {
       // ～季節について～
       // 背景 白い部屋
       { type: "background", name: "whiteroom", continue: true },
+      { type: "playBgm", continue: true },
       // 立ち絵 A３
       {
         type: "showCharacter",
@@ -857,6 +896,7 @@ export const scenario: { [key: string]: Scenario[][] } = {
       // ～眠い～
       // 背景 病室 昼間
       { type: "background", name: "hospitalDaytime", continue: true },
+      { type: "playBgm", continue: true },
       // 立ち絵 B4
       {
         type: "showCharacter",
@@ -894,6 +934,7 @@ export const scenario: { [key: string]: Scenario[][] } = {
       // 挨拶
       // 背景 白い部屋
       { type: "background", name: "whiteroom", continue: true },
+      { type: "playBgm", continue: true },
       // 立ち絵 A1
       {
         type: "showCharacter",
@@ -928,6 +969,7 @@ export const scenario: { [key: string]: Scenario[][] } = {
       // 挨拶2
       // 背景 白い部屋
       { type: "background", name: "whiteroom", continue: true },
+      { type: "playBgm", continue: true },
       // 立ち絵 B４
       {
         type: "showCharacter",
@@ -963,6 +1005,7 @@ export const scenario: { [key: string]: Scenario[][] } = {
       // 挨拶3
       // 背景 病室 夕方
       { type: "background", name: "hospitalEvening", continue: true },
+      { type: "playBgm", continue: true },
       // 立ち絵 A4
       {
         type: "showCharacter",
@@ -1047,6 +1090,7 @@ export const scenario: { [key: string]: Scenario[][] } = {
       // ゲーム終了時
       // 背景 白い部屋
       { type: "background", name: "whiteroom", continue: true },
+      { type: "playBgm", continue: true },
       // 立ち絵 A１
       {
         type: "showCharacter",
@@ -1078,6 +1122,7 @@ export const scenario: { [key: string]: Scenario[][] } = {
       // ストーリー選択画面選択初回時のみ
       // モノローグ
       // BGM なし
+      { type: "playBgm", continue: true },
       {
         type: "moveNext",
         to: () => {
@@ -1194,6 +1239,7 @@ export const scenario: { [key: string]: Scenario[][] } = {
       // 背景 公園
       { type: "background", name: "park", continue: true },
       // BGM ほうせきたん
+      { type: "playBgm", name: "housekitan_1_ogg", continue: true },
       // 立ち絵 B1
       {
         type: "showCharacter",
@@ -1332,6 +1378,7 @@ export const scenario: { [key: string]: Scenario[][] } = {
       // 背景 ベンチ
       { type: "background", name: "bench", continue: true },
       // ＢＧＭ
+      { type: "playBgm", continue: true },
       // 立ち絵 A5
       {
         type: "showCharacter",
@@ -1531,6 +1578,7 @@ export const scenario: { [key: string]: Scenario[][] } = {
       // CASE３ アネモネ
       // 背景 花壇
       { type: "background", name: "garden", continue: true },
+      { type: "playBgm", continue: true },
       { type: "fadeIn", continue: false },
       { type: "text", text: "「何してるんだ？」" },
       // 立ち絵 B1
@@ -1612,6 +1660,7 @@ export const scenario: { [key: string]: Scenario[][] } = {
       // CASE４
       // 背景 公園
       { type: "background", name: "park", continue: true },
+      { type: "playBgm", continue: true },
       // 立ち絵 A5
       {
         type: "showCharacter",
@@ -1737,6 +1786,7 @@ export const scenario: { [key: string]: Scenario[][] } = {
       // 背景 花畑
       { type: "background", name: "fieldOfFlowers", continue: true },
       // ＢＧＭ アルカディア
+      { type: "playBgm", name: "arcadia_ogg", continue: true },
       // 立ち絵 B６
       {
         type: "showCharacter",
@@ -1807,7 +1857,9 @@ export const scenario: { [key: string]: Scenario[][] } = {
       { type: "text", text: "「新しい曲も作ってさ！」" },
       { type: "text", text: "「だから…」" },
       { type: "text", text: "「いい加減歯医者にいこうよ！」" },
+      { type: "playBgm", continue: true },
       // ＢＧＭ：ほうせきたん
+      { type: "playBgm", name: "housekitan_1_ogg", continue: true },
       // 立ち絵 A2
       {
         type: "showCharacter",
@@ -1887,6 +1939,7 @@ export const scenario: { [key: string]: Scenario[][] } = {
       // CASE６ 妹
       // 背景 自室
       { type: "background", name: "room", continue: true },
+      { type: "playBgm", continue: true },
       { type: "fadeIn", continue: false },
       { type: "text", text: "ｐｐｐｐｐｐｐｐｐ" },
       // 背景 リビング
@@ -2006,6 +2059,7 @@ export const scenario: { [key: string]: Scenario[][] } = {
       // CASE７ 幼馴染 恋人 結婚
       // 背景リビング
       { type: "background", name: "livingRoom", continue: true },
+      { type: "playBgm", continue: true },
       // 立ち絵 A1
       {
         type: "showCharacter",
