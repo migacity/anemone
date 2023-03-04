@@ -6,4 +6,7 @@ export default defineConfig({
   build: {
     assetsInlineLimit: 0,
   },
+  assetsInclude: [
+    '**/*.m4a',
+  ],
 });

@@ -23,12 +23,19 @@ import chara_B4 from "../assets/chara-B4.webp";
 import chara_B5 from "../assets/chara-B5.webp";
 import chara_B6 from "../assets/chara-B6.webp";
 import arcadia_ogg from "../assets/arcadia.ogg";
+import arcadia_m4a from "../assets/arcadia.m4a";
 import housekitan_1_ogg from "../assets/housekitan_1.ogg";
+import housekitan_1_m4a from "../assets/housekitan_1.m4a";
 import kasumi_1_ogg from "../assets/kasumi_1.ogg";
+import kasumi_1_m4a from "../assets/kasumi_1.m4a";
 import sirius1_1_ogg from "../assets/sirius1_1.ogg";
+import sirius1_1_m4a from "../assets/sirius1_1.m4a";
 import sirius2_1_ogg from "../assets/sirius2_1.ogg";
+import sirius2_1_m4a from "../assets/sirius2_1.m4a";
 import tomedonaki1_1_ogg from "../assets/tomedonaki1_1.ogg";
+import tomedonaki1_1_m4a from "../assets/tomedonaki1_1.m4a";
 import tomedonaki2_2_ogg from "../assets/tomedonaki2_2.ogg";
+import tomedonaki2_2_m4a from "../assets/tomedonaki2_2.m4a";
 
 interface ScenarioText {
   type: "text";
@@ -65,7 +72,7 @@ interface ImagePreload {
 interface SoundPreload {
   type: "soundPreload";
   name: string;
-  path: string;
+  path: string[];
 }
 
 interface FadeOut {
@@ -130,13 +137,41 @@ export const preload: Preload[] = [
   { type: "imagePreload", name: "chara_B4", path: chara_B4 },
   { type: "imagePreload", name: "chara_B5", path: chara_B5 },
   { type: "imagePreload", name: "chara_B6", path: chara_B6 },
-  { type: "soundPreload", name: "arcadia_ogg", path: arcadia_ogg },
-  { type: "soundPreload", name: "housekitan_1_ogg", path: housekitan_1_ogg },
-  { type: "soundPreload", name: "kasumi_1_ogg", path: kasumi_1_ogg },
-  { type: "soundPreload", name: "sirius1_1_ogg", path: sirius1_1_ogg },
-  { type: "soundPreload", name: "sirius2_1_ogg", path: sirius2_1_ogg },
-  { type: "soundPreload", name: "tomedonaki1_1_ogg", path: tomedonaki1_1_ogg },
-  { type: "soundPreload", name: "tomedonaki2_2_ogg", path: tomedonaki2_2_ogg },
+  {
+    type: "soundPreload",
+    name: "arcadia",
+    path: [arcadia_ogg, arcadia_m4a],
+  },
+  {
+    type: "soundPreload",
+    name: "housekitan_1",
+    path: [housekitan_1_ogg, housekitan_1_m4a],
+  },
+  {
+    type: "soundPreload",
+    name: "kasumi_1",
+    path: [kasumi_1_ogg, kasumi_1_m4a],
+  },
+  {
+    type: "soundPreload",
+    name: "sirius1_1",
+    path: [sirius1_1_ogg, sirius1_1_m4a],
+  },
+  {
+    type: "soundPreload",
+    name: "sirius2_1",
+    path: [sirius2_1_ogg, sirius2_1_m4a],
+  },
+  {
+    type: "soundPreload",
+    name: "tomedonaki1_1",
+    path: [tomedonaki1_1_ogg, tomedonaki1_1_m4a],
+  },
+  {
+    type: "soundPreload",
+    name: "tomedonaki2_2",
+    path: [tomedonaki2_2_ogg, tomedonaki2_2_m4a],
+  },
 ];
 
 export const scenario: { [key: string]: Scenario[][] } = {
@@ -194,7 +229,7 @@ export const scenario: { [key: string]: Scenario[][] } = {
       },
       { type: "text", text: "「あ…つながった」", continue: false },
       // BGM ほうせきたん
-      { type: "playBgm", name: "housekitan_1_ogg", continue: true },
+      { type: "playBgm", name: "housekitan_1", continue: true },
       // 立ち絵 A3
       {
         type: "showCharacter",
@@ -324,7 +359,7 @@ export const scenario: { [key: string]: Scenario[][] } = {
       // 背景 白い部屋
       { type: "background", name: "whiteroom", continue: true },
       // ＢＧＭ かすみがついてくる
-      { type: "playBgm", name: "kasumi_1_ogg", continue: true },
+      { type: "playBgm", name: "kasumi_1", continue: true },
       // 立ち絵 A1
       {
         type: "showCharacter",
@@ -1239,7 +1274,7 @@ export const scenario: { [key: string]: Scenario[][] } = {
       // 背景 公園
       { type: "background", name: "park", continue: true },
       // BGM ほうせきたん
-      { type: "playBgm", name: "housekitan_1_ogg", continue: true },
+      { type: "playBgm", name: "housekitan_1", continue: true },
       // 立ち絵 B1
       {
         type: "showCharacter",
@@ -1786,7 +1821,7 @@ export const scenario: { [key: string]: Scenario[][] } = {
       // 背景 花畑
       { type: "background", name: "fieldOfFlowers", continue: true },
       // ＢＧＭ アルカディア
-      { type: "playBgm", name: "arcadia_ogg", continue: true },
+      { type: "playBgm", name: "arcadia", continue: true },
       // 立ち絵 B６
       {
         type: "showCharacter",
@@ -1859,7 +1894,7 @@ export const scenario: { [key: string]: Scenario[][] } = {
       { type: "text", text: "「いい加減歯医者にいこうよ！」" },
       { type: "playBgm", continue: true },
       // ＢＧＭ：ほうせきたん
-      { type: "playBgm", name: "housekitan_1_ogg", continue: true },
+      { type: "playBgm", name: "housekitan_1", continue: true },
       // 立ち絵 A2
       {
         type: "showCharacter",
