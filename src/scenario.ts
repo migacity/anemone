@@ -23,19 +23,19 @@ import chara_B4 from "../assets/chara-B4.webp";
 import chara_B5 from "../assets/chara-B5.webp";
 import chara_B6 from "../assets/chara-B6.webp";
 import arcadia_ogg from "../assets/arcadia.ogg";
-import arcadia_m4a from "../assets/arcadia.m4a";
+import arcadia_m4a from "../assets/arcadia.m4a?url";
 import housekitan_1_ogg from "../assets/housekitan_1.ogg";
-import housekitan_1_m4a from "../assets/housekitan_1.m4a";
+import housekitan_1_m4a from "../assets/housekitan_1.m4a?url";
 import kasumi_1_ogg from "../assets/kasumi_1.ogg";
-import kasumi_1_m4a from "../assets/kasumi_1.m4a";
+import kasumi_1_m4a from "../assets/kasumi_1.m4a?url";
 import sirius1_1_ogg from "../assets/sirius1_1.ogg";
-import sirius1_1_m4a from "../assets/sirius1_1.m4a";
+import sirius1_1_m4a from "../assets/sirius1_1.m4a?url";
 import sirius2_1_ogg from "../assets/sirius2_1.ogg";
-import sirius2_1_m4a from "../assets/sirius2_1.m4a";
+import sirius2_1_m4a from "../assets/sirius2_1.m4a?url";
 import tomedonaki1_1_ogg from "../assets/tomedonaki1_1.ogg";
-import tomedonaki1_1_m4a from "../assets/tomedonaki1_1.m4a";
+import tomedonaki1_1_m4a from "../assets/tomedonaki1_1.m4a?url";
 import tomedonaki2_2_ogg from "../assets/tomedonaki2_2.ogg";
-import tomedonaki2_2_m4a from "../assets/tomedonaki2_2.m4a";
+import tomedonaki2_2_m4a from "../assets/tomedonaki2_2.m4a?url";
 
 interface ScenarioText {
   type: "text";
