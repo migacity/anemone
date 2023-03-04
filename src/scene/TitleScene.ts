@@ -1,5 +1,6 @@
 import titleImage from "../../assets/title.webp";
-import arcadia from "../../assets/arcadia.ogg";
+import arcadia_ogg from "../../assets/arcadia.ogg";
+import arcadia_m4a from "../../assets/arcadia.m4a?url";
 import { useInput } from "../useInput";
 
 // BGM: アルカディア
@@ -12,7 +13,7 @@ export class TitleScene extends Phaser.Scene {
 
   preload(): void {
     this.load.image("titleImage", titleImage);
-    this.load.audio("arcadia", arcadia);
+    this.load.audio("arcadia", [arcadia_ogg, arcadia_m4a]);
   }
 
   create(): void {
