@@ -1,6 +1,6 @@
 import whiteroom from "../../assets/bg-whiteroom.webp";
 import { ButtonOption, useUi } from "../uiManager";
-import { update, resetCounter } from "../useState";
+import { resetCounter } from "../useState";
 
 import arcadia_ogg from "../../assets/arcadia.ogg";
 import arcadia_m4a from "../../assets/arcadia.m4a?url";
@@ -39,12 +39,12 @@ export class MusicPlayer extends Phaser.Scene {
     },
     { title: "ARCADIA", name: "arcadia", path: [arcadia_ogg, arcadia_m4a] },
     {
-      title: "とめどなき白情",
+      title: "とめどなき白情 1",
       name: "tomedonaki1",
       path: [tomedonaki1_1_ogg, tomedonaki1_1_m4a],
     },
     {
-      title: "とめどなき白情",
+      title: "とめどなき白情 2",
       name: "tomedonaki2",
       path: [tomedonaki2_2_ogg, tomedonaki2_2_m4a],
     },
@@ -54,12 +54,12 @@ export class MusicPlayer extends Phaser.Scene {
       path: [housekitan_1_ogg, housekitan_1_m4a],
     },
     {
-      title: "シリウスの心臓",
+      title: "シリウスの心臓 1",
       name: "sirius1",
       path: [sirius1_1_ogg, sirius1_1_m4a],
     },
     {
-      title: "シリウスの心臓",
+      title: "シリウスの心臓 2",
       name: "sirius2",
       path: [sirius2_1_ogg, sirius2_1_m4a],
     },
@@ -105,7 +105,21 @@ export class MusicPlayer extends Phaser.Scene {
     });
 
     // 戻るボタンを追加する。
-    buttons.push();
+    const i = this.musics.length;
+    buttons.push({
+      top: Math.floor(i / 2) * dh - (dh * 3) / 2,
+      left: (i % 2) * (2 * dw - w) + (w / 2 - dw),
+      width: w,
+      height: h,
+      caption: "戻る",
+      onClick: () => {
+        this.bgm?.stop();
+        resetCounter();
+        this.scene.start("main");
+      },
+      param: undefined,
+    });
+
     this.uiManager.addButton(buttons);
   }
 }
