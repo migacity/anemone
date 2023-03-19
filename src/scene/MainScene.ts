@@ -71,6 +71,7 @@ export class MainScene extends Phaser.Scene {
     // メニューボタンを生成する。
     this.uiManager.addButton([
       {
+        type: "textButton",
         top: 130,
         left: -140,
         width: 160,
@@ -83,6 +84,7 @@ export class MainScene extends Phaser.Scene {
         param: "",
       },
       {
+        type: "textButton",
         top: 130,
         left: 32,
         width: 160,
@@ -92,6 +94,7 @@ export class MainScene extends Phaser.Scene {
         param: "ロード",
       },
       {
+        type: "textButton",
         top: 130,
         left: 204,
         width: 160,
@@ -101,6 +104,7 @@ export class MainScene extends Phaser.Scene {
         param: "Skip",
       },
       {
+        type: "textButton",
         top: 130,
         left: 376,
         width: 160,
@@ -117,6 +121,7 @@ export class MainScene extends Phaser.Scene {
         param: "ストーリー選択",
       },
       {
+        type: "textButton",
         top: 130,
         left: 548,
         width: 160,

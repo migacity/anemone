@@ -1,12 +1,25 @@
-interface ButtonOption {
+interface CommonButtonOption {
   top: number;
   left: number;
   width: number;
   height: number;
-  caption: string;
   onClick: Function;
   param?: any;
 }
+
+interface TextButtonOption {
+  type: "textButton";
+  caption: string;
+}
+
+interface ContainerButtonOption {
+  type: "containerButton";
+  caption: Phaser.GameObjects.Container;
+}
+
+type ButtonOption = CommonButtonOption &
+  (TextButtonOption | ContainerButtonOption);
+
 const useUi = (
   container: Phaser.GameObjects.Container
 ): {
@@ -39,14 +52,24 @@ const useUi = (
         fontSize: "18px",
         padding: { top: 4 },
       };
-      const text = container.scene.add.text(
-        0,
-        0,
-        option.caption,
-        buttonTextStyle
-      );
-      text.setOrigin(0.5, 0.5);
-      buttonContainer.add(text);
+
+      switch (option.type) {
+        case "textButton": {
+          const text = container.scene.add.text(
+            0,
+            0,
+            option.caption,
+            buttonTextStyle
+          );
+          text.setOrigin(0.5, 0.5);
+          buttonContainer.add(text);
+          break;
+        }
+        case "containerButton": {
+          buttonContainer.add(option.caption);
+          break;
+        }
+      }
 
       // クリック時の動作を登録したい。
       buttonContainer.on("pointerup", () => {

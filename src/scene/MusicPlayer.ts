@@ -88,13 +88,21 @@ export class MusicPlayer extends Phaser.Scene {
     const h = 80;
     const dw = 300;
     const dh = 100;
-    const buttons = this.musics.map(({ title, name }, i) => {
+
+    const buttons: ButtonOption[] = this.musics.map(({ title, name }, i) => {
+      const caption = this.add.container(undefined, undefined, [
+        this.add.text(0, 0, title, {
+          fontSize: "18px",
+          padding: { top: 4 },
+        }),
+      ]);
       return {
+        type: "containerButton",
         top: Math.floor(i / 2) * dh - (dh * 3) / 2,
         left: (i % 2) * (2 * dw - w) + (w / 2 - dw),
         width: w,
         height: h,
-        caption: title,
+        caption,
         onClick: () => {
           this.bgm?.stop();
           this.bgm = this.game.sound.add(name, this.bgmConfig);
@@ -107,6 +115,7 @@ export class MusicPlayer extends Phaser.Scene {
     // 戻るボタンを追加する。
     const i = this.musics.length;
     buttons.push({
+      type: "textButton",
       top: Math.floor(i / 2) * dh - (dh * 3) / 2,
       left: (i % 2) * (2 * dw - w) + (w / 2 - dw),
       width: w,

@@ -29,8 +29,9 @@ export class StorySelect extends Phaser.Scene {
     const h = 80;
     const dw = 300;
     const dh = 100;
-    const buttons = [...Array(7)].map((_, i) => {
+    const buttons: ButtonOption[] = [...Array(7)].map((_, i) => {
       return {
+        type: "textButton",
         top: Math.floor(i / 2) * dh - (dh * 3) / 2,
         left: (i % 2) * (2 * dw - w) + (w / 2 - dw),
         width: w,
