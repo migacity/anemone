@@ -76,7 +76,8 @@ export class MainScene extends Phaser.Scene {
         width: 160,
         height: 40,
         caption: "音楽鑑賞",
-        onClick: (v: any) => {
+        onClick: () => {
+          this.bgm?.pause();
           this.scene.start("musicPlayer");
         },
         param: "",

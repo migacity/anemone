@@ -96,6 +96,7 @@ export class MusicPlayer extends Phaser.Scene {
         height: h,
         caption: title,
         onClick: () => {
+          this.bgm?.stop();
           this.bgm = this.game.sound.add(name, this.bgmConfig);
           this.bgm.play();
         },
