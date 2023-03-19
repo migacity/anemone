@@ -22,7 +22,7 @@ export class MusicPlayer extends Phaser.Scene {
   private readonly bgmConfig: Phaser.Types.Sound.SoundConfig = {
     mute: false,
     volume: 0.2,
-    loop: true,
+    loop: false,
   };
 
   private ui!: Phaser.GameObjects.Container;
@@ -90,12 +90,12 @@ export class MusicPlayer extends Phaser.Scene {
     const dh = 100;
 
     const buttons: ButtonOption[] = this.musics.map(({ title, name }, i) => {
-      const caption = this.add.container(undefined, undefined, [
-        this.add.text(0, 0, title, {
-          fontSize: "18px",
-          padding: { top: 4 },
-        }),
-      ]);
+      const text = this.add.text(0, 0, title, {
+        fontSize: "18px",
+        padding: { top: 4 },
+      });
+      const caption = this.add.container(undefined, undefined, [text]);
+      const onStop = (): Phaser.GameObjects.Text => text.setText(title);
       return {
         type: "containerButton",
         top: Math.floor(i / 2) * dh - (dh * 3) / 2,
@@ -105,8 +105,13 @@ export class MusicPlayer extends Phaser.Scene {
         caption,
         onClick: () => {
           this.bgm?.stop();
+          this.bgm?.off("complete");
+          this.bgm?.off("stop");
           this.bgm = this.game.sound.add(name, this.bgmConfig);
+          this.bgm.on("complete", onStop);
+          this.bgm.on("stop", onStop);
           this.bgm.play();
+          text.setText("Playing");
         },
         param: undefined,
       };
