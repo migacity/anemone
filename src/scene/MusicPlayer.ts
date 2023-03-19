@@ -107,7 +107,10 @@ export class MusicPlayer extends Phaser.Scene {
           this.bgm?.stop();
           this.bgm?.off("complete");
           this.bgm?.off("stop");
-          if (this.bgm?.key === name) return;
+          if (this.bgm?.key === name) {
+            this.bgm.destroy();
+            return;
+          }
 
           this.bgm = this.game.sound.add(name, this.bgmConfig);
           this.bgm.on("complete", onStop);
