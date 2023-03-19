@@ -37,6 +37,7 @@ const useUi = (
 
       const buttonTextStyle: Phaser.Types.GameObjects.Text.TextStyle = {
         fontSize: "18px",
+        padding: { top: 4 },
       };
       const text = container.scene.add.text(
         0,
