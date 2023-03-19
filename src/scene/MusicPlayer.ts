@@ -84,16 +84,17 @@ export class MusicPlayer extends Phaser.Scene {
     this.uiManager = useUi(this.ui);
 
     // 音楽選択ボタンを配置する。
-    const w = 200;
+    const w = 400;
     const h = 80;
-    const dw = 300;
+    const dw = 420;
     const dh = 100;
 
     const buttons: ButtonOption[] = this.musics.map(({ title, name }, i) => {
-      const text = this.add.text(0, 0, title, {
+      const text = this.add.text(-w / 2 + h * 1.2, 0, title, {
         fontSize: "18px",
         padding: { top: 4 },
       });
+      text.setOrigin(0, 0.5);
       const caption = this.add.container(undefined, undefined, [text]);
       const onStop = (): Phaser.GameObjects.Text => text.setText(title);
       return {
