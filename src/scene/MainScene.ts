@@ -75,9 +75,11 @@ export class MainScene extends Phaser.Scene {
         left: -140,
         width: 160,
         height: 40,
-        caption: "セーブ",
-        onClick: (v: any) => console.log(v),
-        param: "セーブ",
+        caption: "音楽鑑賞",
+        onClick: (v: any) => {
+          this.scene.start("musicPlayer");
+        },
+        param: "",
       },
       {
         top: 130,
