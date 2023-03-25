@@ -89,9 +89,11 @@ export class MainScene extends Phaser.Scene {
         left: 32,
         width: 160,
         height: 40,
-        caption: "ロード",
-        onClick: (v: any) => console.log(v),
-        param: "ロード",
+        caption: "スチル鑑賞",
+        onClick: () => {
+          this.bgm?.pause();
+          this.scene.start("pictureViewer");
+        },
       },
       {
         type: "textButton",
