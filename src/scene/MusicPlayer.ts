@@ -1,4 +1,6 @@
 import whiteroom from "../../assets/bg-whiteroom.webp";
+import startIcon from "../../assets/start.svg";
+import stopIcon from "../../assets/stop.svg";
 import { ButtonOption, useUi } from "../uiManager";
 import { resetCounter } from "../useState";
 
@@ -71,6 +73,8 @@ export class MusicPlayer extends Phaser.Scene {
 
   preload(): void {
     this.load.image("whiteroom", whiteroom);
+    this.load.svg("start", startIcon);
+    this.load.svg("stop", stopIcon);
     this.musics.forEach((v) => {
       this.load.audio(v.name, v.path);
     });
@@ -90,13 +94,14 @@ export class MusicPlayer extends Phaser.Scene {
     const dh = 100;
 
     const buttons: ButtonOption[] = this.musics.map(({ title, name }, i) => {
-      const text = this.add.text(-w / 2 + h * 1.2, 0, title, {
-        fontSize: "18px",
+      const icon = this.add.image(-w / 2 + (h * 3) / 4, 0, "start");
+      const text = this.add.text(-w / 2 + h * 1.3, 0, title, {
+        fontSize: "24px",
         padding: { top: 4 },
       });
       text.setOrigin(0, 0.5);
-      const caption = this.add.container(undefined, undefined, [text]);
-      const onStop = (): Phaser.GameObjects.Text => text.setText(title);
+      const caption = this.add.container(undefined, undefined, [icon, text]);
+      const onStop = (): Phaser.GameObjects.Image => icon.setTexture("start");
       return {
         type: "containerButton",
         top: Math.floor(i / 2) * dh - (dh * 3) / 2,
@@ -117,7 +122,7 @@ export class MusicPlayer extends Phaser.Scene {
           this.bgm.on("complete", onStop);
           this.bgm.on("stop", onStop);
           this.bgm.play();
-          text.setText("Playing");
+          icon.setTexture("stop");
         },
         param: undefined,
       };
