@@ -7,6 +7,7 @@ import entrance from "../../assets/still-entrance.webp";
 import jellyfish from "../../assets/still-jellyfish.webp";
 
 export class PictureViewer extends Phaser.Scene {
+  private picture!: Phaser.GameObjects.Image;
   private ui!: Phaser.GameObjects.Container;
   private uiManager!: {
     addButton: (options: ButtonOption[]) => void;
@@ -55,7 +56,7 @@ export class PictureViewer extends Phaser.Scene {
     const dw = 420;
     const dh = 230;
 
-    const buttons: ButtonOption[] = this.images.map(({ title, name }, i) => {
+    const buttons: ButtonOption[] = this.images.map(({ name }, i) => {
       const image = this.add.image(0, 0, name);
       image.setScale(0.3);
       const caption = this.add.container(undefined, undefined, [image]);
@@ -66,7 +67,13 @@ export class PictureViewer extends Phaser.Scene {
         width: w,
         height: h,
         caption,
-        onClick: () => {},
+        onClick: () => {
+          this.picture = this.add.image(width / 2, height / 2, name);
+          this.picture.on("pointerup", () => {
+            this.picture.destroy();
+          });
+          this.picture.setInteractive({ useHandCursor: true });
+        },
         param: undefined,
       };
     });
