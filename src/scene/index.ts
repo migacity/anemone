@@ -6,6 +6,7 @@ import { EndingScene } from "./EndingScene";
 import { CreditScene } from "./CreditScene";
 import { StorySelect } from "./StorySelect";
 import { MusicPlayer } from "./MusicPlayer";
+import { PictureViewer } from "./PictureViewer";
 
 export const Scenes = [
   LoadingScene,
@@ -16,4 +17,5 @@ export const Scenes = [
   CreditScene,
   StorySelect,
   MusicPlayer,
+  PictureViewer,
 ];
