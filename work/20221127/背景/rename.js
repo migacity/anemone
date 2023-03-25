@@ -2,7 +2,7 @@
 import fs from "fs/promises";
 import path from "path";
 
-const workdir = "./20221127/背景";
+const workdir = "./";
 const table = {};
 const main = async () => {
   await fs.readFile(path.join(workdir, "rename.tsv"), { encoding: "utf-8" })
@@ -12,7 +12,7 @@ const main = async () => {
         .forEach(([a, b]) => table[a] = b);
     });
 
-  fs.readdir("./20221127/背景")
+  fs.readdir("./")
     .then((files) => {
       files.filter((file) => /\.webp$/.test(file))
         .forEach((file) => {
