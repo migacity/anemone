@@ -18,7 +18,7 @@ export class TitleScene extends Phaser.Scene {
 
   create(): void {
     const { width, height } = this.game.canvas;
-    this.add.image(width / 2, height / 2, "titleImage").setScale(2, 2);
+    this.add.image(width / 2, height / 2, "titleImage");
 
     const { setEventHandler } = useInput(this);
     setEventHandler(this.moveNext);
