@@ -102,8 +102,9 @@ export class MainScene extends Phaser.Scene {
         width: 160,
         height: 40,
         caption: "Skip",
-        onClick: (v: any) => console.log(v),
-        param: "Skip",
+        onClick: () => {
+          update({ isSkipMode: true });
+        },
       },
       {
         type: "textButton",
@@ -153,6 +154,7 @@ export class MainScene extends Phaser.Scene {
         ...store.get(),
         ...to(),
       });
+      update({ isSkipMode: false });
       resetCounter();
       this.bgm?.stop();
       this.scene.start(sceneName);
