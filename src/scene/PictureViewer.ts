@@ -5,6 +5,10 @@ import { resetCounter } from "../useState";
 import crying from "../../assets/still-crying.webp";
 import entrance from "../../assets/still-entrance.webp";
 import jellyfish from "../../assets/still-jellyfish.webp";
+import bed from "../../assets/still-bed.webp";
+import smile from "../../assets/still-smile.webp";
+import flower from "../../assets/still-flower.webp";
+import dance from "../../assets/still-dance.webp";
 
 export class PictureViewer extends Phaser.Scene {
   private picture!: Phaser.GameObjects.Image;
@@ -29,6 +33,26 @@ export class PictureViewer extends Phaser.Scene {
       title: "水中　くらげ",
       name: "jellyfish",
       path: jellyfish,
+    },
+    {
+      title: "ベットの潜り込む",
+      name: "bed",
+      path: bed,
+    },
+    {
+      title: "主人公に笑顔で話しかけているシーン",
+      name: "smile",
+      path: smile,
+    },
+    {
+      title: "花を植える",
+      name: "flower",
+      path: flower,
+    },
+    {
+      title: "踊っているシーン",
+      name: "dance",
+      path: dance,
     },
   ];
 
