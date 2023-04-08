@@ -4,12 +4,14 @@ interface GameStore {
   part: string;
   chapter: number;
   scenarioIndex: number;
+  isSkipMode: boolean;
 }
 
 export const store = map<GameStore>({
   part: "monologue1",
   chapter: 0,
   scenarioIndex: -1,
+  isSkipMode: false,
 });
 
 export const update = action(

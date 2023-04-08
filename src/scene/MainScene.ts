@@ -102,8 +102,10 @@ export class MainScene extends Phaser.Scene {
         width: 160,
         height: 40,
         caption: "Skip",
-        onClick: (v: any) => console.log(v),
-        param: "Skip",
+        onClick: async () => {
+          update({ isSkipMode: true });
+          await this.interpretation();
+        },
       },
       {
         type: "textButton",
@@ -153,6 +155,7 @@ export class MainScene extends Phaser.Scene {
         ...store.get(),
         ...to(),
       });
+      update({ isSkipMode: false });
       resetCounter();
       this.bgm?.stop();
       this.scene.start(sceneName);
@@ -170,7 +173,13 @@ export class MainScene extends Phaser.Scene {
         ];
       switch (code.type) {
         case "text":
-          this.dialog?.setMessage(code.text);
+          if (store.get().isSkipMode) {
+            // dialogがanimateだった時のためにclickedを入れておきます。
+            this.dialog?.clicked();
+            this.dialog?.setMessageImmediate(code.text);
+          } else {
+            this.dialog?.setMessage(code.text);
+          }
           break;
         case "background":
           this.bg.setTexture(code.name);
@@ -216,5 +225,13 @@ export class MainScene extends Phaser.Scene {
         ?.continue ??
       false
     );
+
+    // Skipモードのときは強制continueします。
+    // setTimeoutを挟みたいから、上のwhile文とは別に書いています。
+    // もしかしたらsetMessageImmediateの方にsetTimeoutを挟んだ方がいいのか？
+    if (store.get().isSkipMode) {
+      await new Promise((resolve) => setTimeout(resolve, 300));
+      await this.interpretation();
+    }
   }
 }

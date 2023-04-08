@@ -110,6 +110,14 @@ export class MessageWindow extends Phaser.GameObjects.Container {
     });
   }
 
+  // Skipモードのときはアニメーションしないで待機状態に移行する。
+  public setMessageImmediate(message: string): void {
+    this.messageText = message;
+    if (this.timerEvent !== undefined) this.timerEvent.remove();
+    this.classStatus = "pause";
+    this.waitInput();
+  }
+
   public clicked(): void {
     if (this.classStatus !== "animating") return;
     if (this.timerEvent !== undefined) this.timerEvent.remove();
