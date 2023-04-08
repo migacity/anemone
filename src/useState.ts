@@ -23,7 +23,6 @@ export const update = action(
       ...t,
       ...payload,
     });
-    console.log(`isSkipMode: ${store.get().isSkipMode ? "true" : "false"}`);
   }
 );
 
