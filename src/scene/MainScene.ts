@@ -3,7 +3,13 @@ import { MessageWindow } from "./MessageWindowScene";
 import { useInput } from "../useInput";
 import { scenario, preload } from "../scenario";
 import { ButtonOption, useUi } from "../uiManager";
-import { update, increment, resetCounter, store } from "../useState";
+import {
+  update,
+  increment,
+  resetCounter,
+  store,
+  pushBuffer,
+} from "../useState";
 
 export class MainScene extends Phaser.Scene {
   // 出来ればundefinedは無い方がいい。
@@ -115,6 +121,7 @@ export class MainScene extends Phaser.Scene {
         height: 40,
         caption: "ストーリー選択",
         onClick: () => {
+          pushBuffer();
           update({
             part: "monologue2",
             chapter: 0,
