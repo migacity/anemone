@@ -1151,7 +1151,11 @@ export const scenario: { [key: string]: Scenario[][] } = {
       { type: "text", text: "", continue: true },
       {
         type: "moveNext",
-        to: () => {},
+        to: () => {
+          const part = "monologue1";
+          const chapter = 0;
+          return { part, chapter };
+        },
         sceneName: "loading",
         continue: false,
       },
