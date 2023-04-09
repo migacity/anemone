@@ -1,6 +1,6 @@
 import whiteroom from "../../assets/bg-whiteroom.webp";
 import { ButtonOption, useUi } from "../uiManager";
-import { update, resetCounter } from "../useState";
+import { popBuffer, update, resetCounter } from "../useState";
 
 export class StorySelect extends Phaser.Scene {
   private ui!: Phaser.GameObjects.Container;
@@ -47,6 +47,29 @@ export class StorySelect extends Phaser.Scene {
         },
         param: undefined,
       };
+    });
+
+    // 戻るボタンを追加する。
+    const i = 7;
+    const text = this.add.text(0, 0, "戻る", {
+      fontSize: "24px",
+      padding: { top: 4 },
+    });
+    const caption = this.add.container(undefined, undefined, [text]);
+    text.setOrigin(0.5, 0.5);
+    buttons.push({
+      type: "containerButton",
+      top: Math.floor(i / 2) * dh - (dh * 3) / 2,
+      left: (i % 2) * (2 * dw - w) + (w / 2 - dw),
+      width: w,
+      height: h,
+      caption,
+      onClick: () => {
+        resetCounter();
+        popBuffer();
+        this.scene.start("main");
+      },
+      param: undefined,
     });
     this.uiManager.addButton(buttons);
   }
