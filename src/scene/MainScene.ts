@@ -138,7 +138,14 @@ export class MainScene extends Phaser.Scene {
         width: 160,
         height: 40,
         caption: "ゲーム終了",
-        onClick: (v: any) => console.log(v),
+        onClick: () => {
+          update({
+            part: "ending",
+            chapter: 0,
+          });
+          resetCounter();
+          this.scene.start("main");
+        },
         param: "ゲーム終了",
       },
     ]);

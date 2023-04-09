@@ -1133,7 +1133,8 @@ export const scenario: { [key: string]: Scenario[][] } = {
         face: "chara_A1",
         continue: true,
       },
-      { type: "fadeIn", continue: false },
+      { type: "fadeIn", continue: true },
+      { type: "wait", time: 1000, continue: true },
       { type: "text", text: "「今日はもう寝ますか？」" },
       { type: "text", text: "「おやすみなさい…」" },
       // 立ち絵 A３
@@ -1148,6 +1149,12 @@ export const scenario: { [key: string]: Scenario[][] } = {
       { type: "fadeOut", continue: true },
       { type: "wait", time: 1500, continue: true },
       { type: "text", text: "", continue: true },
+      {
+        type: "moveNext",
+        to: () => {},
+        sceneName: "loading",
+        continue: false,
+      },
     ],
   ],
   monologue2: [
