@@ -184,8 +184,8 @@ export const scenario: { [key: string]: Scenario[][] } = {
             updateAndSave({ monologue1AlreadyRead: true });
             throw new Error();
           }
-          const part = "conversation";
-          const chapter = Math.floor(Math.random() * 14);
+          const part = "startup";
+          const chapter = 0;
           return { part, chapter };
         },
       },
@@ -1118,6 +1118,45 @@ export const scenario: { [key: string]: Scenario[][] } = {
         continue: false,
       },
       // ：～ここまで会話パート～
+    ],
+  ],
+  startup: [
+    [
+      // ゲーム起動時
+      // 背景　白い部屋
+      { type: "background", name: "whiteroom", continue: true },
+      // 立ち絵　A１
+      {
+        type: "showCharacter",
+        name: "sekai",
+        face: "chara_A1",
+        continue: true,
+      },
+      {
+        type: "text",
+        text: "「おはようございます！それともこんにちわでしょうか？」",
+      },
+      // 立ち絵　A３
+      {
+        type: "showCharacter",
+        name: "sekai",
+        face: "chara_A3",
+        continue: true,
+      },
+      { type: "text", text: "「本日もよろしくお願いしますね…！」" },
+      // :演出　ここで一度ブラックアウト
+      { type: "fadeOut", continue: true },
+      { type: "wait", time: 1500, continue: true },
+      { type: "text", text: "", continue: true },
+      {
+        type: "moveNext",
+        to: () => {
+          const part = "conversation";
+          const chapter = Math.floor(Math.random() * 14);
+          return { part, chapter };
+        },
+        continue: false,
+      },
     ],
   ],
   ending: [
