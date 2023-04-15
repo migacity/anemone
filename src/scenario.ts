@@ -1123,9 +1123,9 @@ export const scenario: { [key: string]: Scenario[][] } = {
   startup: [
     [
       // ゲーム起動時
-      // 背景　白い部屋
+      // 背景 白い部屋
       { type: "background", name: "whiteroom", continue: true },
-      // 立ち絵　A１
+      // 立ち絵 A１
       {
         type: "showCharacter",
         name: "sekai",
@@ -1136,7 +1136,7 @@ export const scenario: { [key: string]: Scenario[][] } = {
         type: "text",
         text: "「おはようございます！それともこんにちわでしょうか？」",
       },
-      // 立ち絵　A３
+      // 立ち絵 A３
       {
         type: "showCharacter",
         name: "sekai",
@@ -1144,7 +1144,7 @@ export const scenario: { [key: string]: Scenario[][] } = {
         continue: true,
       },
       { type: "text", text: "「本日もよろしくお願いしますね…！」" },
-      // :演出　ここで一度ブラックアウト
+      // :演出 ここで一度ブラックアウト
       { type: "fadeOut", continue: true },
       { type: "wait", time: 1500, continue: true },
       { type: "text", text: "", continue: true },
