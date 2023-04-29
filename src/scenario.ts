@@ -1872,11 +1872,11 @@ export const scenario: { [key: string]: Scenario[][] } = {
       { type: "background", name: "fieldOfFlowers", continue: true },
       // ＢＧＭ アルカディア
       { type: "playBgm", name: "arcadia", continue: true },
-      // 立ち絵 B６
+      // 立ち絵 A６
       {
         type: "showCharacter",
         name: "sekai",
-        face: "chara_B6",
+        face: "chara_A6",
         continue: true,
       },
       { type: "fadeIn", continue: false },
