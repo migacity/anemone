@@ -53,15 +53,24 @@ export class TitleScene extends Phaser.Scene {
     ]);
     buttonContainer.setSize(buttonWidth, buttonHeight);
     buttonContainer.setInteractive({ useHandCursor: true });
-    buttonContainer.on("pointerover", () =>
-      buttonImage.setTexture("hoverButton")
+
+    const toHover = (): Phaser.GameObjects.Image => buttonImage.setTexture("hoverButton");
+    const toActive = (): Phaser.GameObjects.Image => buttonImage.setTexture("activeButton");
+    const toNormal = (): Phaser.GameObjects.Image => buttonImage.setTexture("normalButton");
+    buttonContainer.on(
+      // スマートフォンのタップをしたときは
+      // pointerdownではなくpointeroverが発火する。
+      "pointerover",
+      ({ event }: { event: MouseEvent | TouchEvent }) => {
+        if (event instanceof TouchEvent) {
+          toActive();
+        } else {
+          toHover();
+        }
+      }
     );
-    buttonContainer.on("pointerout", () =>
-      buttonImage.setTexture("normalButton")
-    );
-    buttonContainer.on("pointerdown", () =>
-      buttonImage.setTexture("activeButton")
-    );
+    buttonContainer.on("pointerout", toNormal);
+    buttonContainer.on("pointerdown", toActive);
     buttonContainer.on("pointerup", () => {
       if (buttonImage.texture.key !== "activeButton") return;
       this.moveNext();
