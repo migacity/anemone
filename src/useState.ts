@@ -57,7 +57,3 @@ export const popBuffer = action(store, "popBuffer", (store) => {
   if (undoBuffer === undefined) return;
   update({ part: undoBuffer.part, chapter: undoBuffer.chapter });
 });
-
-store.subscribe((value) => {
-  console.log(value);
-});
