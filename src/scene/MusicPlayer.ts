@@ -1,4 +1,4 @@
-import whiteroom from "../../assets/bg-whiteroom.webp";
+import whiteroom from "../../assets/bg-whiteroom.jpg";
 import startIcon from "../../assets/start.svg";
 import stopIcon from "../../assets/stop.svg";
 import { ButtonOption, useUi } from "../uiManager";

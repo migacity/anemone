@@ -1,4 +1,4 @@
-import whiteroom from "../../assets/bg-whiteroom.webp";
+import whiteroom from "../../assets/bg-whiteroom.jpg";
 import { ButtonOption, useUi } from "../uiManager";
 import { popBuffer, update, resetCounter } from "../useState";
 
