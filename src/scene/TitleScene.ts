@@ -1,7 +1,7 @@
-import titleImage from "../../assets/title.webp";
-import normalButton from "../../assets/button_title_normal.webp";
-import hoverButton from "../../assets/button_title_hover.webp";
-import activeButton from "../../assets/button_title_active.webp";
+import titleImage from "../../assets/title.jpg";
+import normalButton from "../../assets/button_title_normal.jpg";
+import hoverButton from "../../assets/button_title_hover.jpg";
+import activeButton from "../../assets/button_title_active.jpg";
 import arcadia_ogg from "../../assets/arcadia.ogg";
 import arcadia_m4a from "../../assets/arcadia.m4a?url";
 import { useUi, ButtonOption } from "../uiManager";

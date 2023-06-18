@@ -1,14 +1,14 @@
-import whiteroom from "../../assets/bg-whiteroom.webp";
+import whiteroom from "../../assets/bg-whiteroom.jpg";
 import { ButtonOption, useUi } from "../uiManager";
 import { resetCounter } from "../useState";
 
-import crying from "../../assets/still-crying.webp";
-import entrance from "../../assets/still-entrance.webp";
-import jellyfish from "../../assets/still-jellyfish.webp";
-import bed from "../../assets/still-bed.webp";
-import smile from "../../assets/still-smile.webp";
-import flower from "../../assets/still-flower.webp";
-import dance from "../../assets/still-dance.webp";
+import crying from "../../assets/still-crying.jpg";
+import entrance from "../../assets/still-entrance.jpg";
+import jellyfish from "../../assets/still-jellyfish.jpg";
+import bed from "../../assets/still-bed.jpg";
+import smile from "../../assets/still-smile.jpg";
+import flower from "../../assets/still-flower.jpg";
+import dance from "../../assets/still-dance.jpg";
 
 export class PictureViewer extends Phaser.Scene {
   private picture!: Phaser.GameObjects.Image;

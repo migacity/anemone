@@ -1,4 +1,4 @@
-import mainImage from "../../assets/main.webp";
+import whiteroom from "../../assets/bg-whiteroom.jpg"
 import { MessageWindow } from "./MessageWindowScene";
 import { useInput } from "../useInput";
 import { scenario, preload } from "../scenario";
@@ -37,7 +37,7 @@ export class MainScene extends Phaser.Scene {
   }
 
   preload(): void {
-    this.load.image("mainImage", mainImage);
+    this.load.image("whiteroom", whiteroom)
     preload.forEach((v) => {
       switch (v.type) {
         case "imagePreload":
@@ -58,7 +58,7 @@ export class MainScene extends Phaser.Scene {
     await new Promise((resolve) => setTimeout(resolve, 20));
 
     // 背景画像を表示する。
-    this.bg = this.add.image(width / 2, height / 2, "mainImage");
+    this.bg = this.add.image(width / 2, height / 2, "whiteroom");
 
     // 立ち絵用のコンテナを用意する。
     this.character = this.add.container(width / 2, height / 2);

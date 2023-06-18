@@ -1,4 +1,4 @@
-import logoImage from "../../assets/guideline.webp";
+import logoImage from "../../assets/guideline.jpg";
 import { useInput } from "../useInput";
 
 export class LoadingScene extends Phaser.Scene {
