@@ -358,8 +358,8 @@ export const scenario: { [key: string]: Scenario[][] } = {
       // 交流パート ランダムで会話が選ばれる
       // 背景 白い部屋
       { type: "background", name: "whiteroom", continue: true },
-      // ＢＧＭ かすみがついてくる
-      { type: "playBgm", name: "kasumi_1", continue: true },
+      // ＢＧＭ siriusu2
+      { type: "playBgm", name: "sirius2_1", continue: true },
       // 立ち絵 A1
       {
         type: "showCharacter",
@@ -1462,8 +1462,8 @@ export const scenario: { [key: string]: Scenario[][] } = {
       // CASE２ 日常
       // 背景 ベンチ
       { type: "background", name: "bench", continue: true },
-      // ＢＧＭ
-      { type: "playBgm", continue: true },
+      // ＢＧＭ tomedonaki2
+      { type: "playBgm", name: "tomedonaki2_2", continue: true },
       // 立ち絵 A5
       {
         type: "showCharacter",
@@ -1663,7 +1663,8 @@ export const scenario: { [key: string]: Scenario[][] } = {
       // CASE３ アネモネ
       // 背景 花壇
       { type: "background", name: "garden", continue: true },
-      { type: "playBgm", continue: true },
+      // BGM  tomedonaki1
+      { type: "playBgm", name: "tomedonaki1_1", continue: true },
       { type: "fadeIn", continue: false },
       { type: "text", text: "「何してるんだ？」" },
       // 立ち絵 B1
@@ -1745,7 +1746,8 @@ export const scenario: { [key: string]: Scenario[][] } = {
       // CASE４
       // 背景 公園
       { type: "background", name: "park", continue: true },
-      { type: "playBgm", continue: true },
+      // BGM  kasumi1
+      { type: "playBgm", name: "kasumi_1", continue: true },
       // 立ち絵 A5
       {
         type: "showCharacter",
@@ -1969,11 +1971,14 @@ export const scenario: { [key: string]: Scenario[][] } = {
       { type: "text", text: "「謝るんだ！全国の歯科医の先生に謝るんだ！」" },
       // ：演出 ブラックアウト
       { type: "fadeOut", continue: true },
+      { type: "playBgm", continue: true },
       { type: "wait", time: 1500, continue: true },
       { type: "text", text: "", continue: true },
 
       // 背景 レストラン
       { type: "background", name: "restaurant", continue: true },
+      // BGM   tomedonaki1
+      { type: "playBgm", name: "tomedonaki1_1", continue: true },
       { type: "fadeIn", continue: false },
       // 立ち絵 A３
       {
@@ -2024,13 +2029,10 @@ export const scenario: { [key: string]: Scenario[][] } = {
       // CASE６ 妹
       // 背景 自室
       { type: "background", name: "room", continue: true },
-      { type: "playBgm", continue: true },
+      // BGM tomedonaki2
+      { type: "playBgm", name: "tomedonaki2_2", continue: true },
       { type: "fadeIn", continue: false },
       { type: "text", text: "ｐｐｐｐｐｐｐｐｐ" },
-      // 背景 リビング
-      { type: "background", name: "livingRoom", continue: true },
-      // 背景 自室
-      { type: "background", name: "room", continue: true },
       // 立ち絵 B1
       {
         type: "showCharacter",
@@ -2144,7 +2146,8 @@ export const scenario: { [key: string]: Scenario[][] } = {
       // CASE７ 幼馴染 恋人 結婚
       // 背景リビング
       { type: "background", name: "livingRoom", continue: true },
-      { type: "playBgm", continue: true },
+      // BGM housekitan
+      { type: "playBgm", name: "housekitan_1", continue: true },
       // 立ち絵 A1
       {
         type: "showCharacter",
