@@ -1,4 +1,4 @@
-import whiteroom from "../../assets/bg-whiteroom.jpg"
+import whiteroom from "../../assets/bg-whiteroom.jpg";
 import { MessageWindow } from "./MessageWindowScene";
 import { useInput } from "../useInput";
 import { scenario, preload } from "../scenario";
@@ -37,7 +37,7 @@ export class MainScene extends Phaser.Scene {
   }
 
   preload(): void {
-    this.load.image("whiteroom", whiteroom)
+    this.load.image("whiteroom", whiteroom);
     preload.forEach((v) => {
       switch (v.type) {
         case "imagePreload":
