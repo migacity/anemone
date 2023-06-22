@@ -54,9 +54,12 @@ export class TitleScene extends Phaser.Scene {
     buttonContainer.setSize(buttonWidth, buttonHeight);
     buttonContainer.setInteractive({ useHandCursor: true });
 
-    const toHover = (): Phaser.GameObjects.Image => buttonImage.setTexture("hoverButton");
-    const toActive = (): Phaser.GameObjects.Image => buttonImage.setTexture("activeButton");
-    const toNormal = (): Phaser.GameObjects.Image => buttonImage.setTexture("normalButton");
+    const toHover = (): Phaser.GameObjects.Image =>
+      buttonImage.setTexture("hoverButton");
+    const toActive = (): Phaser.GameObjects.Image =>
+      buttonImage.setTexture("activeButton");
+    const toNormal = (): Phaser.GameObjects.Image =>
+      buttonImage.setTexture("normalButton");
     buttonContainer.on(
       // スマートフォンのタップをしたときは
       // pointerdownではなくpointeroverが発火する。
